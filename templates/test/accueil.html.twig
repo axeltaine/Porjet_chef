@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+{% block title %}TODOLIST{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="/css/accueil.css">{% endblock %}
+{% block body %}
+   <header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/accueil">
+      <img src="img/logo_transpa.png" width="30" height="30" alt="logo">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+        <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Crée projet</button>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+     {#<form>
+  <div class="form-group">
+    <label for="exampleInputName_projet">Titre projet</label>
+    <input type="text" class="form-control" id="exampleInputName_projet" >
+  </div>
+  <div class="form-group">
+    <label for="comment">Description:</label>
+  <textarea class="form-control" rows="5" id="comment"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlFile1">Image</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+  </div>
+</form>#}
+{{ form_start(form) }}
+<div class="form-group">
+{{ form_label(form.name_projet)}}
+{{ form_widget(form.name_projet, { 'attr': {'class': 'form-control'} })}}
+</div>
+<div class="form-group">
+{{ form_label(form.desc_projet)}}
+{{ form_widget(form.desc_projet, { 'attr': {'class': 'form-control'} })}}
+</div>
+<div class="form-group">
+{{ form_label(form.img_projet)}}
+{{ form_widget(form.img_projet)}}
+</div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+{{ form_end(form) }}
+    </div>
+  </div>
+</div>
+</header>
+<main class="global">
+    <section class="main-container">
+    <div class="location" id="home">
+      <h1 id="home">Projet en développement</h1>
+      <div class="box">
+
+{% for projet in projets %}
+
+<h1 data-toggle="modal" data-target="#exampleModal" aria-controls="exampleModal">{{ projet.nameProjet}}<img src="{{ asset(projet.imgProjet)}}"></h1>
+
+     <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+            <h2>URL</h2>
+            
+            <h2>{{ projet.nameProjet}}</h2>
+           
+            <a href="/todolist" class="btn btn-primary">todolist</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+     </div>
+      </div>
+    </div>
+   
+   {% endfor %}
+    </div>
+  </section>
+  
+    <div class="bottom">
+    <h1 id="home">List des contrats</h1>
+    <div class="container">
+    <table class="table table-bordered table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Nom client</th>
+      <th scope="col">Date debut contrat</th>
+      <th scope="col">Date fin contrat</th>
+      <th scope="col">Date de contact</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Mark</th>
+      <td>12/08/2018</td>
+      <td>2/08/2018</td>
+      <td>2/08/2018</td>
+    </tr>
+    <tr>
+      <th scope="row">Jacob</th>
+      <td>12/08/2018</td>
+      <td>12/08/2018</td>
+      <td>12/08/2018</td>
+    </tr>
+    <tr>
+      <th scope="row">Thornton</th>
+      <td>12/08/2018</td>
+      <td>12/08/2018</td>
+      <td>12/08/2018</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    </div>
+  </main>
+{% endblock %}

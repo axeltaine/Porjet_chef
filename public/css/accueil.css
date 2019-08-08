@@ -1,0 +1,65 @@
+html,
+body {
+    font-family: Roboto;
+    height: 100%;
+}
+.global {
+    min-height: calc(100vh - 1.5em);
+    text-align: center;
+}
+
+body {
+    color: white;
+    font: 87.5%/1.5em 'Open Sans', sans-serif;
+    background: #B3001B;
+    /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #B3001B 1%, #DB2727 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%, #B3001B), color-stop(100%, #DB2727));
+    /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover, #B3001B 1%, #DB2727 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover, #B3001B 1%, #DB2727 100%);
+    /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover, #B3001B 1%, #DB2727 100%);
+    /* IE10+ */
+    background: radial-gradient(ellipse at center, #B3001B 1%, #DB2727 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#B3001B', endColorstr='#DB2727', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+    height: calc(100vh);
+    width: 100%;
+}
+
+
+/*MAIN CONTIANER */
+.main-container {
+    padding: 50px;
+  }
+  
+  .box {
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: repeat(4, minmax(10em, 1fr));
+  }
+  
+  .modal-content {
+    background-color: black;
+  }
+  
+  .box h1 {
+    transition: transform .3s;  
+  }
+  
+  .box h1:hover {
+    transition: transform .3s;
+    -ms-transform: scale(1.4);
+    -webkit-transform: scale(1.4);  
+    transform: scale(1.4);
+  }
+  
+  .box img {
+    border-radius: 2px;
+    max-height: 8em;
+    width: 5em;
+  }

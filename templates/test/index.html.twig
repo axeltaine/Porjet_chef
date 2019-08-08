@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TODOLIST{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="/css/login.css">{% endblock %}
+
+{% block body %}
+<form method="post" class="form-signin">
+        <center>
+            <img src="img/logo_transpa.png" alt="logo">
+        </center>
+        <h1 class="text-center text-dark">MAITRISE<strong>WEB</strong>
+            <h1>
+                <h1 class="h3 mb-3 text-dark text-center font-weight-normal">Connectez vous !</h1>
+                <label for="nom" class="sr-only">Nom</label>
+                <input type="text" name="Name_admin" id="inputUserName" class="form-control" placeholder="Votre nom"
+                    required autofocus>
+                <label for="mdp" class="sr-only">Password</label>
+                <input type="mdp" name="Mdp_admin" id="mdp" class="form-control" placeholder="Votre mot de passe"
+                    required>
+                <div class="checkbox mb-3">
+                </div>
+                <button class="btn btn-lg btn-danger btn-block" name="submit" type="submit">Se connecter</button>
+
+    </form>
+{% endblock %}
