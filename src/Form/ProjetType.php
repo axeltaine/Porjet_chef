@@ -16,21 +16,21 @@ class ProjetType extends AbstractType
     {
         $builder
             ->add('name_projet', TextType::class, [
-                'label' => 'Nom du projet',
+                'label' => 'Nom du projet :',
                 'attr' => [
                     'placeholder' => 'Nom'
 
                 ]
             ])
             ->add('desc_projet', TextareaType::class, [
-                'label' => 'Description',
+                'label' => 'Description :',
                 'attr' => [
                     'placeholder' => 'Description'
 
                     ]
                 ])
             ->add('img_projet', FileType::class, [
-                'label' => 'Image',
+                'label' => 'Image :',
                 'attr' => [
                     'placeholder' => 'Image'
 

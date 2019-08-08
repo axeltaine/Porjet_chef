@@ -61,5 +61,5 @@ body {
   .box img {
     border-radius: 2px;
     max-height: 8em;
-    width: 5em;
+    max-width: 5em;
   }
