@@ -22,29 +22,34 @@
   <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-    <h3>Nouveau Projet</h3>
+    <div class="modal-header">
+        
+         <h3>Nouveau Projet</h3>
+       
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    
       <div class="container">
     
 {{ form_start(form) }}
 <div class="form-group">
 {{ form_label(form.name_projet)}}
-{{ form_widget(form.name_projet, { 'attr': {'class': 'form-control'} })}}
-</div>
-<div class="form-group">
-{{ form_label(form.desc_projet)}}
-{{ form_widget(form.desc_projet, { 'attr': {'class': 'form-control'} })}}
-</div>
-<div class="form-group">
-{{ form_label(form.img_projet)}}
-{{ form_widget(form.img_projet)}}
+{{ form_widget(form.name_projet, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
 </div>
 <div class="form-group">
 {{ form_label(form.name_domain)}}
-{{ form_widget(form.name_domain, { 'attr': {'class': 'form-control'} })}}
+{{ form_widget(form.name_domain, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
 </div>
+
 <div class="form-group">
+<div class="row" style="justify-content: space-around;">
+{{ form_label(form.img_projet)}}
+{{ form_widget(form.img_projet)}}
 {{ form_label(form.logo_projet)}}
 {{ form_widget(form.logo_projet)}}
+</div>
 </div>
 <div class="form-group">
 {{ form_label(form.doc_projet)}}
@@ -58,12 +63,16 @@
 {{ form_widget(form.date_end)}}
 </div>
 </div>
-  <button type="submit" class="btn btn-danger">Create</button>
-{{ form_end(form) }}
+<div class="form-group">
+{{ form_label(form.desc_projet)}}
+{{ form_widget(form.desc_projet, { 'attr': {'class': 'form-control'} })}}
+</div>
 </div>
 <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button type="submit" class="btn btn-danger">Create</button>
+   
       </div>
+      {{ form_end(form) }}
     </div>
   </div>
 </div>
@@ -86,22 +95,24 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{ projet.nameProjet}}</h5>
+        
+          <img src="img/{{projet.logoProjet}}">
+          <h5 class="modal-title" id="exampleModalLabel">{{ projet.nameProjet}}</h5>
+       
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body" id="projet">
 
-           <img src="img/{{projet.imgProjet}}">
-
+           <img src="img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em;">
             <p>{{ projet.descProjet}}</p>
-           
-            <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-primary">todolist</a>
-            <a href="#" class="btn btn-danger delete-projet" data-id="{{ projet.id }}">Delete</a>
+               
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-primary">todolist</a>
+            <a href="#" class="btn btn-danger delete-projet" data-id="{{ projet.id }}">Delete</a>
+       
       </div>
      </div>
       </div>

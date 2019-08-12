@@ -3,15 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Projet;
+use App\Entity\Company;
 use App\Form\ProjetType;
+use App\Form\CompanyType;
 use App\Repository\ProjetRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class TestController extends AbstractController
 {
@@ -56,13 +58,33 @@ class TestController extends AbstractController
                     $destination,
                     $newFilename
                 );
+                $uploadedDoc = $form['doc_projet']->getData();
+                if ($uploadedDoc) {
+                    $destination = $this->getParameter('kernel.project_dir').'/public/doc/';
+                    $originalDocname = pathinfo($uploadedDoc->getClientOriginalName(), PATHINFO_FILENAME);
+                    $newDocname = $originalDocname.'-'.uniqid().'.'.$uploadedDoc->guessExtension();
+                    $uploadedDoc->move(
+                        $destination,
+                        $newDocname
+                    );
+                    $uploadedLogo = $form['logo_projet']->getData();
+                if ($uploadedLogo) {
+                    $destination = $this->getParameter('kernel.project_dir').'/public/img/';
+                    $originalLogoname = pathinfo($uploadedLogo->getClientOriginalName(), PATHINFO_FILENAME);
+                    $newLogoname = $originalLogoname.'-'.uniqid().'.'.$uploadedLogo->guessExtension();
+                    $uploadedLogo->move(
+                        $destination,
+                        $newLogoname
+                    );
+                $projet->setLogoProjet($newLogoname);
                 $projet->setImgProjet($newFilename);
+                $projet->setDocProjet($newDocname);
                 $manager->persist($projet);
                 $manager->flush();
             
         }}
 
-
+    }}
         return $this->render('test/accueil.html.twig',[
             'form' => $form->createView(),
             'projets' => $repo->findAll()
@@ -83,6 +105,4 @@ class TestController extends AbstractController
       }
 
         
-
-}
-
+    }
