@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class TestController extends AbstractController
 {
@@ -25,12 +26,13 @@ class TestController extends AbstractController
     }
 
     /**
-     * @Route("/todolist", name="todolist")
+     * @Route("/todolist/{id}", name="todolist")
      */
-    public function todolist()
+    public function todolist(Projet $projet)
     {
         return $this->render('test/todolist.html.twig', [
             'controller_name' => 'TestController',
+            'projet' => $projet
         ]);
     }
      /**
@@ -55,6 +57,18 @@ class TestController extends AbstractController
         ]);
 
 }
+ /**
+     * @Route("/accueil/delete/{id}")
+     * @Method({"DELETE"})
+     */
+    public function delete(Request $request, $id) {
+        $projet = $this->getDoctrine()->getRepository(Projet::class)->find($id);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($projet);
+        $entityManager->flush();
+        $response = new Response();
+        $response->send();
+      }
 
         
 
