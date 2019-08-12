@@ -44,11 +44,23 @@ class TestController extends AbstractController
        
         $form = $this->createForm(ProjetType::class, $projet);
         $form->handleRequest($request);
+      
 
         if($form->isSubmitted() && $form->isValid()){
-            $manager->persist($projet);
-            $manager->flush();
-        }
+            $uploadedFile = $form['img_projet']->getData();
+            if ($uploadedFile) {
+                $destination = $this->getParameter('kernel.project_dir').'/public/img/';
+                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename.'-'.uniqid().'.'.$uploadedFile->guessExtension();
+                $uploadedFile->move(
+                    $destination,
+                    $newFilename
+                );
+                $projet->setImgProjet($newFilename);
+                $manager->persist($projet);
+                $manager->flush();
+            
+        }}
 
 
         return $this->render('test/accueil.html.twig',[
