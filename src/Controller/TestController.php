@@ -14,16 +14,30 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class TestController extends AbstractController
 {
     /**
-     * @Route("/", name="test")
+     * @Route("/", name="home")
      */
-    public function index()
+    public function home()
+    {
+        return $this->redirectToRoute('index');
+    }
+
+
+    /**
+     * @Route("/index", name="index")
+     */
+    public function index(AuthenticationUtils $helper)
     {
         return $this->render('test/index.html.twig', [
             'controller_name' => 'TestController',
+            // dernier username saisi (si il y en a un)
+            'last_username' => $helper->getLastUsername(),
+            // La derniere erreur de connexion (si il y en a une)
+            'error' => $helper->getLastAuthenticationError(),
         ]);
     }
 
@@ -89,9 +103,9 @@ class TestController extends AbstractController
             'form' => $form->createView(),
             'projets' => $repo->findAll()
         ]);
+    }
 
-}
- /**
+    /**
      * @Route("/accueil/delete/{id}")
      * @Method({"DELETE"})
      */
@@ -103,6 +117,11 @@ class TestController extends AbstractController
         $response = new Response();
         $response->send();
       }
-
-        
+       
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logout()
+    {
     }
+}

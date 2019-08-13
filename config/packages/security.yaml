@@ -1,22 +1,45 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\User: bcrypt
+ 
     providers:
-        in_memory: { memory: null }
+        database_users:
+            entity: 
+                class: App\Entity\User 
+                property: Name_user
+ 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+ 
         main:
+            provider: database_users
+            # La connexion n'est pas requise sur toutes les pages
+            # par exemple la page d'accueil
             anonymous: true
-
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#firewalls-authentication
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
-
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
+ 
+            form_login:
+                # Le nom de la route de la page de connexion
+                check_path: index
+                # Le nom de la route où se trouve le formulaire de connexion
+                # Si un utilisateur tente d'acceder à une page protégée sans en avoir les droits
+                # il sera redirigé sur cette page
+                login_path: index
+                # Securisation des formulaires
+                csrf_token_generator: security.csrf.token_manager
+                # La page par defaut apres une connexion reussie
+                default_target_path: create_projet
+ 
+            logout:
+                # La route où se trouve le process de deconnexion
+                path:   logout
+                # La route sur laquelle doit etre rediriger l'utilisateur apres une deconnexion
+                target: index
+ 
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        # Les regles de securité
+        # Là dans ce cas seul les utilisateurs ayant le rôle ROLE_ADMIN
+        # peuvent acceder à toutes les pages commençant par /admin
+        - { path: '/index', roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/*', roles: ROLE_USER }
