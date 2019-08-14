@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Projet;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -55,6 +56,22 @@ class Projet
      * @ORM\Column(type="date")
      */
     private $Date_end;
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Company", inversedBy="projets")
+     */
+    private $company;
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {

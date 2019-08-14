@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\Company;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CompanyRepository")
@@ -40,6 +43,25 @@ class Company
      * @ORM\Column(type="string", length=255)
      */
     private $Email_company;
+     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Projet", mappedBy="company")
+     */
+    private $projets;
+
+    public function __construct()
+    {
+        $this->projets = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|Projet[]
+     */
+    public function getProjets(): Collection
+    {
+        return $this->projets;
+    }
+
+    // addProjet() and removeProjet() were also added
 
     public function getId(): ?int
     {

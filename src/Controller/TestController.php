@@ -57,7 +57,9 @@ class TestController extends AbstractController
     public function createProjet(Request $request, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo): Response
     {
         $projet = new Projet();
-       
+        $company = new Company();
+        // relates this product to the category
+        $projet->setCompany($company);
         $form = $this->createForm(ProjetType::class, $projet);
         $form->handleRequest($request);
       
@@ -94,6 +96,7 @@ class TestController extends AbstractController
                 $projet->setImgProjet($newFilename);
                 $projet->setDocProjet($newDocname);
                 $manager->persist($projet);
+                $manager->persist($company);
                 $manager->flush();
             
         }}
@@ -104,7 +107,31 @@ class TestController extends AbstractController
             'projets' => $repo->findAll()
         ]);
     }
+    /**
+     * @Route("/accueil", name="create_company")
+     */
+    public function createCompany(Request $request, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo): Response
+    {
+        $company = new Company();
+       
+        $form = $this->createForm(CompanyType::class, $company);
+        $form->handleRequest($request);
+      
 
+        if($form->isSubmitted() && $form->isValid()){
+           
+            
+                $manager->persist($projet);
+                $manager->flush();
+            
+        }
+
+    
+        return $this->render('test/accueil.html.twig',[
+            'form' => $form->createView(),
+            
+        ]);
+    }
     /**
      * @Route("/accueil/delete/{id}")
      * @Method({"DELETE"})

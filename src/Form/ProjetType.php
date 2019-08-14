@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Projet;
+use App\Form\CompanyType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +19,13 @@ class ProjetType extends AbstractType
         $builder
             ->add('name_projet', TextType::class, [
                 'label' => 'Nom du projet :',
+                'attr' => [
+                    'placeholder' => 'Nom'
+
+                ]
+            ])
+            ->add('company', CompanyType::class, [
+                'label' => 'Nom de société :',
                 'attr' => [
                     'placeholder' => 'Nom'
 

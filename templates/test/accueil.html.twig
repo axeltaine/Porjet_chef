@@ -41,9 +41,30 @@
 {{ form_label(form.name_projet)}}
 {{ form_widget(form.name_projet, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
 </div>
+
 <div class="form-group">
 {{ form_label(form.name_domain)}}
 {{ form_widget(form.name_domain, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
+</div>
+<div class="form-group">
+{{ form_label(form.company.name_company)}}
+{{ form_widget(form.company.name_company, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
+</div>
+<div class="form-group">
+{{ form_label(form.company.email_company)}}
+{{ form_widget(form.company.email_company, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
+</div>
+<div class="form-group">
+{{ form_label(form.company.siret_company)}}
+{{ form_widget(form.company.siret_company, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
+</div>
+<div class="form-group">
+{{ form_label(form.company.phone_company)}}
+{{ form_widget(form.company.phone_company, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
+</div>
+<div class="form-group">
+{{ form_label(form.company.name_director)}}
+{{ form_widget(form.company.name_director, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
 </div>
 
 <div class="form-group">
@@ -110,6 +131,7 @@
 
            <img src="img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em;">
             <p>{{ projet.descProjet}}</p>
+          
                
       </div>
       <div class="modal-footer">
