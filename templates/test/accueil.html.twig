@@ -148,40 +148,40 @@
   </section>
   
     <div class="bottom">
+   
     <h1 id="home">List des contrats</h1>
     <div class="container">
+    
     <table class="table table-bordered table-dark">
+    
   <thead>
     <tr>
       <th scope="col">Nom client</th>
+      <th scope="col">Nom projet</th>
       <th scope="col">Date debut contrat</th>
       <th scope="col">Date fin contrat</th>
       <th scope="col">Date de contact</th>
     </tr>
   </thead>
   <tbody>
+  {% for company in companys %}
+  {% for projet in company.projets %}
     <tr>
-      <th scope="row">Mark</th>
-      <td>12/08/2018</td>
-      <td>2/08/2018</td>
-      <td>2/08/2018</td>
+      <th scope="row">{{ company.NameCompany }}</th>
+      <th scope="row">{{ projet.nameProjet }}</th>
+      <td>{{ projet.dateStart|date('d/m/Y')}}</td>
+      <td>{{ projet.dateEnd|date('d/m/Y')}}</td>
+      <td>{{ projet.datecontact|date('d/m/Y')}}</td>
     </tr>
-    <tr>
-      <th scope="row">Jacob</th>
-      <td>12/08/2018</td>
-      <td>12/08/2018</td>
-      <td>12/08/2018</td>
-    </tr>
-    <tr>
-      <th scope="row">Thornton</th>
-      <td>12/08/2018</td>
-      <td>12/08/2018</td>
-      <td>12/08/2018</td>
-    </tr>
+    {% endfor %}
+    {% endfor %}
   </tbody>
+   
 </table>
 </div>
+
     </div>
+    
   </main>
 {% endblock %}
 {% block javascripts %}

@@ -7,6 +7,7 @@ use App\Entity\Company;
 use App\Form\ProjetType;
 use App\Form\CompanyType;
 use App\Repository\ProjetRepository;
+use App\Repository\CompanyRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,7 +55,7 @@ class TestController extends AbstractController
      /**
      * @Route("/accueil", name="create_projet")
      */
-    public function createProjet(Request $request, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo): Response
+    public function createProjet(Request $request, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo, CompanyRepository $repocomp): Response
     {
         $projet = new Projet();
         $company = new Company();
@@ -104,7 +105,8 @@ class TestController extends AbstractController
     }}
         return $this->render('test/accueil.html.twig',[
             'form' => $form->createView(),
-            'projets' => $repo->findAll()
+            'projets' => $repo->findAll(),
+            'companys' => $repocomp->findAll()
         ]);
     }
     /**
