@@ -2,16 +2,22 @@
 
 namespace App\Controller;
 
+use App\Entity\Chat;
 use App\Entity\Projet;
+use App\Form\ChatType;
+use App\Form\EditType;
 use App\Entity\Company;
 use App\Form\ProjetType;
 use App\Form\CompanyType;
+use App\Repository\ChatRepository;
 use App\Repository\ProjetRepository;
 use App\Repository\CompanyRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,13 +51,39 @@ class TestController extends AbstractController
     /**
      * @Route("/todolist/{id}", name="todolist")
      */
-    public function todolist(Projet $projet)
+    public function todolist(Projet $projet, Request $request)
     {
+        $chat = new Chat();
+        
+        $form = $this->createForm(ChatType::class, $chat);
+        $form->handleRequest($request);
+        $form->add('submit', SubmitType::class, [
+            'label' => 'Create',
+            'attr' => ['class' => 'btn btn-default pull-right'],
+            ]);
         return $this->render('test/todolist.html.twig', [
             'controller_name' => 'TestController',
+            'form' => $form->createView(),
             'projet' => $projet
         ]);
     }
+    /**
+     * @Route("/edit/{id}", name="edit")
+     */
+    public function edit(Projet $projet, Request $request, ObjectManager $manager)
+{
+    $form = $this->createForm(EditType::class, $projet);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $manager->flush();
+        return $this->redirectToRoute('create_projet');
+    }
+    return $this->render('test/edit.html.twig', [
+        'projet' => $projet,
+        'form' => $form->createView()
+    ]);
+}
      /**
      * @Route("/accueil", name="create_projet")
      */
@@ -134,15 +166,16 @@ class TestController extends AbstractController
             
         ]);
     }
+ 
     /**
      * @Route("/accueil/delete/{id}")
      * @Method({"DELETE"})
      */
     public function delete(Request $request, $id) {
         $projet = $this->getDoctrine()->getRepository(Projet::class)->find($id);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($projet);
-        $entityManager->flush();
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($projet);
+        $manager->flush();
         $response = new Response();
         $response->send();
       }
@@ -153,4 +186,6 @@ class TestController extends AbstractController
     public function logout()
     {
     }
+  
+
 }

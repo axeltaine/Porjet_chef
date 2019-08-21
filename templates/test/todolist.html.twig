@@ -90,25 +90,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="form-group">
-  <label for="comment">Comment:</label>
-  <textarea class="form-control" rows="5" id="comment"></textarea>
-</div>
-<form>
-  <input type="file" id="myFile" name="filename2">
-  
-    <div class="mt-3">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</form>
-<form>
-  <input type="file" id="myFile" name="filename2">
-  
-    <div class="mt-3">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</form>
-      </div>
+      {{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <input type="submit" class="btn" value="Create"/>
+{{ form_end(form) }}
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-danger">Save changes</button>

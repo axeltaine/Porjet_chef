@@ -110,7 +110,8 @@
       
       <div class="box">
 
-{% for projet in projets %}
+{% for company in companys %}
+  {% for projet in company.projets %}
 
 <h1 data-toggle="modal" data-target="#exampleModal{{ projet.Id}}" aria-controls="exampleModal">{{ projet.nameProjet}}<img src="img/{{projet.imgProjet}}"></h1>
 
@@ -122,27 +123,34 @@
         
           <img src="img/{{projet.logoProjet}}">
           <h5 class="modal-title" id="exampleModalLabel">{{ projet.nameProjet}}</h5>
-       
+          
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body" id="projet">
-
+            <p>{{ company.NameCompany }}</p>
+            <p>{{ company.NameDirector }}</p>
+            <p>{{ company.SiretCompany }}</p>
+            <p>{{ company.PhoneCompany }}</p>
+            <p>{{ company.EmailCompany }}</p>
            <img src="img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em;">
             <p>{{ projet.descProjet}}</p>
+            <p>{{ projet.dateStart|date('d/m/Y')}}</p>
+            <p>{{ projet.dateEnd|date('d/m/Y')}}</p>
           
                
       </div>
       <div class="modal-footer">
-       <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-primary">todolist</a>
-            <a href="#" class="btn btn-danger delete-projet" data-id="{{ projet.id }}">Delete</a>
+          <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-primary">todolist</a>
+          <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-warning ">Edit</a>
+          <a href="#" class="btn btn-danger delete-projet" data-id="{{ projet.id }}">Delete</a>
        
       </div>
      </div>
       </div>
     </div>
-   
+   {% endfor %}
    {% endfor %}
     </div>
   </section>
