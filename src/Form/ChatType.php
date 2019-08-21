@@ -19,7 +19,7 @@ class ChatType extends AbstractType
             
             ->add('Contenu', TextareaType::class)
            
-            ->add('save', SubmitType::class, ['label' => 'Create Post'])
+           
         ;
     }
     public function configureOptions(OptionsResolver $resolver)

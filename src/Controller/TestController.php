@@ -57,10 +57,7 @@ class TestController extends AbstractController
         
         $form = $this->createForm(ChatType::class, $chat);
         $form->handleRequest($request);
-        $form->add('submit', SubmitType::class, [
-            'label' => 'Create',
-            'attr' => ['class' => 'btn btn-default pull-right'],
-            ]);
+        
         return $this->render('test/todolist.html.twig', [
             'controller_name' => 'TestController',
             'form' => $form->createView(),
