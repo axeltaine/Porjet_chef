@@ -22,6 +22,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Form\EditcompanyType;
 
 class TestController extends AbstractController
 {
@@ -78,6 +79,23 @@ class TestController extends AbstractController
     }
     return $this->render('test/edit.html.twig', [
         'projet' => $projet,
+        'form' => $form->createView()
+    ]);
+}
+   /**
+     * @Route("/editCompany/{id}", name="editCompany")
+     */
+    public function editCompany(Company $company, Request $request, ObjectManager $manager)
+{
+    $form = $this->createForm(EditcompanyType::class, $company);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $manager->flush();
+        return $this->redirectToRoute('create_projet');
+    }
+    return $this->render('test/edit.html.twig', [
+        'company' => $company,
         'form' => $form->createView()
     ]);
 }
