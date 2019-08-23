@@ -3,195 +3,255 @@
 {% block stylesheets %}<link rel="stylesheet" href="/css/accueil.css">{% endblock %}
 {% block body %}
    <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/accueil">
-      <img src="img/logo_transpa.png" width="30" height="30" alt="logo">
-    </a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-        <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
-        </li>
-        
-        <li class="nav-item">
-         <a class="btn btn-outline-danger my-2 my-sm-0" href="{{ path('logout') }}"  type="submit">logout</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/accueil">
+              <img src="img/logo_transpa.png" width="30" height="30" alt="logo">
+            </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+              <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+        <a class="navbar-logout" href="{{ path('logout')}}" data-toggle="tooltip"  title="Déconnexion" ><img src="img/logout_icon-icons.com_51025.png" width="30" height="30" alt="Logout"></a>
+      </nav>
+
   <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    <div class="modal-header">
-        
-         <h3>Nouveau Projet</h3>
-       
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+            <h3>Nouveau Projet</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
     
       <div class="container">
-    
-{{ form_start(form) }}
-<div class="form-group">
-{{ form_label(form.name_projet)}}
-{{ form_widget(form.name_projet, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
-</div>
+        {{ form_start(form) }}
+        <div class="form-row">
+    <div class="form-group col-md-6">
+        {{ form_label(form.name_projet)}}
+        {{ form_widget(form.name_projet, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
+         </div>
+         <div class="form-group col-md-6">
+        {{ form_label(form.name_domain)}}
+        {{ form_widget(form.name_domain, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
+        </div>
+        </div>
+         <div class="form-row">
+    <div class="form-group col-md-6">
+        {{ form_label(form.company.name_company)}}
+        {{ form_widget(form.company.name_company, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
+        </div>
+         <div class="form-group col-md-6">
+        {{ form_label(form.company.email_company)}}
+        {{ form_widget(form.company.email_company, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
+        </div>
+        </div>
+              <div class="form-row">
+    <div class="form-group col-md-6">
+        {{ form_label(form.company.siret_company)}}
+        {{ form_widget(form.company.siret_company, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
+        </div>
+         <div class="form-group col-md-6">
+        {{ form_label(form.company.phone_company)}}
+        {{ form_widget(form.company.phone_company, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
+        </div>
+        </div>
+        <div class="form-group">
+        {{ form_label(form.company.name_director)}}
+        {{ form_widget(form.company.name_director, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
+        </div>
 
-<div class="form-group">
-{{ form_label(form.name_domain)}}
-{{ form_widget(form.name_domain, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
-</div>
-<div class="form-group">
-{{ form_label(form.company.name_company)}}
-{{ form_widget(form.company.name_company, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
-</div>
-<div class="form-group">
-{{ form_label(form.company.email_company)}}
-{{ form_widget(form.company.email_company, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
-</div>
-<div class="form-group">
-{{ form_label(form.company.siret_company)}}
-{{ form_widget(form.company.siret_company, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
-</div>
-<div class="form-group">
-{{ form_label(form.company.phone_company)}}
-{{ form_widget(form.company.phone_company, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
-</div>
-<div class="form-group">
-{{ form_label(form.company.name_director)}}
-{{ form_widget(form.company.name_director, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
-</div>
-
-<div class="form-group">
-<div class="row" style="justify-content: space-around;">
-{{ form_label(form.img_projet)}}
-{{ form_widget(form.img_projet)}}
-{{ form_label(form.logo_projet)}}
-{{ form_widget(form.logo_projet)}}
-</div>
-</div>
-<div class="form-group">
-{{ form_label(form.doc_projet)}}
-{{ form_widget(form.doc_projet)}}
-</div>
-<div class="form-group">
-<div class="row" style="justify-content: space-around;">
-{{ form_label(form.date_start)}}
-{{ form_widget(form.date_start)}}
-{{ form_label(form.date_end)}}
-{{ form_widget(form.date_end)}}
-</div>
-</div>
-<div class="form-group">
-{{ form_label(form.desc_projet)}}
-{{ form_widget(form.desc_projet, { 'attr': {'class': 'form-control'} })}}
-</div>
-</div>
-<div class="modal-footer">
-<button type="submit" class="btn btn-danger">Create</button>
-   
-      </div>
+         <div class="form-row">
+    <div class="form-group col-md-6">
+        {{ form_label(form.img_projet)}}
+        {{ form_widget(form.img_projet)}}
+        </div>
+         <div class="form-group col-md-6">
+        {{ form_label(form.logo_projet)}}
+        {{ form_widget(form.logo_projet)}}
+        </div>
+        </div>
+        <div class="form-group col-6">
+        {{ form_label(form.doc_projet)}}
+        {{ form_widget(form.doc_projet)}}
+        </div>
+        <div class="form-row">
+    <div class="form-group col-md-6">
+        {{ form_label(form.date_start)}}
+        {{ form_widget(form.date_start)}}
+        </div>
+         <div class="form-group col-md-6">
+        {{ form_label(form.date_end)}}
+        {{ form_widget(form.date_end)}}
+        </div>
+        </div>
+        <div class="form-group">
+        {{ form_label(form.desc_projet)}}
+        {{ form_widget(form.desc_projet, { 'attr': {'class': 'form-control'} })}}
+        </div>
+        </div>
+        <div class="modal-footer">
+        <button type="submit" class="btn btn-danger">Create</button>
+      
+          </div>
       {{ form_end(form) }}
     </div>
   </div>
 </div>
 </header>
 <main class="global">
-<div class="container">
-  <h1 id="home">List des Projets</h1>
-</div>
+  <div class="container">
+    <h1 id="home">List des Projets</h1>
+  </div>
     <section class="main-container">
-    <div class="location" id="home">
-      
-      <div class="box">
+      <div class="location" id="home">
+        
+        <div class="box">
 
 {% for company in companys %}
   {% for projet in company.projets %}
 
-<h1 data-toggle="modal" data-target="#exampleModal{{ projet.Id}}" aria-controls="exampleModal">{{ projet.nameProjet}}<img src="img/{{projet.imgProjet}}"></h1>
 
-     <!-- Modal -->
-<div class="modal fade" id="exampleModal{{ projet.Id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        
-          <img src="img/{{projet.logoProjet}}">
-          <h5 class="modal-title" id="exampleModalLabel">{{ projet.nameProjet}}</h5>
-          
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="projet">
-            <p>{{ company.NameCompany }}</p>
-            <p>{{ company.NameDirector }}</p>
-            <p>{{ company.SiretCompany }}</p>
-            <p>{{ company.PhoneCompany }}</p>
-            <p>{{ company.EmailCompany }}</p>
-           <img src="img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em;">
-            <p>{{ projet.descProjet}}</p>
-            <p>{{ projet.dateStart|date('d/m/Y')}}</p>
-            <p>{{ projet.dateEnd|date('d/m/Y')}}</p>
-          
-               
-      </div>
-      <div class="modal-footer">
-          <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-primary">todolist</a>
-          <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-warning ">Edit projet</a>
-          <a href="{{ path('editCompany', {'id':company.id}) }}" class="btn btn-warning ">Edit company</a>
-          <a href="#" class="btn btn-danger delete-projet" data-id="{{ projet.id }}">Delete</a>
-       
-      </div>
-     </div>
-      </div>
-    </div>
-   {% endfor %}
-   {% endfor %}
-    </div>
-  </section>
-  
-    <div class="bottom">
-   
-    <h1 id="home">List des contrats</h1>
-    <div class="container">
-    
-    <table class="table table-bordered table-dark">
-    
-  <thead>
-    <tr>
-      <th scope="col">Nom client</th>
-      <th scope="col">Nom projet</th>
-      <th scope="col">Date debut contrat</th>
-      <th scope="col">Date fin contrat</th>
-      <th scope="col">Date de contact</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for company in companys %}
-  {% for projet in company.projets %}
-    <tr>
-      <th scope="row">{{ company.NameCompany }}</th>
-      <th scope="row">{{ projet.nameProjet }}</th>
-      <td>{{ projet.dateStart|date('d/m/Y')}}</td>
-      <td>{{ projet.dateEnd|date('d/m/Y')}}</td>
-      <td>{{ projet.datecontact|date('d/m/Y')}}</td>
-    </tr>
-    {% endfor %}
-    {% endfor %}
-  </tbody>
-   
-</table>
+<div class="card" style="width: 18rem;">
+  <img src="img/{{projet.imgProjet}}" class="card-img-top" alt="#">
+  <div class="card-body">
+    <h5 class="card-title">{{ projet.nameProjet}}</h5>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ projet.Id}}" aria-controls="exampleModal">
+  En voir plus
+</button>
+  </div>
 </div>
 
+
+     
+  <div class="modal fade" id="exampleModal{{ projet.Id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <div class="row">
+                <div class="col">
+            <img src="img/{{projet.logoProjet}}" style="width: 10em;">
+            </div>
+                   <div class="col">
+            <h5 class="modal-title" id="exampleModalLabel">{{ projet.nameProjet}}</h5>
+            </div>
+                </div>
+               
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            
+          </button>
+        </div>
+
+          <div class="modal-body" id="projet">
+             <div class="row">
+                <div class="col">
+                <p>Nom de la Société : {{ company.NameCompany }}</p>
+                  </div>
+                   <div class="col">
+                <p>Nom du directeur : {{ company.NameDirector }}</p>
+                </div>
+                </div>
+                   <div class="row">
+                <div class="col">
+                <p>Siret de la Société : {{ company.SiretCompany }}</p>
+                </div>
+                   <div class="col">
+                <p>Téléphone : {{ company.PhoneCompany }}</p>
+                </div>
+                   </div>
+                   <div class="row">
+                   <div class="col">
+                <p>Email : {{ company.EmailCompany }}</p>
+                </div>
+                 </div>
+                 <div class="row">
+                <div class="col">
+             <p>Date de début du contrat : {{ projet.dateStart|date('d/m/Y')}}</p>
+             </div>
+                   <div class="col">
+                <p>Date de fin du contrat : {{ projet.dateEnd|date('d/m/Y')}}</p> 
+                </div>
+                </div>
+              <img src="img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em;">
+                <h5> Description : </h5>
+                <p>{{ projet.descProjet}}</p>    
+          </div>
+
+          <div class="modal-footer">
+              <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-primary">todolist</a>
+              <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-warning ">Edit projet</a>
+              <a href="{{ path('editCompany', {'id':company.id}) }}" class="btn btn-warning ">Edit company</a>
+              <a href="#" class="btn btn-danger delete-projet" data-id="{{ projet.id }}">Delete</a>
+          </div>
+        </div>
+      </div>
     </div>
-    
+    {% endfor %}
+   {% endfor %}
+   
+    </div>
+  </section>
+
+      <div class="container">
+    <nav aria-label="Page navigation example">
+  <ul class="pagination" style="justify-content: center;">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
+  
+   <div class="bottom">
+       <h1 id="home">List des contrats</h1>
+      <div class="container">
+        <table class="table table-bordered table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Nom client</th>
+              <th scope="col">Nom projet</th>
+              <th scope="col">Date debut contrat</th>
+              <th scope="col">Date fin contrat</th>
+              <th scope="col">Date de contact</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for company in companys %}
+          {% for projet in company.projets %}
+            <tr>
+              <th scope="row">{{ company.NameCompany }}</th>
+              <th scope="row">{{ projet.nameProjet }}</th>
+              <td>{{ projet.dateStart|date('d/m/Y')}}</td>
+              <td>{{ projet.dateEnd|date('d/m/Y')}}</td>
+              <td>{{ projet.datecontact|date('d/m/Y')}}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </main>
 {% endblock %}
 {% block javascripts %}
