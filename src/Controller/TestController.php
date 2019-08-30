@@ -100,10 +100,17 @@ class TestController extends AbstractController
     ]);
 }
      /**
-     * @Route("/accueil", name="create_projet")
+     * @Route("/accueil/{page<\d+>?1}", name="create_projet")
      */
-    public function createProjet(Request $request, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo, CompanyRepository $repocomp): Response
+    public function createProjet(Request $request, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo, CompanyRepository $repocomp, $page): Response
     {
+        $limit = 8;
+        $start = $page * $limit - $limit;
+
+        $totalProjet = count($repo->findAll());
+
+        $pages = ceil($totalProjet / $limit);
+        
         $projet = new Projet();
         $company = new Company();
         // relates this product to the category
@@ -152,8 +159,10 @@ class TestController extends AbstractController
     }}
         return $this->render('test/accueil.html.twig',[
             'form' => $form->createView(),
-            'projets' => $repo->findAll(),
-            'companys' => $repocomp->findAll()
+            'projets' => $repo->findBy([], [], $limit, $start),
+            'companys' => $repocomp->findBy([], [], $limit, $start),
+            'pages' => $pages,
+            'page' => $page
         ]);
     }
     /**
