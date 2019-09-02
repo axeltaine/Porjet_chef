@@ -23,6 +23,7 @@
             </form>
         </div>
         <a class="navbar-logout" href="{{ path('logout')}}" data-toggle="tooltip"  title="Déconnexion" ><img src="../img/logout_icon-icons.com_51025.png" width="30" height="30" alt="Logout"></a>
+        <button type="button" name="dark_light" onclick="toggleDarkLight()" title="Toggle dark/light mode">🌛</button>
       </nav>
 
   <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -268,6 +269,12 @@
 $(document).ready(function() {
     $('#example').DataTable();
 } );
+
+function toggleDarkLight() {
+  var body = document.getElementById("body");
+  var currentClass = body.className;
+  body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
+};
 </script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.18/datatables.min.js"></script>
 

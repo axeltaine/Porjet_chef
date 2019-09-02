@@ -1,6 +1,7 @@
 <?php
 namespace App\Form;
 
+
 use App\Entity\Chat;
 use App\Form\ChatType;
 use Symfony\Component\Form\AbstractType;
@@ -17,9 +18,10 @@ class ChatType extends AbstractType
     {
         $builder
             
-            ->add('Contenu', TextareaType::class)
-           
-           
+            ->add('auteur', TextType::class)
+            ->add('contenu', TextareaType::class)
+            ->add('date_chat', DateType::class)
+              
         ;
     }
     public function configureOptions(OptionsResolver $resolver)

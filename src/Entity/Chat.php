@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+
+use App\Entity\Chat;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,17 @@ class Chat
      * @ORM\Column(type="datetime")
      */
     private $Date_chat;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Projet", inversedBy="chats")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $projet;
+
+    public function __construct()
+{
+    $this->Date_chat = new \DateTime('now');
+}
 
     public function getId(): ?int
     {
@@ -68,6 +81,18 @@ class Chat
     public function setDateChat(\DateTimeInterface $Date_chat): self
     {
         $this->Date_chat = $Date_chat;
+
+        return $this;
+    }
+
+    public function getProjet(): ?Projet
+    {
+        return $this->projet;
+    }
+
+    public function setProjet(?Projet $projet): self
+    {
+        $this->projet = $projet;
 
         return $this;
     }

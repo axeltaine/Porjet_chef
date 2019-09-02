@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+
+use Faker;
 use App\Entity\Chat;
 use App\Entity\Projet;
 use App\Form\ChatType;
@@ -9,9 +11,11 @@ use App\Form\EditType;
 use App\Entity\Company;
 use App\Form\ProjetType;
 use App\Form\CompanyType;
+use App\Form\EditcompanyType;
 use App\Repository\ChatRepository;
 use App\Repository\ProjetRepository;
 use App\Repository\CompanyRepository;
+use Doctrine\Migrations\Version\Factory;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +26,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use App\Form\EditcompanyType;
 
 class TestController extends AbstractController
 {
@@ -52,17 +55,42 @@ class TestController extends AbstractController
     /**
      * @Route("/todolist/{id}", name="todolist")
      */
-    public function todolist(Projet $projet, Request $request)
+    public function todolist(Projet $projet, Request $request, ObjectManager $manager)
     {
-        $chat = new Chat();
+
+        $faker = Faker\Factory::create('fr_FR');
+        for($i = 1; $i <= mt_rand(1,3); $i++){
+            $chat = new Chat();
+            
+            $content =  join($faker->paragraphs(1)
+             ) ;
+
+             $now = new \DateTime();
+
+            $chat->setAuteur($faker->name)
+                 ->setContenu($content)
+                 ->setDatechat($faker->dateTimeBetween($now))
+                 ->setProjet($projet);
+
+                $manager->persist($chat);
+        }
+
+        
         
         $form = $this->createForm(ChatType::class, $chat);
         $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->flush();
+           
+            
+        }
         
         return $this->render('test/todolist.html.twig', [
-            'controller_name' => 'TestController',
-            'form' => $form->createView(),
-            'projet' => $projet
+            
+            'projet' => $projet,
+            'chat' => $chat,
+            'form' => $form->createView()
         ]);
     }
     /**
@@ -104,6 +132,8 @@ class TestController extends AbstractController
      */
     public function createProjet(Request $request, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo, CompanyRepository $repocomp, $page): Response
     {
+
+        
         $limit = 8;
         $start = $page * $limit - $limit;
 

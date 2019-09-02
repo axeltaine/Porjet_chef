@@ -95,10 +95,23 @@
         </button>
       </div>
       <div class="modal-body">
+      
+  {% for chat in projet.chats %}
+  <div class="row">
+                <div class="col">
+                <p>Auteur : {{ chat.Auteur }}</p>
+                  </div>
+                   <div class="col">
+                <p>Message : {{ chat.Contenu }}</p>
+                </div>
+                
+                </div>
+   {% endfor %}
+   
       {{ form_start(form) }}
     {{ form_widget(form) }}
 
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button class="btn btn-primary" type="submit">Create</button>
 {{ form_end(form) }}
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -110,4 +123,5 @@
     </div>
   </main>
 {% endblock %}
-  {% block javascripts %}<script src="../js/todolist.js"></script>{% endblock %}
+  {% block javascripts %}
+  <script src="../js/todolist.js"></script>{% endblock %}
