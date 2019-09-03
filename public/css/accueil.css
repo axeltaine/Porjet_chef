@@ -82,3 +82,13 @@ html.color-theme-in-transition *:after {
   .card-img-top {
     max-height: 9em;
   }
+  .close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff; 
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: 1;
+  }

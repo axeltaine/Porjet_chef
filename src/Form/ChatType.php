@@ -20,7 +20,7 @@ class ChatType extends AbstractType
             
             ->add('auteur', TextType::class)
             ->add('contenu', TextareaType::class)
-            ->add('date_chat', DateType::class)
+            
               
         ;
     }
