@@ -1,31 +1,42 @@
 {% extends 'base.html.twig' %}
 {% block title %}TODOLIST{% endblock %}
 {% block stylesheets %}<link rel="stylesheet" href="/css/todolist.css">
-<link rel="stylesheet" href="/css/footer.css">{% endblock %}
+<link rel="stylesheet" href="./css/footer.css">{% endblock %}
 {% block body %}
     <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/accueil">
-      <img src="../img/logo_transpa.png" width="30" height="30" alt="logo">
-    </a>
-     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand" href="/accueil">
+              <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
+            </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-             
+              <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
+              </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
-        <a class="navbar-logout" href="{{ path('logout')}}" data-toggle="tooltip"  title="Déconnexion" ><img src="/img/logout_icon-icons.com_51025.png" width="30" height="30" alt="Logout"></a>
+        
+        <a class="navbar-logout" href="{{ path('logout')}}" data-toggle="tooltip"  title="Déconnexion" ><img src="../img/logout_icon-icons.com_51025.png" width="30" height="30" alt="Logout"></a>
+        <br>
+        <div class="custom-control custom-switch" style="margin-left: 1em;">
+          <input type="checkbox" class="custom-control-input" id="customSwitch1">
+          <label class="custom-control-label" for="customSwitch1" name="dark_light" onclick="toggleDarkLight()">Darck Side</label>
+        </div>
       </nav>
 </header>
 <main class="global">
     <div class="container">
+    <hr>
       <H1>{{ projet.nameProjet}}</H1>
+      <hr>
        <img src="/img/{{projet.logoProjet}}" style="max-width: 10em;">
+       <hr>
       <P>{{ projet.descProjet}}</P>
+      <hr>
     </div>
 
     <div class="container-fluid">
@@ -86,7 +97,7 @@
         </tbody>
       </table>
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content" >
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Mini-Chat</h5>
@@ -99,14 +110,18 @@
   {% for chat in projet.chats %}
   <div class="row">
                 <div class="col">
-                <p>Auteur : {{ chat.Auteur }}</p>
+                <p>{{ chat.Auteur }}</p>
                   </div>
                    <div class="col">
                 <p>Message : {{ chat.Contenu }}</p>
                 </div>
+                 <div class="col">
+                <p>date : {{ chat.Datechat|date('d/m/Y H:i:s') }}</p>
+                </div>
                 
                 </div>
    {% endfor %}
+   <hr>
    
       {{ form_start(form) }}
     {{ form_widget(form) }}
@@ -124,4 +139,16 @@
   </main>
 {% endblock %}
   {% block javascripts %}
+  <script>
+  function toggleDarkLight() {
+  var body = document.getElementById("body");
+  var currentClass = body.className;
+  body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
+  document.documentElement.classList.add('color-theme-in-transition')
+document.documentElement.setAttribute('data-theme', theme)
+window.setTimeout(function() {
+  document.documentElement.classList.remove('color-theme-in-transition')
+}, 1000)
+};
+</script>
   <script src="../js/todolist.js"></script>{% endblock %}

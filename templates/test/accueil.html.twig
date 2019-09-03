@@ -9,7 +9,7 @@
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="/accueil">
-              <img src="../img/logo_transpa.png" width="30" height="30" alt="logo">
+              <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
             </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -22,8 +22,13 @@
               <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
+        
         <a class="navbar-logout" href="{{ path('logout')}}" data-toggle="tooltip"  title="Déconnexion" ><img src="../img/logout_icon-icons.com_51025.png" width="30" height="30" alt="Logout"></a>
-        <button type="button" name="dark_light" onclick="toggleDarkLight()" title="Toggle dark/light mode">🌛</button>
+        <br>
+        <div class="custom-control custom-switch" style="margin-left: 1em;">
+          <input type="checkbox" class="custom-control-input" id="customSwitch1">
+          <label class="custom-control-label" for="customSwitch1" name="dark_light" onclick="toggleDarkLight()">Darck Side</label>
+        </div>
       </nav>
 
   <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -274,6 +279,11 @@ function toggleDarkLight() {
   var body = document.getElementById("body");
   var currentClass = body.className;
   body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
+  document.documentElement.classList.add('color-theme-in-transition')
+document.documentElement.setAttribute('data-theme', theme)
+window.setTimeout(function() {
+  document.documentElement.classList.remove('color-theme-in-transition')
+}, 1000)
 };
 </script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.18/datatables.min.js"></script>
