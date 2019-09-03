@@ -145,7 +145,6 @@
   var currentClass = body.className;
   body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
   document.documentElement.classList.add('color-theme-in-transition')
-document.documentElement.setAttribute('data-theme', theme)
 window.setTimeout(function() {
   document.documentElement.classList.remove('color-theme-in-transition')
 }, 1000)
