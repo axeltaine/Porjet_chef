@@ -98,6 +98,7 @@ class TestController extends AbstractController
      */
     public function edit(Projet $projet, Request $request, ObjectManager $manager)
 {
+    $this->denyAccessUnlessGranted('ROLE_ADMIN');
     $form = $this->createForm(EditType::class, $projet);
     $form->handleRequest($request);
 
@@ -115,6 +116,7 @@ class TestController extends AbstractController
      */
     public function editCompany(Company $company, Request $request, ObjectManager $manager)
 {
+    $this->denyAccessUnlessGranted('ROLE_ADMIN');
     $form = $this->createForm(EditcompanyType::class, $company);
     $form->handleRequest($request);
 

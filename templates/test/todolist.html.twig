@@ -43,7 +43,9 @@
           <tr>
             <th scope="row">Etape 1<br>Maquettage</th>
             <td class="droppable">
+            {% if app.user and is_granted('ROLE_ADMIN') %}
                 <div class="draggable" >
+                {% endif %}
                   <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}}</h5>
                   <div class="card-body">
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">

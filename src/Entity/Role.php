@@ -21,10 +21,10 @@ class Role
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    private $Title;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="role")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="userRoles")
      */
     private $users;
 
@@ -40,12 +40,12 @@ class Role
 
     public function getTitle(): ?string
     {
-        return $this->title;
+        return $this->Title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(string $Title): self
     {
-        $this->title = $title;
+        $this->Title = $Title;
 
         return $this;
     }
@@ -62,7 +62,6 @@ class Role
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->setRole($this);
         }
 
         return $this;
@@ -72,10 +71,6 @@ class Role
     {
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
-            // set the owning side to null (unless already changed)
-            if ($user->getRole() === $this) {
-                $user->setRole(null);
-            }
         }
 
         return $this;

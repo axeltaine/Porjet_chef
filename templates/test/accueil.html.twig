@@ -14,7 +14,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-              <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
+                {% if app.user and is_granted('ROLE_ADMIN') %}
+                  <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
+                {% endif %}  
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -197,9 +199,11 @@
 
           <div class="modal-footer">
               <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-primary">todolist</a>
+              {% if app.user and is_granted('ROLE_ADMIN') %}
               <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-warning ">Edit projet</a>
               <a href="{{ path('editCompany', {'id':company.id}) }}" class="btn btn-warning ">Edit company</a>
               <a href="#" class="btn btn-danger delete-projet" data-id="{{ projet.id }}">Delete</a>
+              {% endif %}
           </div>
         </div>
       </div>
