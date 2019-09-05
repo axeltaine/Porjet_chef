@@ -5,14 +5,17 @@ namespace App\Controller;
 
 use Faker;
 use App\Entity\Chat;
+use App\Entity\User;
 use App\Entity\Projet;
 use App\Form\ChatType;
 use App\Form\EditType;
 use App\Entity\Company;
+use App\Form\ProfilType;
 use App\Form\ProjetType;
 use App\Form\CompanyType;
 use App\Form\EditcompanyType;
 use App\Repository\ChatRepository;
+use App\Repository\UserRepository;
 use App\Repository\ProjetRepository;
 use App\Repository\CompanyRepository;
 use Doctrine\Migrations\Version\Factory;
@@ -132,7 +135,7 @@ class TestController extends AbstractController
      /**
      * @Route("/accueil/{page<\d+>?1}", name="create_projet")
      */
-    public function createProjet(Request $request, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo, CompanyRepository $repocomp, $page): Response
+    public function createProjet(Request $request, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo, CompanyRepository $repocomp, UserRepository $repouser, $page): Response
     {
 
         
@@ -144,6 +147,7 @@ class TestController extends AbstractController
         $pages = ceil($totalProjet / $limit);
         
         $projet = new Projet();
+        
         $company = new Company();
         // relates this product to the category
         $projet->setCompany($company);
@@ -193,6 +197,7 @@ class TestController extends AbstractController
             'form' => $form->createView(),
             'projets' => $repo->findBy([], [], $limit, $start),
             'companys' => $repocomp->findBy([], [], $limit, $start),
+            'users' => $repouser->findAll(),
             'pages' => $pages,
             'page' => $page
         ]);
@@ -222,6 +227,26 @@ class TestController extends AbstractController
             
         ]);
     }
+    /**
+     * @Route("/createProfil", name="createProfil")
+     * 
+     */
+    public function createProfil(Request $request, ObjectManager $manager)
+{
+    $this->denyAccessUnlessGranted('ROLE_ADMIN');
+    $user = new User();
+    $form = $this->createForm(ProfilType::class, $user);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+                $manager->persist($user);
+                $manager->flush();
+    }
+                return $this->render('test/createProfil.html.twig',[
+                'users' => $user,
+                'form' => $form->createView()
+    ]);
+}
  
     /**
      * @Route("/accueil/delete/{id}")

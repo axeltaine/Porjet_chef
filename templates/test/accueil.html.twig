@@ -20,7 +20,7 @@
          <div class="collapse navbar-collapse " id="navbarSupportedContent">
         {% if app.user and is_granted('ROLE_ADMIN') %}
                   <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
-                  <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modalProfil" data-target=".bd-example-modal-lg">Create Profil</button>
+                  <a href="{{ path('createProfil') }}" class="btn btn-warning ">Create Profil</a>
                 {% endif %}  
 </div>
                
@@ -183,7 +183,19 @@
           <p>{{user.NameUser}}</p>
           {% endfor %}
             </div>
-                </div>
+            <div clas="col">
+              <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                  <option selected>Choose...</option>
+                  {% for user in users %}
+                  <option value="1">{{user.UserName}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            <div class="col">
+              <button type="submit" class="btn btn-primary">Assigned</button>
+              </div>
+            </div>
                
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>

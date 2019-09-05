@@ -6,21 +6,49 @@
 {% endblock %}
 {% block body %}
    <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/accueil">
-      <img src="../img/logo_transpa.png" width="30" height="30" alt="logo">
-    </a>
-     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-             
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/accueil">
+              <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        
+        
+       
+         <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        {% if app.user and is_granted('ROLE_ADMIN') %}
+                  <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
+                  <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create Profil</button>
+                {% endif %}  
+</div>
+               
+            <ul class="navbar-nav mr-auto ">
+              {% if app.user %}
+              <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 <img src="../img/{{app.user.avatar}}" class="avatar avatar-mini" alt="Avatar de {{app.user.NameUser}}">
+                 Bienvenue {{app.user.NameUser}}
+                 </a>
+
+                <div class="dropdown-menu"aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Mon Profil</a>
+                  <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip"  title="Déconnexion" >
+                  Déconnexion
+                  </a>
+                  
+                 <a class="dropdown-item" href="#">
+                  <div class="custom-control custom-switch" style="margin-left: 1em;">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                    <label class="custom-control-label" for="customSwitch1" name="dark_light" onclick="toggleDarkLight()">Darck Side</label>
+                  </div>
+                  </a>
+                </div>
+              </li>
+              {% endif %}
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-        <a class="navbar-logout" href="{{ path('logout')}}" data-toggle="tooltip"  title="Déconnexion" ><img src="/img/logout_icon-icons.com_51025.png" width="30" height="30" alt="Logout"></a>
+           
+        
       </nav>
 </header>
 <main class="global">
@@ -34,4 +62,20 @@
     
   </main>
 {% endblock %}
-  {% block javascripts %}{% endblock %}
+  {% block javascripts %}
+  <script>
+
+
+function toggleDarkLight() {
+  var body = document.getElementById("body");
+  var currentClass = body.className;
+  body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
+  document.documentElement.classList.add('color-theme-in-transition')
+window.setTimeout(function() {
+  document.documentElement.classList.remove('color-theme-in-transition')
+}, 1000)
+};
+</script>
+  
+
+  <script src="/js/main.js"></script>{% endblock %}

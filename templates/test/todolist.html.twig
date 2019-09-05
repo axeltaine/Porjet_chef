@@ -80,8 +80,11 @@
                   <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}}</h5>
                   <div class="card-body">
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-  +
-</button>
+                      +
+                    </button>
+                    {% for user in projet.assignedUsers %}
+                    <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                    {% endfor %}
                   </div>
               </div>
             </td>
