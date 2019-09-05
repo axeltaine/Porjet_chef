@@ -39,6 +39,11 @@ class User implements UserInterface
      */
     private $userRoles;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Avatar;
+
     public function __construct()
     {
         $this->userRoles = new ArrayCollection();
@@ -138,5 +143,17 @@ class User implements UserInterface
     }
     public function eraseCredentials()
     {
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->Avatar;
+    }
+
+    public function setAvatar(string $Avatar): self
+    {
+        $this->Avatar = $Avatar;
+
+        return $this;
     }
 }

@@ -42,6 +42,10 @@ body.dark-mode .table {
 body.dark-mode .page-item a {
   color: #111;
 }
+body.dark-mode .dropdown-menu {
+  background-color: #111;
+  color: #eee;
+}
 body.light-mode .navbar #logo{
   filter: invert(90%);
 }
@@ -91,4 +95,11 @@ html.color-theme-in-transition *:after {
     text-shadow: 0 1px 0 #fff;
     filter: alpha(opacity=20);
     opacity: 1;
+  }
+
+  .avatar-mini {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%; 
+    margin: 1em;
   }

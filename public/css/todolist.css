@@ -47,6 +47,10 @@ body.dark-mode button {
   background-color: #eee;
   color: #111;
 }
+body.dark-mode .dropdown-menu {
+  background-color: #111;
+  color: #eee;
+}
 body.light-mode {
   background-color: #eee;
   color: #111;
@@ -94,5 +98,10 @@ td {
   height:12em;
 }
 
-
+.avatar-mini {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%; 
+  margin: 1em;
+}
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}TODOLIST{% endblock %}
-{% block stylesheets %}<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.18/datatables.min.css"/>
+{% block stylesheets %}
 
 <link rel="stylesheet" href="/css/accueil.css">
 {% endblock %}
@@ -11,26 +11,43 @@
             <a class="navbar-brand" href="/accueil">
               <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
             </a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                {% if app.user and is_granted('ROLE_ADMIN') %}
-                  <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
-                {% endif %}  
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ">
+              {% if app.user %}
+              <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 <img src="../img/{{app.user.avatar}}" class="avatar avatar-mini" alt="Avatar de {{app.user.NameUser}}">
+                 Bienvenue {{app.user.NameUser}}
+                 </a>
+
+                <div class="dropdown-menu"aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Mon Profil</a>
+                  <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip"  title="Déconnexion" >
+                  Déconnexion
+                  </a>
+                  
+                 <a class="dropdown-item" href="#">
+                  <div class="custom-control custom-switch" style="margin-left: 1em;">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                    <label class="custom-control-label" for="customSwitch1" name="dark_light" onclick="toggleDarkLight()">Darck Side</label>
+                  </div>
+                  </a>
+                </div>
               </li>
+              {% endif %}
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
-            </form>
+           
         </div>
         
-        <a class="navbar-logout" href="{{ path('logout')}}" data-toggle="tooltip"  title="Déconnexion" ><img src="../img/logout_icon-icons.com_51025.png" width="30" height="30" alt="Logout"></a>
-        <br>
-        <div class="custom-control custom-switch" style="margin-left: 1em;">
-          <input type="checkbox" class="custom-control-input" id="customSwitch1">
-          <label class="custom-control-label" for="customSwitch1" name="dark_light" onclick="toggleDarkLight()">Darck Side</label>
-        </div>
+       
+        
+        {% if app.user and is_granted('ROLE_ADMIN') %}
+                  <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
+                  <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create Profil</button>
+                {% endif %}  
       </nav>
 
   <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -274,9 +291,7 @@
 
 
 <script>
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
+
 
 function toggleDarkLight() {
   var body = document.getElementById("body");
@@ -288,7 +303,7 @@ window.setTimeout(function() {
 }, 1000)
 };
 </script>
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.18/datatables.min.js"></script>
+  
 
   <script src="/js/main.js"></script>
 {% endblock %}
