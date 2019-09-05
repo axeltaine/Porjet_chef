@@ -70,9 +70,15 @@ class Projet
      */
     private $chats;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="assignedProjets")
+     */
+    private $assignedUsers;
+
     public function __construct()
     {
         $this->chats = new ArrayCollection();
+        $this->assignedUsers = new ArrayCollection();
     }
 
     
@@ -226,6 +232,32 @@ class Projet
             if ($chat->getProjet() === $this) {
                 $chat->setProjet(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getAssignedUsers(): Collection
+    {
+        return $this->assignedUsers;
+    }
+
+    public function addAssignedUser(User $assignedUser): self
+    {
+        if (!$this->assignedUsers->contains($assignedUser)) {
+            $this->assignedUsers[] = $assignedUser;
+        }
+
+        return $this;
+    }
+
+    public function removeAssignedUser(User $assignedUser): self
+    {
+        if ($this->assignedUsers->contains($assignedUser)) {
+            $this->assignedUsers->removeElement($assignedUser);
         }
 
         return $this;

@@ -44,9 +44,15 @@ class User implements UserInterface
      */
     private $Avatar;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Projet", mappedBy="assignedUsers")
+     */
+    private $assignedProjets;
+
     public function __construct()
     {
         $this->userRoles = new ArrayCollection();
+        $this->assignedProjets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -153,6 +159,34 @@ class User implements UserInterface
     public function setAvatar(string $Avatar): self
     {
         $this->Avatar = $Avatar;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Projet[]
+     */
+    public function getAssignedProjets(): Collection
+    {
+        return $this->assignedProjets;
+    }
+
+    public function addAssignedProjet(Projet $assignedProjet): self
+    {
+        if (!$this->assignedProjets->contains($assignedProjet)) {
+            $this->assignedProjets[] = $assignedProjet;
+            $assignedProjet->addAssignedUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssignedProjet(Projet $assignedProjet): self
+    {
+        if ($this->assignedProjets->contains($assignedProjet)) {
+            $this->assignedProjets->removeElement($assignedProjet);
+            $assignedProjet->removeAssignedUser($this);
+        }
 
         return $this;
     }
