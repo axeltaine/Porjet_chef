@@ -1,6 +1,6 @@
 html,
 body {
-    font-family: Roboto;
+    
     height: 100%;
 }
 
@@ -48,6 +48,12 @@ body.dark-mode .dropdown-menu {
 }
 body.light-mode .navbar #logo{
   filter: invert(90%);
+}
+body.dark-mode .navbar-dark .navbar-nav .nav-link {
+  color: #eee;
+}
+body.light-mode .navbar-dark .navbar-nav .nav-link {
+  color: #111;
 }
 body.dark-mode button {
   background-color: #eee;
@@ -102,3 +108,21 @@ html.color-theme-in-transition *:after {
     height: 2em;
     border-radius: 50%; 
   }
+
+  .btn-primary {
+    border-color: transparent;
+  }
+
+  .btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+
+.modal-header .close {
+  padding: 0 0;
+}

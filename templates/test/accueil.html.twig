@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}TODOLIST{% endblock %}
 {% block stylesheets %}
-
+<link rel="stylesheet" href="/css/mdb.min.css">
 <link rel="stylesheet" href="/css/accueil.css">
 {% endblock %}
 {% block body %}
@@ -19,8 +19,8 @@
        
          <div class="collapse navbar-collapse " id="navbarSupportedContent">
         {% if app.user and is_granted('ROLE_ADMIN') %}
-                  <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
-                  <a href="{{ path('createProfil') }}" class="btn btn-warning ">Create Profil</a>
+                  <button type="button" class="btn btn-outline-primary my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg" style="border-radius: 40px;">Create projet</button>
+                  <a href="{{ path('createProfil') }}" class="btn btn-primary " style="border-radius: 40px;">Create Profil</a>
                 {% endif %}  
 </div>
                
@@ -40,9 +40,9 @@
                   </a>
                   
                  <a class="dropdown-item" href="#">
-                  <div class="custom-control custom-switch" style="margin-left: 1em;">
+                  <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                    <label class="custom-control-label" for="customSwitch1" name="dark_light" onclick="toggleDarkLight()">Darck Side</label>
+                    <label class="custom-control-label" for="customSwitch1" name="dark_light" onclick="toggleDarkLight()">Thème sombre</label>
                   </div>
                   </a>
                 </div>
@@ -58,7 +58,7 @@
       <div class="modal-content">
         <div class="modal-header text-center">
             <h3>Nouveau Projet</h3>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close btn-circle" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
         </div>
@@ -110,7 +110,7 @@
         {{ form_widget(form.logo_projet)}}
         </div>
         </div>
-        <div class="form-group col-6">
+        <div class="form-group col-6" style="padding-right: 0; padding-left: 0;">
         {{ form_label(form.doc_projet)}}
         {{ form_widget(form.doc_projet)}}
         </div>
@@ -130,7 +130,7 @@
         </div>
         </div>
         <div class="modal-footer">
-        <button type="submit" class="btn btn-danger">Create</button>
+        <button type="submit" class="btn btn-primary" style="border-radius: 40px;">Create</button>
       
           </div>
       {{ form_end(form) }}
@@ -141,7 +141,7 @@
 <main class="global">
  <hr>
   <div class="container">
-    <h1 id="home">List des Projets</h1>
+    <h1 id="home">List des Projets :</h1>
   </div>
   <hr>
    
@@ -152,17 +152,24 @@
              
           <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="padding-bottom: 2em;">
 
-          <div class="card" style="width: 18rem;">
+          <div class="card card-cascade wider" style="width: 18rem;">
+            <div class="view view-cascade overlay">
             <img src="../img/{{projet.imgProjet}}" class="card-img-top" alt="#">
-            <div class="card-body">
+            <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+            <div class="card-body card-body-cascade text-center">
               <h5 class="card-title">{{ projet.nameProjet}}</h5>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ projet.Id}}" aria-controls="exampleModal">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ projet.Id}}" aria-controls="exampleModal" style="border-radius: 40px;">
             En voir plus
           </button>
+          <div class="row">
           {% for user in projet.assignedUsers %}
           <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
           {% endfor %}
+          </div>
             </div>
+          </div>
           </div>
           </div>
 
@@ -194,11 +201,11 @@
                 </select>
               </div>
             <div class="col">
-              <button type="submit" class="btn btn-primary">Assigned</button>
+              <button type="submit" class="btn btn-primary" style="border-radius: 40px;">Assigned</button>
               </div>
             </div>
                
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close btn-circle" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             
           </button>
@@ -207,44 +214,46 @@
           <div class="modal-body" id="projet">
              <div class="row">
                 <div class="col">
-                <p>Nom de la Société : {{ company.NameCompany }}</p>
+                <p><u>Nom de la Société</u> : {{ company.NameCompany }}</p>
                   </div>
                    <div class="col">
-                <p>Nom du directeur : {{ company.NameDirector }}</p>
+                <p><u>Nom du directeur</u> : {{ company.NameDirector }}</p>
                 </div>
                 </div>
                    <div class="row">
                 <div class="col">
-                <p>Siret de la Société : {{ company.SiretCompany }}</p>
+                <p><u>Siret de la Société</u> : {{ company.SiretCompany }}</p>
                 </div>
                    <div class="col">
-                <p>Téléphone : {{ company.PhoneCompany }}</p>
+                <p><u>Téléphone</u> : {{ company.PhoneCompany }}</p>
                 </div>
                    </div>
                    <div class="row">
                    <div class="col">
-                <p>Email : {{ company.EmailCompany }}</p>
+                <p><u>Email</u> : {{ company.EmailCompany }}</p>
+                </div>
+                <div class="col">
                 </div>
                  </div>
                  <div class="row">
                 <div class="col">
-             <p>Date de début du contrat : {{ projet.dateStart|date('d/m/Y')}}</p>
+             <p><u>Date de début du contrat</u> : {{ projet.dateStart|date('d/m/Y')}}</p>
              </div>
                    <div class="col">
-                <p>Date de fin du contrat : {{ projet.dateEnd|date('d/m/Y')}}</p> 
+                <p><u>Date de fin du contrat</u> : {{ projet.dateEnd|date('d/m/Y')}}</p> 
                 </div>
                 </div>
               <img src="../img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em;">
-                <h5> Description : </h5>
+                <h5> <u>Description</u> : </h5>
                 <p>{{ projet.descProjet}}</p>    
           </div>
 
           <div class="modal-footer">
-              <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-primary">todolist</a>
+              <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-primary" style="border-radius: 40px;">todolist</a>
               {% if app.user and is_granted('ROLE_ADMIN') %}
-              <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-warning ">Edit projet</a>
-              <a href="{{ path('editCompany', {'id':company.id}) }}" class="btn btn-warning ">Edit company</a>
-              <a href="#" class="btn btn-danger delete-projet" data-id="{{ projet.id }}">Delete</a>
+              <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-primary " style="border-radius: 40px;">Edit projet</a>
+              <a href="{{ path('editCompany', {'id':company.id}) }}" class="btn btn-primary " style="border-radius: 40px;">Edit company</a>
+              <a href="#" class="btn btn-primary delete-projet" data-id="{{ projet.id }}" style="border-radius: 40px;">Delete</a>
               {% endif %}
           </div>
         </div>
@@ -330,6 +339,6 @@ window.setTimeout(function() {
 };
 </script>
   
-
+<script src="/js/mdb.min.js"></script>
   <script src="/js/main.js"></script>
 {% endblock %}
