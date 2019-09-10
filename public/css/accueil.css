@@ -17,7 +17,7 @@ footer {
 }
 
 body.dark-mode {
-  background-color: #111;
+  background-color: rgb(33, 32, 32);
   color: #eee;
 }
 body.dark-mode a {
@@ -28,8 +28,12 @@ body.dark-mode hr {
     height: 1px;
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
 }
-body.dark-mode .card-body {
-  background-color: #111;
+body.dark-mode .card-body-cascade {
+  background-color: rgb(33, 32, 32) !important;
+  color: #eee;
+}
+body.dark-mode .card{
+  background-color: rgb(28, 27, 27) !important;
   color: #eee;
 }
 body.dark-mode .modal-content {
@@ -46,18 +50,16 @@ body.dark-mode .dropdown-menu {
   background-color: #111;
   color: #eee;
 }
-body.light-mode .navbar #logo{
-  filter: invert(90%);
-}
+
 body.dark-mode .navbar-dark .navbar-nav .nav-link {
-  color: #eee;
+  color: #eee ;
 }
 body.light-mode .navbar-dark .navbar-nav .nav-link {
   color: #111;
 }
 body.dark-mode button {
-  background-color: #eee;
-  color: #111;
+  background-color: #111;
+  color: #eee;
 }
 body.light-mode {
   background-color: #eee;
@@ -70,7 +72,7 @@ body.light-mode p {
   color: #111;;
 }
 body.dark-mode a {
-  color: #eee;
+  color: #eee !important;
 }
 body.light-mode button {
   background-color: #111;
@@ -125,4 +127,8 @@ html.color-theme-in-transition *:after {
 
 .modal-header .close {
   padding: 0 0;
+}
+
+.chip {
+  margin-bottom: 0 !important;
 }

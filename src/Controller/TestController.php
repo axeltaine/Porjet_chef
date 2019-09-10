@@ -29,6 +29,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class TestController extends AbstractController
 {
@@ -60,37 +61,21 @@ class TestController extends AbstractController
      */
     public function todolist(Projet $projet, Request $request, ObjectManager $manager)
     {
-
-        $faker = Faker\Factory::create('fr_FR');
-        for($i = 1; $i <= mt_rand(1,3); $i++){
-            $chat = new Chat();
-            
-            $content =  join($faker->paragraphs(1)
-             ) ;
-
-             $now = new \DateTime();
-
-            $chat->setAuteur($faker->name)
-                 ->setContenu($content)
-                 ->setDatechat($faker->dateTimeBetween($now))
-                 ->setProjet($projet);
-
-                $manager->persist($chat);
-        }
-
-        
-        
+  
+        $chat = new Chat();
         $form = $this->createForm(ChatType::class, $chat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager->flush();
-           
+            $chat->setAuteur($this->getUser()->getUsername());
+            $chat->setProjet($projet);
+            $manager->persist($chat);
+            $manager->flush(); 
             
         }
         
         return $this->render('test/todolist.html.twig', [
-            
+
             'projet' => $projet,
             'chat' => $chat,
             'form' => $form->createView()
@@ -231,17 +216,30 @@ class TestController extends AbstractController
      * @Route("/createProfil", name="createProfil")
      * 
      */
-    public function createProfil(Request $request, ObjectManager $manager)
+    public function createProfil(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $passwordEncoder)
 {
     $this->denyAccessUnlessGranted('ROLE_ADMIN');
     $user = new User();
+    
     $form = $this->createForm(ProfilType::class, $user);
     $form->handleRequest($request);
+    $user->setMdpUser($passwordEncoder->encodePassword($user,
+    $form->get('mdp_user')->getData()));
 
     if ($form->isSubmitted() && $form->isValid()) {
+        $uploadedFile = $form['avatar']->getData();
+        if ($uploadedFile) {
+            $destination = $this->getParameter('kernel.project_dir').'/public/img/';
+            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = $originalFilename.'-'.uniqid().'.'.$uploadedFile->guessExtension();
+            $uploadedFile->move(
+                $destination,
+                $newFilename
+            );
+                $user->setAvatar($newFilename);
                 $manager->persist($user);
                 $manager->flush();
-    }
+    }}
                 return $this->render('test/createProfil.html.twig',[
                 'users' => $user,
                 'form' => $form->createView()
@@ -266,6 +264,17 @@ class TestController extends AbstractController
      */
     public function logout()
     {
+    }
+  /**
+     * @Route("/assign/{id}/{user}", name="assign")
+     */
+    public function assign(Projet $projet, User $user, ObjectManager $manager)
+    {
+        $user->addAssignedProjet($projet);
+        $manager->persist($user);
+        $manager->flush();
+
+        return new Response();
     }
   
 

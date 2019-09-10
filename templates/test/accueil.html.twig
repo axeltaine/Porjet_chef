@@ -1,40 +1,33 @@
 {% extends 'base.html.twig' %}
 {% block title %}TODOLIST{% endblock %}
 {% block stylesheets %}
-<link rel="stylesheet" href="/css/mdb.min.css">
 <link rel="stylesheet" href="/css/accueil.css">
+<link rel="stylesheet" href="/css/mdb.min.css">
+
 {% endblock %}
 {% block body %}
    <header>
-
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="/accueil">
               <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-        
-        
-       
-         <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        {% if app.user and is_granted('ROLE_ADMIN') %}
-                  <button type="button" class="btn btn-outline-primary my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg" style="border-radius: 40px;">Create projet</button>
-                  <a href="{{ path('createProfil') }}" class="btn btn-primary " style="border-radius: 40px;">Create Profil</a>
-                {% endif %}  
-</div>
-               
+            <form class="form-inline my-2 my-lg-0 ml-auto">
             <ul class="navbar-nav mr-auto ">
               {% if app.user %}
               <li class="nav-item dropdown">
-                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 
+                 <div class="chip chip-lg aqua-gradient white-text nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-right: 1rem;">
                  <img src="../img/{{app.user.avatar}}" class="avatar avatar-mini" alt="Avatar de {{app.user.NameUser}}">
                  Bienvenue {{app.user.NameUser}}
-                 </a>
-
+                 </div>
+                 
                 <div class="dropdown-menu"aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#">Mon Profil</a>
                 <a class="dropdown-item" href="#">Edit Profil</a>
+                {% if app.user and is_granted('ROLE_ADMIN') %}
+                  <button  class="dropdown-item " data-toggle="modal" data-target=".bd-example-modal-lg" >Create projet</button>
+                  <a href="{{ path('createProfil') }}" class="dropdown-item" >Create Profil</a>
+                {% endif %}  
                   <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip"  title="Déconnexion" >
                   Déconnexion
                   </a>
@@ -49,8 +42,7 @@
               </li>
               {% endif %}
             </ul>
-           
-        
+            </form>
       </nav>
 
   <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -130,7 +122,7 @@
         </div>
         </div>
         <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" style="border-radius: 40px;">Create</button>
+        <button type="submit" class="btn aqua-gradient" style="border-radius: 40px;">Create</button>
       
           </div>
       {{ form_end(form) }}
@@ -152,7 +144,7 @@
              
           <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="padding-bottom: 2em;">
 
-          <div class="card card-cascade wider" style="width: 18rem;">
+          <div class="card card-cascade narrower" style="width: 18rem;">
             <div class="view view-cascade overlay">
             <img src="../img/{{projet.imgProjet}}" class="card-img-top" alt="#">
             <a href="#!">
@@ -160,8 +152,8 @@
     </a>
             <div class="card-body card-body-cascade text-center">
               <h5 class="card-title">{{ projet.nameProjet}}</h5>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ projet.Id}}" aria-controls="exampleModal" style="border-radius: 40px;">
-            En voir plus
+              <button type="button" class="btn aqua-gradient" data-toggle="modal" data-target="#exampleModal{{ projet.id }}" aria-controls="exampleModal" style="border-radius: 40px;">
+            Voir plus
           </button>
           <div class="row">
           {% for user in projet.assignedUsers %}
@@ -185,33 +177,16 @@
                    <div class="col">
             <h5 class="modal-title" id="exampleModalLabel">{{ projet.nameProjet}}</h5>
             </div>
-            <div class="col">
-             {% for user in projet.assignedUsers %}
-          <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
-          <p>{{user.NameUser}}</p>
-          {% endfor %}
-            </div>
-            <div clas="col">
-              <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                  <option selected>Choose...</option>
-                  {% for user in users %}
-                  <option value="1">{{user.UserName}}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            <div class="col">
-              <button type="submit" class="btn btn-primary" style="border-radius: 40px;">Assigned</button>
-              </div>
-            </div>
+            
                
-            <button type="button" class="close btn-circle" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close btn-circle" data-dismiss="modal" aria-label="Close" >
             <span aria-hidden="true">&times;</span>
             
           </button>
         </div>
+        </div>
 
-          <div class="modal-body" id="projet">
+          <div class="modal-body" id="{{ projet.Id}}">
              <div class="row">
                 <div class="col">
                 <p><u>Nom de la Société</u> : {{ company.NameCompany }}</p>
@@ -245,15 +220,36 @@
                 </div>
               <img src="../img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em;">
                 <h5> <u>Description</u> : </h5>
-                <p>{{ projet.descProjet}}</p>    
-          </div>
+                <p>{{ projet.descProjet}}</p>  
+                <div class="row">
+             {% for user in projet.assignedUsers %}
+          <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+          <p>{{user.NameUser}}</p>
+          {% endfor %}
+            </div>
+            <div clas="col">
+              <div class="input-group mb-3">
+                
+                <select class="browser-default custom-select" id="inputGroupSelect01">
+                  <option selected  disabled value="-1">Choose...</option>
+                  {% for user in users %}
+                  <option value="{{user.id}}">{{user.id}}-{{user.UserName}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <a class="btn aqua-gradient assign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}" class="btn aqua-gradient" style="border-radius: 40px;">Assigned</a>
+              </div>
+            </div>  
+          
 
           <div class="modal-footer">
-              <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-primary" style="border-radius: 40px;">todolist</a>
+              <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn aqua-gradient" style="border-radius: 40px;">todolist</a>
               {% if app.user and is_granted('ROLE_ADMIN') %}
-              <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-primary " style="border-radius: 40px;">Edit projet</a>
-              <a href="{{ path('editCompany', {'id':company.id}) }}" class="btn btn-primary " style="border-radius: 40px;">Edit company</a>
-              <a href="#" class="btn btn-primary delete-projet" data-id="{{ projet.id }}" style="border-radius: 40px;">Delete</a>
+              <a href="{{ path('edit', {'id':projet.id}) }}" class="btn aqua-gradient " style="border-radius: 40px;">Edit projet</a>
+              <a href="{{ path('editCompany', {'id':company.id}) }}" class="btn aqua-gradient " style="border-radius: 40px;">Edit company</a>
+              <a href="#" class="btn aqua-gradient delete-projet" data-id="{{ projet.id }}" style="border-radius: 40px;">Delete</a>
               {% endif %}
           </div>
         </div>
@@ -266,7 +262,7 @@
     </div >
 
     <div class="d-flex justify-content-center">
-  <ul class="pagination">
+  <ul class="pagination pagination-circle pg-blue">
     <li class="page-item {% if page == 1 %}disabled{% endif %}">
       <a class="page-link" href="{{ path('create_projet', {'page': page - 1})}}">&laquo;</a>
     </li>
@@ -341,4 +337,5 @@ window.setTimeout(function() {
   
 <script src="/js/mdb.min.js"></script>
   <script src="/js/main.js"></script>
+  <script src="/js/assign.js"></script>
 {% endblock %}
