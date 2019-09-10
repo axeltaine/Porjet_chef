@@ -143,7 +143,7 @@
                 <p>Message : {{ chat.Contenu }}</p>
                 </div>
                  <div class="col">
-                <p>date : {{ chat.Datechat|date('d/m/Y H:i:s') }}</p>
+                <p>date : {{ chat.Datechat|localizeddate('none', 'none', 'fr', 'Europe/Paris','d/MM/Y H:m a') }}</p>
                 </div>
                 
                 </div>
