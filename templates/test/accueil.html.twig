@@ -24,7 +24,6 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Edit Profil</a>
             {% if app.user and is_granted('ROLE_ADMIN') %}
-            
             <a href="{{ path('createProfil') }}" class="dropdown-item">Create Profil</a>
             {% endif %}
             <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip" title="Déconnexion">
@@ -143,12 +142,13 @@
       {% for company in companys %}
       {% for projet in company.projets %}
       <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="padding-bottom: 2em;">
-        <div class="card card-cascade narrower" style="width: 18rem;">
+        <div class="card card-cascade narrower" >
           <div class="view view-cascade overlay">
             <img src="../img/{{projet.imgProjet}}" class="card-img-top" alt="#">
-            <a href="#!">
+            <a>
               <div class="mask rgba-white-slight"></div>
             </a>
+            </div>
             <div class="card-body card-body-cascade text-center">
               <h5 class="card-title">{{ projet.nameProjet}}</h5>
               <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal"
@@ -162,8 +162,7 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div>  
 {# END CARD PROJET AND COMPANY #}
 {# START MODAL PROJET AND COMPANY #}
       <div class="modal fade" id="exampleModal{{ projet.Id}}" tabindex="-1" role="dialog"
