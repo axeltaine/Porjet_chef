@@ -55,17 +55,5 @@
 </main>
 {% endblock %}
 {% block javascripts %}
-<script>
-  function toggleDarkLight() {
-    var body = document.getElementById("body");
-    var currentClass = body.className;
-    body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
-    document.documentElement.classList.add('color-theme-in-transition')
-    window.setTimeout(function () {
-      document.documentElement.classList.remove('color-theme-in-transition')
-    }, 1000)
-  };
-</script>
-
-
-<script src="/js/main.js"></script>{% endblock %}
+<script src="/js/main.js"></script>
+{% endblock %}

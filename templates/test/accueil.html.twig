@@ -2,7 +2,6 @@
 {% block title %}TODOLIST{% endblock %}
 {% block stylesheets %}
 <link rel="stylesheet" href="/css/accueil.css">
-<link rel="stylesheet" href="/css/mdb.min.css">
 {% endblock %}
 {% block body %}
 <header>
@@ -123,7 +122,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn aqua-gradient" style="border-radius: 40px;">Create</button>
+          <button type="submit" class="btn btn-rounded aqua-gradient">Create</button>
         </div>
         {{ form_end(form) }}
       </div>
@@ -152,8 +151,8 @@
             </a>
             <div class="card-body card-body-cascade text-center">
               <h5 class="card-title">{{ projet.nameProjet}}</h5>
-              <button type="button" class="btn aqua-gradient" data-toggle="modal"
-                data-target="#exampleModal{{ projet.id }}" aria-controls="exampleModal" style="border-radius: 40px;">
+              <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal"
+                data-target="#exampleModal{{ projet.id }}" aria-controls="exampleModal">
                 Voir plus
               </button>
               <div class="row">
@@ -236,20 +235,16 @@
                 </div>
               </div>
               <div class="col">
-                <a class="btn aqua-gradient assign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}"
-                  class="btn aqua-gradient" style="border-radius: 40px;">Assigned</a>
+                <a class="btn btn-rounded aqua-gradient assign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
+                Assigned</a>
               </div>
             </div>
             <div class="modal-footer">
-              <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn aqua-gradient"
-                style="border-radius: 40px;">todolist</a>
+              <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">todolist</a>
               {% if app.user and is_granted('ROLE_ADMIN') %}
-              <a href="{{ path('edit', {'id':projet.id}) }}" class="btn aqua-gradient "
-                style="border-radius: 40px;">Edit projet</a>
-              <a href="{{ path('editCompany', {'id':company.id}) }}" class="btn aqua-gradient "
-                style="border-radius: 40px;">Edit company</a>
-              <a href="#" class="btn aqua-gradient delete-projet" data-id="{{ projet.id }}"
-                style="border-radius: 40px;">Delete</a>
+              <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">Edit projet</a>
+              <a href="{{ path('editCompany', {'id':company.id}) }}" class="btn btn-rounded aqua-gradient">Edit company</a>
+              <a href="#" class="btn btn-rounded aqua-gradient delete-projet" data-id="{{ projet.id }}">Delete</a>
               {% endif %}
             </div>
           </div>
