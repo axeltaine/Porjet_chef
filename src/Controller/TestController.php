@@ -113,7 +113,7 @@ class TestController extends AbstractController
         $manager->flush();
         return $this->redirectToRoute('create_projet');
     }
-    return $this->render('test/edit.html.twig', [
+    return $this->render('test/editCompany.html.twig', [
         'company' => $company,
         'form' => $form->createView()
     ]);
