@@ -16,14 +16,7 @@ class ProfilType extends AbstractType
             ->add('name_user')
             ->add('mdp_user')
             ->add('email_user')
-            ->add('avatar', FileType::class, [
-                'label' => 'Avatar :',
-                'attr' => [
-                    'placeholder' => 'Avatar'
-
-                    ]
-                ])
-            
+            ->add('avatar', FileType::class)
             
         ;
     }
