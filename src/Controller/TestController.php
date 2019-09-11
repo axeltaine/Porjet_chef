@@ -13,6 +13,7 @@ use App\Entity\Company;
 use App\Form\ProfilType;
 use App\Form\ProjetType;
 use App\Form\CompanyType;
+use App\Form\EditUserType;
 use App\Form\EditcompanyType;
 use App\Repository\ChatRepository;
 use App\Repository\UserRepository;
@@ -276,6 +277,24 @@ class TestController extends AbstractController
 
         return new Response();
     }
+      /**
+     * @Route("/editProfil/{id}", name="editProfil")
+     */
+    public function editUser(User $user, Request $request, ObjectManager $manager)
+{
+    $this->denyAccessUnlessGranted('ROLE_USER');
+    $form = $this->createForm(EditUserType::class, $user);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $manager->flush();
+        return $this->redirectToRoute('create_projet');
+    }
+    return $this->render('test/editProfil.html.twig', [
+        'user' => $user,
+        'form' => $form->createView()
+    ]);
+}
   
 
 }
