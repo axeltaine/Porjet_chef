@@ -1,182 +1,177 @@
 {% extends 'base.html.twig' %}
 {% block title %}TODOLIST{% endblock %}
-{% block stylesheets %}<link rel="stylesheet" href="/css/todolist.css">
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/todolist.css">
 <link rel="stylesheet" href="/css/mdb.min.css">
 {% endblock %}
 {% block body %}
-    <header>
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/accueil">
-              <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
+<header>
+  {# NAVBAR #}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/accueil">
+      <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
+    </a>
+    <form class="form-inline my-2 my-lg-0 ml-auto">
+      <ul class="navbar-nav mr-auto ">
+        {% if app.user %}
+        <li class="nav-item dropdown">
+          <div class="chip chip-lg aqua-gradient white-text nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            style="padding-right: 1rem;">
+            <img src="../img/{{app.user.avatar}}" class="avatar avatar-mini" alt="Avatar de {{app.user.NameUser}}">
+            Bienvenue {{app.user.NameUser}}
+          </div>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Edit Profil</a>
+            {% if app.user and is_granted('ROLE_ADMIN') %}
+            <button class="dropdown-item " data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
+            <a href="{{ path('createProfil') }}" class="dropdown-item">Create Profil</a>
+            {% endif %}
+            <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip" title="Déconnexion">
+              Déconnexion
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-        
-        
-       
-         <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        {% if app.user and is_granted('ROLE_ADMIN') %}
-                  <button type="button" class="btn btn-outline-primary my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg" style="border-radius: 40px;">Create projet</button>
-                  <a href="{{ path('createProfil') }}" class="btn btn-primary " style="border-radius: 40px;">Create Profil</a>
-                {% endif %}  
-</div>
-               
-            <ul class="navbar-nav mr-auto ">
-              {% if app.user %}
-              <li class="nav-item dropdown">
-                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 <img src="../img/{{app.user.avatar}}" class="avatar avatar-mini" alt="Avatar de {{app.user.NameUser}}">
-                 Bienvenue {{app.user.NameUser}}
-                 </a>
-
-                <div class="dropdown-menu"aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Mon Profil</a>
-                <a class="dropdown-item" href="#">Edit Profil</a>
-                  <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip"  title="Déconnexion" >
-                  Déconnexion
-                  </a>
-                  
-                 <a class="dropdown-item" href="#">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                    <label class="custom-control-label" for="customSwitch1" name="dark_light" onclick="toggleDarkLight()">Thème sombre</label>
-                  </div>
-                  </a>
-                </div>
-              </li>
-              {% endif %}
-            </ul>
-           
-        
-      </nav>
+            <a class="dropdown-item" href="#">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                <label class="custom-control-label" for="customSwitch1" name="dark_light"
+                  onclick="toggleDarkLight()">Thème sombre</label>
+              </div>
+            </a>
+          </div>
+        </li>
+        {% endif %}
+      </ul>
+    </form>
+  </nav>
+  {#  END NAVBAR #}
 </header>
 <main class="global">
-    <div class="container">
+  <div class="container">
     <hr>
-      <H1>{{ projet.nameProjet}}</H1>
-      <hr>
-       <img src="/img/{{projet.logoProjet}}" style="max-width: 10em;">
-       <hr>
-      <P>{{ projet.descProjet}}</P>
-      <hr>
-    </div>
-
-    <div class="container">
-      <table class="table table-bordered table-dark">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">ToDO</th>
-            <th scope="col">In Progress</th>
-            <th scope="col">Finished</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Etape 1<br>Maquettage</th>
-            <td class="droppable" id="0">
-            {% if app.user and is_granted('ROLE_ADMIN') %}
-                <div class="draggable" >
-                {% endif %}
-                  <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}}</h5>
-                  <div class="card-body">
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                      +
-                    </button>
-                    {% for user in projet.assignedUsers %}
-                    <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
-                    {% endfor %}
-                  </div>
-              </div>
-            </td>
-            <td class="droppable" id="1">
-            </td>
-            <td class="droppable">
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Etape 2<br>Contenu et Modif.</th>
-            <td class="droppable">
-            </td>
-            <td class="droppable">
-            </td>
-            <td class="droppable">
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Etape 3<br>Mise en Production</th>
-            <td class="droppable">
-            </td>
-            <td class="droppable">
-            </td>
-            <td class="droppable">
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Etape 4<br>Modification</th>
-            <td class="droppable">
-            </td>
-            <td class="droppable">
-            </td>
-            <td class="droppable">
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content" >
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Mini-Chat</h5>
-       
-        
-      </div>
-      <div class="modal-body">
-      
-  {% for chat in projet.chats %}
-  <div class="row">
-                <div class="col">
-                <p>{{ chat.Auteur }}</p>
-                  </div>
-                   <div class="col">
-                <p>Message : {{ chat.Contenu }}</p>
-                </div>
-                 <div class="col">
-                <p>date : {{ chat.Datechat|localizeddate('none', 'none', 'fr', 'Europe/Paris','d/MM/Y H:m a') }}</p>
-                </div>
-                
-                </div>
-   {% endfor %}
-   <hr>
-   
-      {{ form_start(form) }}
-    {{ form_widget(form) }}
-
-    <button class="btn btn-primary" >Create</button>
-{{ form_end(form) }}
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-     
-      </div>
-    </div>
+    <H1>{{ projet.nameProjet}}</H1>
+    <hr>
+    <img src="/img/{{projet.logoProjet}}" style="max-width: 10em;">
+    <hr>
+    <P>{{ projet.descProjet}}</P>
+    <hr>
   </div>
-</div>
+
+  <div class="container">
+    <table class="table table-bordered table-dark">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">ToDO</th>
+          <th scope="col">In Progress</th>
+          <th scope="col">Finished</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Etape 1<br>Maquettage</th>
+          <td class="droppable" id="0">
+            {% if app.user and is_granted('ROLE_ADMIN') %}
+            <div class="draggable">
+              {% endif %}
+              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}}</h5>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  +
+                </button>
+                {% for user in projet.assignedUsers %}
+                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                {% endfor %}
+              </div>
+            </div>
+          </td>
+          <td class="droppable" id="1">
+          </td>
+          <td class="droppable">
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Etape 2<br>Contenu et Modif.</th>
+          <td class="droppable">
+          </td>
+          <td class="droppable">
+          </td>
+          <td class="droppable">
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Etape 3<br>Mise en Production</th>
+          <td class="droppable">
+          </td>
+          <td class="droppable">
+          </td>
+          <td class="droppable">
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Etape 4<br>Modification</th>
+          <td class="droppable">
+          </td>
+          <td class="droppable">
+          </td>
+          <td class="droppable">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Mini-Chat</h5>
+
+
+          </div>
+          <div class="modal-body">
+
+            {% for chat in projet.chats %}
+            <div class="row">
+              <div class="col">
+                <p>{{ chat.Auteur }}</p>
+              </div>
+              <div class="col">
+                <p>Message : {{ chat.Contenu }}</p>
+              </div>
+              <div class="col">
+                <p>date : {{ chat.Datechat|localizeddate('none', 'none', 'fr', 'Europe/Paris','d/MM/Y H:m a') }}</p>
+              </div>
+
+            </div>
+            {% endfor %}
+            <hr>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <button class="btn btn-primary">Create</button>
+            {{ form_end(form) }}
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </main>
+</main>
 {% endblock %}
-  {% block javascripts %}
-  <script>
+{% block javascripts %}
+<script>
   function toggleDarkLight() {
-  var body = document.getElementById("body");
-  var currentClass = body.className;
-  body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
-  document.documentElement.classList.add('color-theme-in-transition')
-window.setTimeout(function() {
-  document.documentElement.classList.remove('color-theme-in-transition')
-}, 1000)
-};
+    var body = document.getElementById("body");
+    var currentClass = body.className;
+    body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
+    document.documentElement.classList.add('color-theme-in-transition')
+    window.setTimeout(function () {
+      document.documentElement.classList.remove('color-theme-in-transition')
+    }, 1000)
+  };
 </script>
-  <script src="../js/todolist.js"></script>
-  <script src="/js/mdb.min.js"></script>
-  {% endblock %}
+<script src="../js/todolist.js"></script>
+<script src="/js/mdb.min.js"></script>
+{% endblock %}

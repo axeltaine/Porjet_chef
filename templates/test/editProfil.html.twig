@@ -4,78 +4,69 @@
 <link rel="stylesheet" href="/css/footer.css">
 <link rel="stylesheet" href="/css/createprofil.css">{% endblock %}
 {% block body %}
-    <header>
+<header>
+  {# NAVBAR #}
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/accueil">
-              <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
+    <a class="navbar-brand" href="/accueil">
+      <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
+    </a>
+    <form class="form-inline my-2 my-lg-0 ml-auto">
+      <ul class="navbar-nav mr-auto ">
+        {% if app.user %}
+        <li class="nav-item dropdown">
+          <div class="chip chip-lg aqua-gradient white-text nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            style="padding-right: 1rem;">
+            <img src="../img/{{app.user.avatar}}" class="avatar avatar-mini" alt="Avatar de {{app.user.NameUser}}">
+            Bienvenue {{app.user.NameUser}}
+          </div>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Edit Profil</a>
+            {% if app.user and is_granted('ROLE_ADMIN') %}
+            <button class="dropdown-item " data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
+            <a href="{{ path('createProfil') }}" class="dropdown-item">Create Profil</a>
+            {% endif %}
+            <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip" title="Déconnexion">
+              Déconnexion
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-        
-        
-       
-         <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        {% if app.user and is_granted('ROLE_ADMIN') %}
-                  <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
-                  <button type="button" class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target=".bd-example-modal-lg">Create Profil</button>
-                {% endif %}  
-</div>
-               
-            <ul class="navbar-nav mr-auto ">
-              {% if app.user %}
-              <li class="nav-item dropdown">
-                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 <img src="../img/{{app.user.avatar}}" class="avatar avatar-mini" alt="Avatar de {{app.user.NameUser}}">
-                 Bienvenue {{app.user.NameUser}}
-                 </a>
-
-                <div class="dropdown-menu"aria-labelledby="navbarDropdownMenuLink">
-                
-                <a class="dropdown-item" href="#">Edit Profil</a>
-                  <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip"  title="Déconnexion" >
-                  Déconnexion
-                  </a>
-                  
-                 <a class="dropdown-item" href="#">
-                  <div class="custom-control custom-switch" style="margin-left: 1em;">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                    <label class="custom-control-label" for="customSwitch1" name="dark_light" onclick="toggleDarkLight()">Darck Side</label>
-                  </div>
-                  </a>
-                </div>
-              </li>
-              {% endif %}
-            </ul>
-           
-        
-      </nav>
+            <a class="dropdown-item" href="#">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                <label class="custom-control-label" for="customSwitch1" name="dark_light"
+                  onclick="toggleDarkLight()">Thème sombre</label>
+              </div>
+            </a>
+          </div>
+        </li>
+        {% endif %}
+      </ul>
+    </form>
+  </nav>
+  {#  END NAVBAR #}
 </header>
 <main class="global">
-    <div class="container">
-      {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn btn-primary">Editer</button>
-      {{ form_end(form) }}
-    </div>
+  <div class="container">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-primary">Editer</button>
+    {{ form_end(form) }}
+  </div>
 
-    
-  </main>
+
+</main>
 {% endblock %}
-  {% block javascripts %}
-  <script>
-
-
-function toggleDarkLight() {
-  var body = document.getElementById("body");
-  var currentClass = body.className;
-  body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
-  document.documentElement.classList.add('color-theme-in-transition')
-window.setTimeout(function() {
-  document.documentElement.classList.remove('color-theme-in-transition')
-}, 1000)
-};
+{% block javascripts %}
+<script>
+  function toggleDarkLight() {
+    var body = document.getElementById("body");
+    var currentClass = body.className;
+    body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
+    document.documentElement.classList.add('color-theme-in-transition')
+    window.setTimeout(function () {
+      document.documentElement.classList.remove('color-theme-in-transition')
+    }, 1000)
+  };
 </script>
-  
 
-  <script src="/js/main.js"></script>{% endblock %}
+
+<script src="/js/main.js"></script>{% endblock %}
