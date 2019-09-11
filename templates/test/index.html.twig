@@ -1,9 +1,7 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}TODOLIST{% endblock %}
 {% block stylesheets %}
 <link rel="stylesheet" href="/css/login.css">{% endblock %}
-
 {% block body %}
 {% if error %}
 <div class="alert alert-danger">
@@ -11,14 +9,13 @@
 </div>
 {% endif %}
 <main class="global col-sm-12">
-
     <div class="container">
         <center>
             <img src="img/logo_transpa.png" alt="logo">
         </center>
         <h1 class="text-center text-dark">MAITRISE<strong>WEB</strong><h1>
     </div>
-
+    {# START CONNECT FORM #}
             <form action="{{ path('index') }}" method="post" class="form-signin">
                 <fieldset>
                     <legend><i class="fa fa-lock" aria-hidden="true"></i> Connexion</legend>
@@ -37,9 +34,7 @@
                     </button>
                 </fieldset>
             </form>
-
-
-
+    {# END CONNECT FORM #}
 </main>
 
 {% endblock %}

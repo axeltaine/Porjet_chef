@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block title %}EditProfil{% endblock %}
 {% block stylesheets %}
-<link rel="stylesheet" href="/css/footer.css">
-<link rel="stylesheet" href="/css/createprofil.css">{% endblock %}
+<link rel="stylesheet" href="/css/createprofil.css">
+{% endblock %}
 {% block body %}
 <header>
   {# NAVBAR #}
@@ -23,7 +23,6 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Edit Profil</a>
             {% if app.user and is_granted('ROLE_ADMIN') %}
-            <button class="dropdown-item " data-toggle="modal" data-target=".bd-example-modal-lg">Create projet</button>
             <a href="{{ path('createProfil') }}" class="dropdown-item">Create Profil</a>
             {% endif %}
             <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip" title="Déconnexion">
