@@ -66,10 +66,7 @@ body.dark-mode .navbar-dark .navbar-nav .nav-link {
 body.light-mode .navbar-dark .navbar-nav .nav-link {
   color: #111;
 }
-body.dark-mode button {
-  background-color: #111;
-  color: #eee;
-}
+
 body.light-mode {
   background-color: #eee;
   color: #111;
@@ -83,10 +80,7 @@ body.light-mode p {
 body.dark-mode a {
   color: #eee !important;
 }
-body.light-mode button {
-  background-color: #111;
-  color: #eee;
-}
+
 html.color-theme-in-transition,
 html.color-theme-in-transition *,
 html.color-theme-in-transition *:before,

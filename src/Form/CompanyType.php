@@ -17,39 +17,19 @@ class CompanyType extends AbstractType
     {
         $builder
             ->add('name_company', TextType::class, [
-                'label' => 'name_company :',
-                'attr' => [
-                    'placeholder' => 'name_company'
-
-                ]
+                'label' => 'Nom de la Société :'
             ])
             ->add('name_director', TextType::class, [
-                'label' => 'name_director :',
-                'attr' => [
-                    'placeholder' => 'name_director'
-
-                    ]
+                'label' => 'Nom du directeur :'
                 ])
             ->add('siret_company', TextType::class, [
-                    'label' => 'siret_company :',
-                    'attr' => [
-                        'placeholder' => 'siret_company'
-    
-                        ]
+                    'label' => 'Siret :'
                     ])
                     ->add('phone_company', TextType::class, [
-                        'label' => 'phone_company',
-                        'attr' => [
-                            'placeholder' => 'sphone_company'
-        
-                            ]
+                        'label' => 'Téléphone'
                         ])
                         ->add('email_company', TextType::class, [
-                            'label' => 'email_company',
-                            'attr' => [
-                                'placeholder' => 'email_company'
-            
-                                ]
+                            'label' => 'Email'
                             ])
        
         ;

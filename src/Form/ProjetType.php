@@ -18,32 +18,17 @@ class ProjetType extends AbstractType
     {
         $builder
             ->add('name_projet', TextType::class, [
-                'label' => 'Nom du projet :',
-                'attr' => [
-                    'placeholder' => 'Nom'
-
-                ]
+                'label' => 'Nom du projet :'
+                
             ])
             ->add('company', CompanyType::class, [
-                'label' => 'Nom de société :',
-                'attr' => [
-                    'placeholder' => 'Nom'
-
-                ]
+                'label' => 'Nom de société :'
             ])
             ->add('desc_projet', TextareaType::class, [
-                'label' => 'Description :',
-                'attr' => [
-                    'placeholder' => 'Description'
-
-                    ]
+                'label' => 'Description :'
                 ])
             ->add('name_domain', TextType::class, [
-                    'label' => 'Domaine :',
-                    'attr' => [
-                        'placeholder' => 'Domaine'
-    
-                        ]
+                    'label' => 'Domaine :'
                     ])
             ->add('img_projet', FileType::class, [
                 'label' => 'Image :',
@@ -53,32 +38,18 @@ class ProjetType extends AbstractType
                     ]
                 ])
                 ->add('logo_projet', FileType::class, [
-                    'label' => 'Logo :',
-                    'attr' => [
-                        'placeholder' => 'Logo'
-    
-                        ]
+                    'label' => 'Logo :'
                     ])
             ->add('doc_projet', FileType::class, [
-                    'label' => 'Document :',
-                    'attr' => [
-                        'placeholder' => 'Document'
-    
-                        ]
+                    'label' => 'Document :'
                     ])
                     ->add('date_start', DateType::class, [
                         'label' => 'Date de début  :',
-                        'attr' => [
-                            'placeholder' => 'Date de début'
-        
-                            ]
+                        'widget' => 'single_text'
                         ])
                         ->add('date_end', DateType::class, [
                             'label' => 'Date de fin  :',
-                            'attr' => [
-                                'placeholder' => 'Date de fin'
-            
-                                ]
+                            'widget' => 'single_text'
                             ])
         ;
     }

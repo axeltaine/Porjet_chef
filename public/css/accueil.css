@@ -5,3 +5,36 @@
 .chip {
   margin-bottom: 0 !important;
 }
+
+.custom-file-input {
+  opacity: 1;
+}
+
+.custom-file-label {
+  display: none;
+}
+
+.md-form {
+  margin-bottom: 0;
+}
+
+.md-form label {
+  color: black;
+}
+
+.modal-content {
+  background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table7.jpg');
+  background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.modal-dialog.modal-notify .modal-body {
+ 
+  color: black;
+}
+
+::placeholder { 
+  color: black;
+  opacity: 1; 
+}
