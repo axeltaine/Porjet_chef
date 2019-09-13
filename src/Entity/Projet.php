@@ -75,6 +75,11 @@ class Projet
      */
     private $assignedUsers;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $Position;
+
     public function __construct()
     {
         $this->chats = new ArrayCollection();
@@ -259,6 +264,18 @@ class Projet
         if ($this->assignedUsers->contains($assignedUser)) {
             $this->assignedUsers->removeElement($assignedUser);
         }
+
+        return $this;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->Position;
+    }
+
+    public function setPosition(int $Position): self
+    {
+        $this->Position = $Position;
 
         return $this;
     }

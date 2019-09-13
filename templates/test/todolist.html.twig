@@ -44,9 +44,9 @@
 {#  END NAVBAR #}
 </header>
 <main class="global">
-  <div class="container">
+  <div class="container-fluid">
     <hr>
-    <H1>{{ projet.nameProjet}}</H1>
+    <H1>{{ projet.nameProjet}} </H1>
     <hr>
     <img src="/img/{{projet.logoProjet}}" style="max-width: 10em;">
     <hr>
@@ -67,10 +67,10 @@
         <tr>
           <th scope="row">Etape 1<br>Maquettage</th>
           <td class="droppable" id="0">
-            {% if app.user and is_granted('ROLE_ADMIN') %}
-            <div class="draggable">
-              {% endif %}
-              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}}</h5>
+            {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 0 %}
+            <div class="draggable " idcard="{{ projet.Position}}">
+            
+              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                   +
@@ -78,39 +78,196 @@
                 {% for user in projet.assignedUsers %}
                 <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
                 {% endfor %}
+                  {% endif %}
               </div>
             </div>
           </td>
+         
           <td class="droppable" id="1">
+            {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 1 %}
+            <div class="draggable " idcard="{{ projet.Position}}">
+            
+              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  +
+                </button>
+                {% for user in projet.assignedUsers %}
+                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                {% endfor %}
+                  {% endif %}
+              </div>
+            </div>
           </td>
-          <td class="droppable">
+         
+          <td class="droppable" id="2">
+            {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 2 %}
+            <div class="draggable " idcard="{{ projet.Position}}">
+            
+              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  +
+                </button>
+                {% for user in projet.assignedUsers %}
+                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                {% endfor %}
+                  {% endif %}
+              </div>
+            </div>
           </td>
         </tr>
         <tr>
           <th scope="row">Etape 2<br>Contenu et Modif.</th>
-          <td class="droppable">
+          <td class="droppable" id="3">
+            {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 3 %}
+            <div class="draggable " idcard="{{ projet.Position}}">
+            
+              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  +
+                </button>
+                {% for user in projet.assignedUsers %}
+                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                {% endfor %}
+                  {% endif %}
+              </div>
+            </div>
           </td>
-          <td class="droppable">
+          <td class="droppable" id="4">
+            {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 4 %}
+            <div class="draggable " idcard="{{ projet.Position}}">
+            
+              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  +
+                </button>
+                {% for user in projet.assignedUsers %}
+                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                {% endfor %}
+                  {% endif %}
+              </div>
+            </div>
           </td>
-          <td class="droppable">
+          <td class="droppable" id="5">
+            {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 5 %}
+            <div class="draggable " idcard="{{ projet.Position}}">
+            
+              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  +
+                </button>
+                {% for user in projet.assignedUsers %}
+                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                {% endfor %}
+                  {% endif %}
+              </div>
+            </div>
           </td>
         </tr>
         <tr>
           <th scope="row">Etape 3<br>Mise en Production</th>
-          <td class="droppable">
+          <td class="droppable" id="6">
+            {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 6 %}
+            <div class="draggable " idcard="{{ projet.Position}}">
+            
+              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  +
+                </button>
+                {% for user in projet.assignedUsers %}
+                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                {% endfor %}
+                  {% endif %}
+              </div>
+            </div>
           </td>
-          <td class="droppable">
+          <td class="droppable" id="7">
+            {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 7 %}
+            <div class="draggable " idcard="{{ projet.Position}}">
+            
+              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  +
+                </button>
+                {% for user in projet.assignedUsers %}
+                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                {% endfor %}
+                  {% endif %}
+              </div>
+            </div>
           </td>
-          <td class="droppable">
+          <td class="droppable" id="8">
+            {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 8 %}
+            <div class="draggable " idcard="{{ projet.Position}}">
+            
+              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  +
+                </button>
+                {% for user in projet.assignedUsers %}
+                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                {% endfor %}
+                  {% endif %}
+              </div>
+            </div>
           </td>
         </tr>
         <tr>
           <th scope="row">Etape 4<br>Modification</th>
-          <td class="droppable">
+          <td class="droppable" id="9">
+            {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 9 %}
+            <div class="draggable " idcard="{{ projet.Position}}">
+            
+              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  +
+                </button>
+                {% for user in projet.assignedUsers %}
+                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                {% endfor %}
+                  {% endif %}
+              </div>
+            </div>
           </td>
-          <td class="droppable">
+          <td class="droppable" id="10">
+            {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 10 %}
+            <div class="draggable " idcard="{{ projet.Position}}">
+            
+              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  +
+                </button>
+                {% for user in projet.assignedUsers %}
+                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                {% endfor %}
+                  {% endif %}
+              </div>
+            </div>
           </td>
-          <td class="droppable">
+          <td class="droppable" id="11">
+            {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 11 %}
+            <div class="draggable " idcard="{{ projet.Position}}">
+            
+              <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  +
+                </button>
+                {% for user in projet.assignedUsers %}
+                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                {% endfor %}
+                  {% endif %}
+              </div>
+            </div>
           </td>
         </tr>
       </tbody>
