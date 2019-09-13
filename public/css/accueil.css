@@ -38,3 +38,6 @@
   color: black;
   opacity: 1; 
 }
+textarea.form-control {
+  height: 6em;
+}

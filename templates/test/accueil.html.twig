@@ -47,10 +47,10 @@
   {# START MODAL CREATE PROJET AND COMPANY #}
   <div class="modal fade right" id="createProjetModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-full-height modal-right modal-notify ">
+    <div class="modal-dialog modal-full-height modal-right modal-notify modal-lm ">
       <div class="modal-content">
         <div class="modal-header mdb-color text-center pb-4">
-          <h3 class="modal-title w-100 font-weight-bold text-white" id="myLargeModalLabel"><strong>Nouveau Projet</strong> </h3>
+          <h3 class="modal-title w-100 font-weight-bold text-white" id="myLargeModalLabel"><strong>Création Projet</strong> </h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true" style="color: white;">&times;</span>
           </button>
@@ -109,10 +109,9 @@
             <div class="form-row" style="flex-wrap: unset;">
             <div class="md-form">
             <div class="file-field">
-                <a class="btn-floating peach-gradient mt-0 float-left">
-                 <i class="fas fa-paperclip" aria-hidden="true"></i>
-                          
-                          {{ form_widget(form.img_projet)}}
+                <a class="btn-floating purple-gradient mt-0 float-left">
+                
+                          {{ form_widget(form.img_projet, { 'attr': {'type': 'file'} })}}
                           </a>
                         <div class="file-path-wrapper">
                   <input class="file-path validate" type="text" placeholder="Télécharger une image">
@@ -123,10 +122,9 @@
            <div class="form-row" style="flex-wrap: unset;">
            <div class="md-form">
            <div class="file-field">
-                 <a class="btn-floating peach-gradient mt-0 float-left">
-                 <i class="fas fa-paperclip" aria-hidden="true"></i>
-             
-              {{ form_widget(form.logo_projet)}}
+               <a class="btn-floating purple-gradient mt-0 float-left">
+              
+              {{ form_widget(form.logo_projet, { 'attr': {'type': 'file', 'class': 'file-path-wrapper'} })}}
               </a>
                         <div class="file-path-wrapper">
                   <input class="file-path validate" type="text" placeholder="Télécharger le logo">
@@ -134,13 +132,12 @@
               </div>
               </div>
               </div>
-
            <div class="form-row" style="flex-wrap: unset;">
            <div class="md-form">
            <div class="file-field">
-                <a class="btn-floating peach-gradient mt-0 float-left">
-                 <i class="fas fa-paperclip" aria-hidden="true"></i>
-            {{ form_widget(form.doc_projet)}}
+                <a class="btn-floating purple-gradient mt-0 float-left">
+             
+            {{ form_widget(form.doc_projet, { 'attr': {'type': 'file'} })}}
             </a>
                         <div class="file-path-wrapper">
                   <input class="file-path validate" type="text" placeholder="Télécharger le document">
