@@ -41,6 +41,13 @@ class TestController extends AbstractController
     {
         return $this->redirectToRoute('index');
     }
+    /**
+     * @Route("/dashboard", name="dashboard")
+     */
+    public function dashboard()
+    {
+        return $this->render('test/dashboard.html.twig');
+    }
 
 
     /**

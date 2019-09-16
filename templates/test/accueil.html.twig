@@ -136,6 +136,7 @@
            <div class="md-form">
            <div class="file-field">
                 <a class="btn-floating purple-gradient mt-0 float-left">
+                
              
             {{ form_widget(form.doc_projet, { 'attr': {'type': 'file'} })}}
             </a>
@@ -255,28 +256,32 @@
               <img src="../img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em;">
               <h5> <u>Description</u> : </h5>
               <p>{{ projet.descProjet}}</p>
-              <div class="row">
+              <div class="row justify-content-between">
+             
                 {% for user in projet.assignedUsers %}
                 <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
                 <p>{{user.NameUser}}</p>
                 {% endfor %}
-              </div>
-              <div clas="col">
+              
+              
+              <div clas="col-4">
                 <div class="input-group mb-3">
                   <select class="browser-default custom-select" id="inputGroupSelect01">
-                    <option selected disabled value="-1">Choose...</option>
+                    <option selected disabled value="-1">+</option>
                     {% for user in users %}
                     <option value="{{user.id}}">{{user.id}}-{{user.UserName}}</option>
                     {% endfor %}
                   </select>
                 </div>
               </div>
+              </div>
+              
               <div class="col">
                 <a class="btn btn-rounded aqua-gradient assign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
                 Assigned</a>
               </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="align-self: center;">
               <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">todolist</a>
               {% if app.user and is_granted('ROLE_ADMIN') %}
               <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">Edit projet</a>

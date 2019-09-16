@@ -20,11 +20,15 @@ $('.draggable').draggable({
      id = $(".global").data('id');
      idcard = $(this).attr("id");
      if (confirm('Are you sure?')) {
+       
       fetch(`/position/${id}/${idcard}`, {
         method: 'POST',
-        success:function(){
-          alert('your change successfully saved')
+       }).then( function(){
+         alert('Position Update');
+       })
       }
-      })
-    }
+    
      }});
+  
+        
+      
