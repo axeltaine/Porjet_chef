@@ -1,0 +1,25 @@
+html,
+body {
+    font-family: Roboto;
+    height: 100%;
+}
+
+.global {
+    min-height: calc(100vh - 1.5em);
+    text-align: center;
+}
+
+.navbar {
+    background-color: white !important;
+  }
+  .container-fluid {
+    padding-top: 6em;
+    padding-left: 16em;
+  }
+
+  .side-nav .collapsible a {
+      color : black !important;
+  }
+  img {
+    filter: invert(100%);
+  }
