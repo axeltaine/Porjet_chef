@@ -24,7 +24,7 @@ footer {
 
 body.dark-mode {
   background-color: rgb(58, 55, 55);
-  color: #eee;
+  color: #FDF5E8;
 }
 body.dark-mode a {
   color: #111;
@@ -36,39 +36,39 @@ body.dark-mode hr {
 }
 body.dark-mode .card-body-cascade {
   background-color: rgb(33, 32, 32) !important;
-  color: #eee;
+  color: #FDF5E8;
 }
 body.dark-mode .card{
   background-color: rgb(28, 27, 27) !important;
-  color: #eee;
+  color: #FDF5E8;
 }
 body.dark-mode .modal-content {
   background-color: #111;
-  color: #eee;
+  color: #FDF5E8;
 }
 body.dark-mode .table {
-  color: #eee;
+  color: #FDF5E8;
 }
 body.dark-mode .page-item a {
   color: #111;
 }
 body.dark-mode .dropdown-menu {
   background-color: #111;
-  color: #eee;
+  color: #FDF5E8;
 }
 body.light-mode .navbar-brand img {
     filter:invert(80%);
 }
 
 body.dark-mode .navbar-dark .navbar-nav .nav-link {
-  color: #eee ;
+  color: #FDF5E8 ;
 }
 body.light-mode .navbar-dark .navbar-nav .nav-link {
   color: #111;
 }
 
 body.light-mode {
-  background-color: #eee;
+  background-color: #FDF5E8;
   color: #111;
 }
 body.light-mode a {
@@ -78,7 +78,7 @@ body.light-mode p {
   color: #111;;
 }
 body.dark-mode a {
-  color: #eee !important;
+  color: #FDF5E8 !important;
 }
 
 html.color-theme-in-transition,

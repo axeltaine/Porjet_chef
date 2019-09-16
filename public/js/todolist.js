@@ -6,6 +6,7 @@ $('.draggable').draggable({
     
 });
   $( '.droppable' ).droppable({
+    
      activeClass: "ui-hover",
      hoverClass: "ui-active",
      accept: '.draggable',
@@ -16,18 +17,14 @@ $('.draggable').draggable({
         position: 'relative',
         background: 'green'
      }))
-
-  
-   }
-  });
-
-  function updatePosition() {
-    $.ajax({
-      url:"",
-      type:'post',
-      data:{position:data},
-      success:function(){
-          alert('your change successfully saved');
+     id = $(".global").data('id');
+     idcard = $(this).attr("id");
+     if (confirm('Are you sure?')) {
+      fetch(`/position/${id}/${idcard}`, {
+        method: 'POST',
+        success:function(){
+          alert('your change successfully saved')
       }
-  })
-  }
+      })
+    }
+     }});

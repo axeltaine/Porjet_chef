@@ -43,7 +43,7 @@
   </nav>
 {#  END NAVBAR #}
 </header>
-<main class="global">
+<main class="global" data-id="{{projet.id}}">
   <div class="container-fluid">
     <hr>
     <H1>{{ projet.nameProjet}} </H1>
@@ -100,7 +100,7 @@
             </div>
           </td>
          
-          <td class="droppable" id="2">
+          <td class="droppable" id="2" >
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 2 %}
             <div class="draggable " idcard="{{ projet.Position}}">
             

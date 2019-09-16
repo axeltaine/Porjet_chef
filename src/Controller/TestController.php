@@ -295,6 +295,17 @@ class TestController extends AbstractController
         'form' => $form->createView()
     ]);
 }
+/**
+     * @Route("/position/{id}/{position}", name="position")
+     */
+    public function position(Projet $projet,string $position, ObjectManager $manager)
+    {
+        $projet->setPosition(intval($position));
+        $manager->persist($projet);
+        $manager->flush();
+
+        return new Response();
+    }
   
 
 }
