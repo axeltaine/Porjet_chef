@@ -6,11 +6,13 @@
 {% block body %}
 <header>
   {# START NAVBAR #}
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg ">
     <a class="navbar-brand" href="/accueil">
       <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
     </a>
+    {% if app.user and is_granted('ROLE_ADMIN') %}
     <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#createProjetModal">Create projet</button>
+    {% endif %}
     <form class="form-inline my-2 my-lg-0 ml-auto">
       <ul class="navbar-nav mr-auto ">
         {% if app.user %}
@@ -109,8 +111,8 @@
             <div class="form-row" style="flex-wrap: unset;">
             <div class="md-form">
             <div class="file-field">
-                <a class="btn-floating purple-gradient mt-0 float-left">
-                
+                <a class="btn-floating aqua-gradient mt-0 float-left">
+                <i class="fas fa-cloud-upload-alt" aria-hidden="true" style="position: absolute;"></i>
                           {{ form_widget(form.img_projet, { 'attr': {'type': 'file'} })}}
                           </a>
                         <div class="file-path-wrapper">
@@ -122,8 +124,8 @@
            <div class="form-row" style="flex-wrap: unset;">
            <div class="md-form">
            <div class="file-field">
-               <a class="btn-floating purple-gradient mt-0 float-left">
-              
+               <a class="btn-floating aqua-gradient mt-0 float-left">
+              <i class="fas fa-cloud-upload-alt" aria-hidden="true" style="position: absolute;"></i>
               {{ form_widget(form.logo_projet, { 'attr': {'type': 'file', 'class': 'file-path-wrapper'} })}}
               </a>
                         <div class="file-path-wrapper">
@@ -135,8 +137,8 @@
            <div class="form-row" style="flex-wrap: unset;">
            <div class="md-form">
            <div class="file-field">
-                <a class="btn-floating purple-gradient mt-0 float-left">
-                
+                <a class="btn-floating aqua-gradient mt-0 float-left">
+                <i class="fas fa-cloud-upload-alt" aria-hidden="true" style="position: absolute;"></i>
              
             {{ form_widget(form.doc_projet, { 'attr': {'type': 'file'} })}}
             </a>
@@ -165,8 +167,10 @@
             {{ form_widget(form.desc_projet, { 'attr': {'class': 'form-control'} })}}
           </div>
           <div class="form-group">
-            {{ form_label(form.position)}}
+          {{ form_label(form.position)}}
             {{ form_widget(form.position)}}
+    
+            
           </div>
         </div>
         <div class="modal-footer mdb-color d-flex justify-content-center">
@@ -180,9 +184,13 @@
 </header>
 
 <main class="global">
+<br>
+<div class="container">
+    <h1 id="home">Maitrise<strong>Web</strong></h1>
+  </div>
   <hr>
   <div class="container">
-    <h1 id="home">List des Projets :</h1>
+    <h2 id="home">List des Projets :</h2>
   </div>
   <hr>
 {# START CARD PROJET AND COMPANY #}
@@ -204,7 +212,7 @@
                 data-target="#exampleModal{{ projet.id }}" aria-controls="exampleModal">
                 Voir plus
               </button>
-              <div class="row">
+              <div class="card-footer">
                 {% for user in projet.assignedUsers %}
                 <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
                 {% endfor %}
@@ -260,6 +268,7 @@
               <img src="../img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em;">
               <h5> <u>Description</u> : </h5>
               <p>{{ projet.descProjet}}</p>
+              <h5> <u>Personnes Assigner</u> : </h5>
               <div class="row justify-content-between">
              
                 {% for user in projet.assignedUsers %}
@@ -268,23 +277,29 @@
                 {% endfor %}
               
               
-              <div clas="col-4">
+              <div clas="col-4"> 
                 <div class="input-group mb-3">
+                {% if app.user and is_granted('ROLE_ADMIN') %}
                   <select class="browser-default custom-select" id="inputGroupSelect01">
-                    <option selected disabled value="-1">+</option>
+                    <option selected disabled value="-1">Assigner développeur</option>
                     {% for user in users %}
                     <option value="{{user.id}}">{{user.id}}-{{user.UserName}}</option>
                     {% endfor %}
                   </select>
+                  {% endif %}
                 </div>
               </div>
               </div>
               
               <div class="col">
+              {% if app.user and is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-rounded aqua-gradient assign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
                 Assigned</a>
+                {% endif %}
               </div>
+               
             </div>
+            
             <div class="modal-footer" style="align-self: center;">
               <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">todolist</a>
               {% if app.user and is_granted('ROLE_ADMIN') %}
@@ -320,7 +335,7 @@
 {# END PAINATION #}
   <div class="bottom">
     <hr>
-    <h1 id="home">List des contrats</h1>
+    <h2 id="home">List des contrats</h2>
     <hr>
 {# START TABLE #}
     <div class="container">

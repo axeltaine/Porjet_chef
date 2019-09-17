@@ -20,4 +20,8 @@ td {
   height:12em;
 }
 
+textarea.form-control {
+  height: 9em;
+}
+
 

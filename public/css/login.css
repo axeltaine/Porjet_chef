@@ -2,11 +2,11 @@ html,
 body {
 
   height: 100%;
-  background: linear-gradient(#e66465, #9198e5);
+  background: linear-gradient(#01c1f3, #01f39d);
   
 }
 .global {
-  min-height: calc(90vh - 1em);
+  min-height: calc(90vh - .6em);
   text-align: center;
   padding-top: 10em;
 }

@@ -19,3 +19,4 @@ function toggleDarkLight() {
   document.documentElement.classList.remove('color-theme-in-transition')
   }, 1000)
 };
+

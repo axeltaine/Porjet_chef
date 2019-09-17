@@ -6,7 +6,7 @@
 {% block body %}
 <header>
   {# START NAVBAR #}
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg ">
     <a class="navbar-brand" href="/accueil">
       <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
     </a>
@@ -69,9 +69,10 @@
           <td class="droppable" id="0">
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 0 %}
             <div class="draggable " idcard="{{ projet.Position}}">
-            
+            {% endif %}
+            {% if app.user and projet.position == 0 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body">
+              <div class="card-body bg-white">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                   +
                 </button>
@@ -86,9 +87,10 @@
           <td class="droppable" id="1">
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 1 %}
             <div class="draggable " idcard="{{ projet.Position}}">
-            
+            {% endif %}
+            {% if app.user and projet.position == 1 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body">
+              <div class="card-body bg-white">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                   +
                 </button>
@@ -103,9 +105,10 @@
           <td class="droppable" id="2" >
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 2 %}
             <div class="draggable " idcard="{{ projet.Position}}">
-            
+            {% endif %}
+            {% if app.user and projet.position == 2 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body">
+              <div class="card-body bg-white">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                   +
                 </button>
@@ -122,9 +125,10 @@
           <td class="droppable" id="3">
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 3 %}
             <div class="draggable " idcard="{{ projet.Position}}">
-            
+            {% endif %}
+            {% if app.user and projet.position == 3 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body">
+              <div class="card-body bg-white">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                   +
                 </button>
@@ -138,9 +142,10 @@
           <td class="droppable" id="4">
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 4 %}
             <div class="draggable " idcard="{{ projet.Position}}">
-            
+            {% endif %}
+            {% if app.user and projet.position == 4 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body">
+              <div class="card-body bg-white">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                   +
                 </button>
@@ -154,9 +159,10 @@
           <td class="droppable" id="5">
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 5 %}
             <div class="draggable " idcard="{{ projet.Position}}">
-            
+            {% endif %}
+            {% if app.user and projet.position == 5 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body">
+              <div class="card-body bg-white">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                   +
                 </button>
@@ -173,9 +179,10 @@
           <td class="droppable" id="6">
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 6 %}
             <div class="draggable " idcard="{{ projet.Position}}">
-            
+            {% endif %}
+            {% if app.user and projet.position == 6 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body">
+              <div class="card-body bg-white">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                   +
                 </button>
@@ -189,9 +196,10 @@
           <td class="droppable" id="7">
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 7 %}
             <div class="draggable " idcard="{{ projet.Position}}">
-            
+            {% endif %}
+            {% if app.user and projet.position == 7 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body">
+              <div class="card-body bg-white">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                   +
                 </button>
@@ -205,9 +213,10 @@
           <td class="droppable" id="8">
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 8 %}
             <div class="draggable " idcard="{{ projet.Position}}">
-            
+            {% endif %}
+            {% if app.user and projet.position == 8 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body">
+              <div class="card-body bg-white">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                   +
                 </button>
@@ -224,9 +233,10 @@
           <td class="droppable" id="9">
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 9 %}
             <div class="draggable " idcard="{{ projet.Position}}">
-            
+            {% endif %}
+            {% if app.user and projet.position == 9 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body">
+              <div class="card-body bg-white">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                   +
                 </button>
@@ -240,9 +250,10 @@
           <td class="droppable" id="10">
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 10 %}
             <div class="draggable " idcard="{{ projet.Position}}">
-            
+            {% endif %}
+            {% if app.user and projet.position == 10 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body">
+              <div class="card-body bg-white">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                   +
                 </button>
@@ -256,9 +267,10 @@
           <td class="droppable" id="11">
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 11 %}
             <div class="draggable " idcard="{{ projet.Position}}">
-            
+            {% endif %}
+            {% if app.user and projet.position == 11 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body">
+              <div class="card-body bg-white">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                   +
                 </button>

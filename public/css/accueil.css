@@ -22,17 +22,7 @@
   color: black;
 }
 
-.modal-content {
-  background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table7.jpg');
-  background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
 
-.modal-dialog.modal-notify .modal-body {
- 
-  color: black;
-}
 
 ::placeholder { 
   color: black;
@@ -40,4 +30,8 @@
 }
 textarea.form-control {
   height: 6em;
+}
+
+select{
+  display: block !important;
 }
