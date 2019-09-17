@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProjetType extends AbstractType
@@ -51,6 +52,7 @@ class ProjetType extends AbstractType
                             'label' => 'Date de fin  :',
                             'widget' => 'single_text'
                             ])
+                            ->add('position', NumberType::class)
         ;
     }
 

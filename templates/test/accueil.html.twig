@@ -164,6 +164,10 @@
             {{ form_label(form.desc_projet)}}
             {{ form_widget(form.desc_projet, { 'attr': {'class': 'form-control'} })}}
           </div>
+          <div class="form-group">
+            {{ form_label(form.position)}}
+            {{ form_widget(form.position)}}
+          </div>
         </div>
         <div class="modal-footer mdb-color d-flex justify-content-center">
           <button type="submit" class="btn btn-rounded aqua-gradient">Create</button>
@@ -351,7 +355,9 @@
 {% endblock %}
 {% block javascripts %}
 <script>
- $('.datepicker').pickadate();
+ $('.datepicker').pickadate({
+   formatSubmit: 'yyyy-mm-dd',
+ });
 </script>
 
 <script src="/js/assign.js"></script>

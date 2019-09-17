@@ -6,6 +6,7 @@ use App\Entity\Projet;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class EditType extends AbstractType
 {
@@ -20,6 +21,7 @@ class EditType extends AbstractType
             ->add('Doc_projet')
             ->add('Date_start')
             ->add('Date_end')
+            ->add('position', NumberType::class)
             
         ;
     }
