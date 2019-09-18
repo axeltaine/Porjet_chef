@@ -14,7 +14,7 @@ class EditUserType extends AbstractType
     {
         $builder
         ->add('name_user')
-        ->add('mdp_user')
+        
         ->add('email_user')
         ->add('avatar')
         

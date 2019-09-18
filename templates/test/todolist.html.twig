@@ -6,7 +6,7 @@
 {% block body %}
 <header>
   {# START NAVBAR #}
-  <nav class="navbar navbar-expand-lg ">
+  <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav">
     <a class="navbar-brand" href="/accueil">
       <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
     </a>
@@ -44,7 +44,7 @@
 {#  END NAVBAR #}
 </header>
 <main class="global" data-id="{{projet.id}}">
-  <div class="container-fluid">
+  <div class="container-fluid" style="padding-top: 5em;">
     <hr>
     <H1>{{ projet.nameProjet}} </H1>
     <hr>
@@ -72,7 +72,7 @@
             {% endif %}
             {% if app.user and projet.position == 0 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body" style="background-color: #353b50;">
+              <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
                   Message
                 </button>
@@ -91,7 +91,7 @@
             {% endif %}
             {% if app.user and projet.position == 1 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body" style="background-color: #353b50;">
+              <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
                   Message
                 </button>
@@ -110,7 +110,7 @@
             {% endif %}
             {% if app.user and projet.position == 2 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body" style="background-color: #353b50;">
+              <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
                   Message
                 </button>
@@ -131,7 +131,7 @@
             {% endif %}
             {% if app.user and projet.position == 3 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body" style="background-color: #353b50;">
+              <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
                   Message
                 </button>
@@ -149,7 +149,7 @@
             {% endif %}
             {% if app.user and projet.position == 4 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body" style="background-color: #353b50;">
+              <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
                   Message
                 </button>
@@ -167,7 +167,7 @@
             {% endif %}
             {% if app.user and projet.position == 5 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body" style="background-color: #353b50;">
+              <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
                   Message
                 </button>
@@ -188,7 +188,7 @@
             {% endif %}
             {% if app.user and projet.position == 6 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body" style="background-color: #353b50;">
+              <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
                   Message
                 </button>
@@ -206,7 +206,7 @@
             {% endif %}
             {% if app.user and projet.position == 7 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body" style="background-color: #353b50;">
+              <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
                   Message
                 </button>
@@ -224,7 +224,7 @@
             {% endif %}
             {% if app.user and projet.position == 8 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body" style="background-color: #353b50;">
+              <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
                   Message
                 </button>
@@ -245,7 +245,7 @@
             {% endif %}
             {% if app.user and projet.position == 9 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body" style="background-color: #353b50;">
+              <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
                   Message
                 </button>
@@ -263,7 +263,7 @@
             {% endif %}
             {% if app.user and projet.position == 10 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body" style="background-color: #353b50;">
+              <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
                   Message
                 </button>
@@ -281,7 +281,7 @@
             {% endif %}
             {% if app.user and projet.position == 11 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
-              <div class="card-body" style="background-color: #353b50;">
+              <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
                   Message
                 </button>

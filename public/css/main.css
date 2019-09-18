@@ -159,5 +159,5 @@ html.color-theme-in-transition *:after {
 }
 #myBtn:hover i {
     color: #fff;
-    top: 5px;
+    top: -5px;
 }
