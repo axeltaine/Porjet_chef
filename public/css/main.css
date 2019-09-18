@@ -96,8 +96,12 @@ body.dark-mode h1:after {
   background: white;
 }
 
+
 body.dark-mode a {
   color: #FDF5E8 !important;
+}
+body.dark-mode .card.card-cascade.narrower .view.view-cascade {
+  background-color: #353b50 !important;
 }
 
 html.color-theme-in-transition,

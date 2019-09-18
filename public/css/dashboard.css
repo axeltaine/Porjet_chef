@@ -12,12 +12,6 @@ body {
 
   .container-fluid {
     padding-top: 6em;
-    padding-left: 16em;
+
   }
 
-  .side-nav .collapsible a {
-      color : black !important;
-  }
-  img {
-    filter: invert(100%);
-  }
