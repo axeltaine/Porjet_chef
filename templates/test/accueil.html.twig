@@ -4,6 +4,11 @@
 <link rel="stylesheet" href="/css/accueil.css">
 {% endblock %}
 {% block body %}
+<div id="mdb-preloader" class="flex-center">
+  <div class="preloader-wrapper active">
+    <img src="../img/logo_transpa.png" alt="logo" id="logo">
+  </div>
+</div>
 <header>
   {# START NAVBAR #}
   <nav class="navbar navbar-expand-lg ">
@@ -183,10 +188,10 @@
 {# END MODAL CREATE PROJET AND COMPANY #}
 </header>
 
-<main class="global">
+<main id="main" class="global loading">
 <br>
 <div class="container">
-    <h1 id="home">Maitrise<strong>Web</strong></h1>
+    <h1>Maitrise <b>Web</b></h1>
   </div>
   <hr>
   <div class="container">
@@ -226,50 +231,52 @@
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header mdb-color">
                   <img src="../img/{{projet.logoProjet}}" style="width: 5em; height: 5em; border-radius: 50%;">
                   <h5 class="modal-title" id="exampleModalLabel">{{ projet.nameProjet}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin: 0 0 0 0;">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
             <div class="modal-body" id="{{ projet.Id}}">
-              <div class="row">
-                <div class="col">
-                  <p><u>Nom de la Société</u> : {{ company.NameCompany }}</p>
-                </div>
-                <div class="col">
-                  <p><u>Nom du directeur</u> : {{ company.NameDirector }}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <p><u>Siret de la Société</u> : {{ company.SiretCompany }}</p>
-                </div>
-                <div class="col">
-                  <p><u>Téléphone</u> : {{ company.PhoneCompany }}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <p><u>Email</u> : {{ company.EmailCompany }}</p>
-                </div>
-                <div class="col">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <p><u>Date de début du contrat</u> : {{ projet.dateStart|date('d/m/Y')}}</p>
-                </div>
-                <div class="col">
-                  <p><u>Date de fin du contrat</u> : {{ projet.dateEnd|date('d/m/Y')}}</p>
-                </div>
-              </div>
-              <img src="../img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em;">
-              <h5> <u>Description</u> : </h5>
+             <h5> <u>Description</u> : </h5>
               <p>{{ projet.descProjet}}</p>
+            <img src="../img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em; padding-bottom: 1em;">
+             
+              <div class="row">
+                <div class="col">
+                  <p style="text-align: start;"><u>Nom de la Société</u> : {{ company.NameCompany }}</p>
+                </div>
+                <div class="col">
+                  <p style="text-align: start;"><u>Nom du directeur</u> : {{ company.NameDirector }}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <p style="text-align: start;"><u>Siret de la Société</u> : {{ company.SiretCompany }}</p>
+                </div>
+                <div class="col">
+                  <p style="text-align: start;"><u>Téléphone</u> : {{ company.PhoneCompany }}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <p style="text-align: start;"><u>Email</u> : {{ company.EmailCompany }}</p>
+                </div>
+                <div class="col">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <p style="text-align: start;"><u>Date de début du contrat</u> : {{ projet.dateStart|date('d/m/Y')}}</p>
+                </div>
+                <div class="col">
+                  <p style="text-align: start;"><u>Date de fin du contrat</u> : {{ projet.dateEnd|date('d/m/Y')}}</p>
+                </div>
+              </div>
+              
               <h5> <u>Personnes Assigner</u> : </h5>
-              <div class="row justify-content-between">
+              <div class="row justify-content-around">
              
                 {% for user in projet.assignedUsers %}
                 <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
@@ -280,8 +287,8 @@
               <div clas="col-4"> 
                 <div class="input-group mb-3">
                 {% if app.user and is_granted('ROLE_ADMIN') %}
-                  <select class="browser-default custom-select" id="inputGroupSelect01">
-                    <option selected disabled value="-1">Assigner développeur</option>
+                  <select class="browser-default custom-select btn-rounded" id="inputGroupSelect01">
+                    <option selected disabled value="-1">Ajouter Dev.</option>
                     {% for user in users %}
                     <option value="{{user.id}}">{{user.id}}-{{user.UserName}}</option>
                     {% endfor %}
@@ -300,7 +307,7 @@
                
             </div>
             
-            <div class="modal-footer" style="align-self: center;">
+            <div class="modal-footer mdb-color" style="place-content: center;">
               <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">todolist</a>
               {% if app.user and is_granted('ROLE_ADMIN') %}
               <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">Edit projet</a>
@@ -370,9 +377,20 @@
 {% endblock %}
 {% block javascripts %}
 <script>
+$(window).on('load', function() {
+  $('#mdb-preloader').addClass('loaded');
+  });
+
  $('.datepicker').pickadate({
    formatSubmit: 'yyyy-mm-dd',
  });
+ function init() {  
+  main.classList.add("loading");
+  setTimeout(function() { main.classList.remove("loading"); }, 1800); 
+}
+window.onload = function() {
+	init();
+};
 </script>
 
 <script src="/js/assign.js"></script>

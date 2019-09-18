@@ -5,8 +5,9 @@ body {
   background: linear-gradient(#01c1f3, #01f39d);
   
 }
+
 .global {
-  min-height: calc(90vh - .6em);
+  min-height: calc(90vh - .4em);
   text-align: center;
   padding-top: 10em;
 }
