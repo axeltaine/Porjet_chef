@@ -89,6 +89,12 @@ body.light-mode .modal-title{
 
   color: white;
 }
+body.dark-mode h1:before {
+  background: white;
+}
+body.dark-mode h1:after {
+  background: white;
+}
 
 body.dark-mode a {
   color: #FDF5E8 !important;
