@@ -32,7 +32,7 @@ $('.droppable').droppable({
         })
 
       })) {
-        
-       }
+
+    }
   }
 });

@@ -43,7 +43,6 @@
               </a>
             </div>
           </li>
-      
         {% if app.user %}
         <li class="nav-item dropdown">
           <div class="chip chip-lg aqua-gradient white-text nav-link dropdown-toggle" id="navbarDropdownMenuLink"
@@ -127,7 +126,6 @@
             <div class="md-form">
               {{ form_label(form.company.email_company)}}
               {{ form_widget(form.company.email_company, { 'attr': {'class': 'form-control', 'style': 'width: auto;'} })}}
-              
             </div>
             </div>
           </div>
@@ -157,7 +155,7 @@
               <i class="fas fa-cloud-upload-alt" aria-hidden="true" style="position: absolute;"></i>
               {{ form_widget(form.logo_projet, { 'attr': {'type': 'file', 'class': 'file-path-wrapper'} })}}
               </a>
-                        <div class="file-path-wrapper">
+                  <div class="file-path-wrapper">
                   <input class="file-path validate" type="text" placeholder="Télécharger le logo">
                 </div>
               </div>
@@ -168,10 +166,9 @@
            <div class="file-field">
                 <a class="btn-floating aqua-gradient mt-0 float-left">
                 <i class="fas fa-cloud-upload-alt" aria-hidden="true" style="position: absolute;"></i>
-             
             {{ form_widget(form.doc_projet, { 'attr': {'type': 'file'} })}}
-            </a>
-                        <div class="file-path-wrapper">
+                </a>
+                <div class="file-path-wrapper">
                   <input class="file-path validate" type="text" placeholder="Télécharger le document">
                 </div>
               </div>
@@ -196,10 +193,8 @@
             {{ form_widget(form.desc_projet, { 'attr': {'class': 'form-control'} })}}
           </div>
           <div class="form-group">
-          {{ form_label(form.position)}}
+            {{ form_label(form.position)}}
             {{ form_widget(form.position)}}
-    
-            
           </div>
         </div>
         <div class="modal-footer mdb-color d-flex justify-content-center">
@@ -211,7 +206,6 @@
   </div>
 {# END MODAL CREATE PROJET AND COMPANY #}
 </header>
-
 <main id="main" class="global loading">
 <br>
 <div class="container" style="padding-top: 6em;">
@@ -243,7 +237,7 @@
               </button>
               <div class="card-footer">
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}" class="avatar-mini" alt="#">
                 {% endfor %}
               </div>
             </div>
@@ -256,7 +250,7 @@
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header mdb-color" style="padding: 0rem 0rem;">
-                  <img src="../img/{{projet.logoProjet}}" style="width: 5em; height: 5em; border-radius: 50%;">
+                  <img src="../img/{{projet.logoProjet}}" style="width: 5em; height: 5em;">
                   <h5 class="modal-title" id="exampleModalLabel" style="align-self: center;">{{ projet.nameProjet}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin: 0 0 0 0;">
                   <span aria-hidden="true">&times;</span>
@@ -266,7 +260,6 @@
              <h5> <u>Description</u> : </h5>
               <p>{{ projet.descProjet}}</p>
             <img src="../img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em; padding-bottom: 1em;">
-             
               <div class="row">
                 <div class="col">
                   <p style="text-align: start;"><u>Nom de la Société</u> : {{ company.NameCompany }}</p>
@@ -298,16 +291,12 @@
                   <p style="text-align: start;"><u>Date de fin du contrat</u> : {{ projet.dateEnd|date('d/m/Y')}}</p>
                 </div>
               </div>
-              
               <h5> <u>Personnes Assigner</u> : </h5>
               <div class="row justify-content-around">
-             
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}" class="avatar-mini" alt="#">
                 <p>{{user.NameUser}}</p>
                 {% endfor %}
-              
-              
               <div clas="col-4"> 
                 <div class="input-group mb-3">
                 {% if app.user and is_granted('ROLE_ADMIN') %}
@@ -321,16 +310,13 @@
                 </div>
               </div>
               </div>
-              
               <div class="col">
               {% if app.user and is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-rounded aqua-gradient assign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
                 Assigned</a>
                 {% endif %}
               </div>
-               
             </div>
-            
             <div class="modal-footer mdb-color" style="place-content: center;">
               <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">todolist</a>
               {% if app.user and is_granted('ROLE_ADMIN') %}

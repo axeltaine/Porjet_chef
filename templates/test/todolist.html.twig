@@ -107,7 +107,6 @@
               </div>
             </div>
           </td>
-         
           <td class="droppable" id="1">
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 1 %}
             <div class="draggable " idcard="{{ projet.Position}}">
@@ -126,7 +125,6 @@
               </div>
             </div>
           </td>
-         
           <td class="droppable" id="2" >
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 2 %}
             <div class="draggable " idcard="{{ projet.Position}}">
@@ -349,7 +347,6 @@
           </div>
         </div>
       </div>
-    
 </main>
 {% endblock %}
 {% block javascripts %}

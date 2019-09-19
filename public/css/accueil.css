@@ -9,7 +9,8 @@
 }
 
 .card-img-top {
-  max-height: 9em;
+  min-height: 10em;
+  max-height: 10em;
 }
 
 .chip {
