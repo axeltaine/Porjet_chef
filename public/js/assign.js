@@ -7,9 +7,18 @@ $('.assign-projet').click(function () {
     return;
   }
 
-  if (confirm('Are you sure?')) {
+  if (bootbox.confirm("Êtes-vous sûr?", function(){ 
     fetch(`/assign/${id}/${user}`, {
       method: 'POST'
+    }).then(function () {
+      bootbox.alert({
+        message: "Mise à jour ok!",
+        className: 'rubberBand animated',
+        size: 'small'
+      });
     }).then(res => location.reload());
+       
+  })) {
+    
   }
 });
