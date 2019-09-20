@@ -265,10 +265,15 @@ class TestController extends AbstractController
     public function delete(Request $request, $id) {
         $projet = $this->getDoctrine()->getRepository(Projet::class)->find($id);
         $manager = $this->getDoctrine()->getManager();
+        foreach($projet->getChats() as $chat){
+            $manager->remove($chat);
+        }
+
         $manager->remove($projet);
+        
         $manager->flush();
         $response = new Response();
-        $response->send();
+        return $response;
       }
        
     /**

@@ -1,10 +1,13 @@
 
 // DELETE PROJET //
-$('.delete-projet').click(function() {
-    if (bootbox.confirm("Êtes-vous sûr?", function (result) {
-      if (result == false ){return}
-        const id = $(this).data('id');
 
+$('.delete-projet').click(function() {
+  const id = $(this).data('id');
+    if (bootbox.confirm("Êtes-vous sûr?", function (result) {
+      
+      if (result == false ){return}
+        
+      
         fetch(`/accueil/delete/${id}`, {
           method: 'DELETE'
         }).then(function () {
