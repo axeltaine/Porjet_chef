@@ -1,14 +1,23 @@
 
 // DELETE PROJET //
 $('.delete-projet').click(function() {
-    if (confirm('Are you sure?')) {
+    if (bootbox.confirm("Êtes-vous sûr?", function (result) {
+      if (result == false ){return}
         const id = $(this).data('id');
 
         fetch(`/accueil/delete/${id}`, {
           method: 'DELETE'
+        }).then(function () {
+          bootbox.alert({
+            message: "Projet suprimer!",
+            className: 'rubberBand animated',
+            size: 'small'
+          });
         }).then(res => window.location.reload());
+      })) {
+    
       }
-});
+    });
 // DARK MODE //
 function toggleDarkLight() {
   var body = document.getElementById("body");

@@ -20,12 +20,13 @@ $('.droppable').droppable({
     id = $(".global").data('id');
     idcard = $(this).attr("id");
 
-    if (bootbox.confirm("Êtes-vous sûr?", function () {
+    if (bootbox.confirm("Êtes-vous sûr?", function (result) {
+       if (result == false ){return}
         fetch(`/position/${id}/${idcard}`, {
           method: 'POST',
         }).then(function () {
           bootbox.alert({
-            message: "Mise à jour de la position!",
+            message: "Mise à jour de la position ok!",
             className: 'rubberBand animated',
             size: 'small'
           });

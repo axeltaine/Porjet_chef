@@ -7,7 +7,8 @@ $('.assign-projet').click(function () {
     return;
   }
 
-  if (bootbox.confirm("Êtes-vous sûr?", function(){ 
+  if (bootbox.confirm("Êtes-vous sûr?", function (result) {
+    if (result == false ){return}
     fetch(`/assign/${id}/${user}`, {
       method: 'POST'
     }).then(function () {
