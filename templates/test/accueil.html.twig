@@ -237,7 +237,7 @@
               </button>
               <div class="card-footer">
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}" class="avatar-mini" alt="#" data-toggle="tooltip" title="{{user.UserName}}">
                 {% endfor %}
               </div>
             </div>
@@ -401,6 +401,9 @@ $(window).on('load', function() {
 window.onload = function() {
 	init();
 };
+$(function () {
+$('[data-toggle="tooltip"]').tooltip()
+});
 </script>
 
 <script src="/js/assign.js"></script>
