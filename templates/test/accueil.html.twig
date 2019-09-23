@@ -219,8 +219,7 @@
 {# START CARD PROJET AND COMPANY #}
   <div class="container" style="text-align: -webkit-center; max-width: 1500px;">
     <div class="row" id="home">
-      {% for company in companys %}
-      {% for projet in company.projets %}
+      {% for projet in projets %}
       <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="padding-bottom: 2em;">
         <div class="card card-cascade narrower hoverable" >
           <div class="view view-cascade overlay zoom">
@@ -262,23 +261,23 @@
             <img src="../img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em; padding-bottom: 1em;">
               <div class="row">
                 <div class="col">
-                  <p style="text-align: start;"><u>Nom de la Société</u> : {{ company.NameCompany }}</p>
+                  <p style="text-align: start;"><u>Nom de la Société</u> : {{ projet.company.NameCompany }}</p>
                 </div>
                 <div class="col">
-                  <p style="text-align: start;"><u>Nom du directeur</u> : {{ company.NameDirector }}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <p style="text-align: start;"><u>Siret de la Société</u> : {{ company.SiretCompany }}</p>
-                </div>
-                <div class="col">
-                  <p style="text-align: start;"><u>Téléphone</u> : {{ company.PhoneCompany }}</p>
+                  <p style="text-align: start;"><u>Nom du directeur</u> : {{ projet.company.NameDirector }}</p>
                 </div>
               </div>
               <div class="row">
                 <div class="col">
-                  <p style="text-align: start;"><u>Email</u> : {{ company.EmailCompany }}</p>
+                  <p style="text-align: start;"><u>Siret de la Société</u> : {{ projet.company.SiretCompany }}</p>
+                </div>
+                <div class="col">
+                  <p style="text-align: start;"><u>Téléphone</u> : {{ projet.company.PhoneCompany }}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <p style="text-align: start;"><u>Email</u> : {{ projet.company.EmailCompany }}</p>
                 </div>
                 <div class="col">
                 </div>
@@ -321,14 +320,13 @@
               <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">todolist</a>
               {% if app.user and is_granted('ROLE_ADMIN') %}
               <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">Edit projet</a>
-              <a href="{{ path('editCompany', {'id':company.id}) }}" class="btn btn-rounded aqua-gradient">Edit company</a>
+              <a href="{{ path('editCompany', {'id':projet.company.id}) }}" class="btn btn-rounded aqua-gradient">Edit company</a>
               <a href="#" class="btn btn-rounded aqua-gradient delete-projet" data-id="{{ projet.id }}">Delete</a>
               {% endif %}
             </div>
           </div>
         </div>
       </div>
-      {% endfor %}
       {% endfor %}
     </div>
 {# END MODAL PROJET AND COMPANY #}
@@ -367,16 +365,14 @@
           </tr>
         </thead>
         <tbody>
-          {% for company in companys %}
-          {% for projet in company.projets %}
+          {% for projet in projets %}
           <tr>
-            <th scope="row">{{ company.NameCompany }}</th>
+            <th scope="row">{{ projet.company.NameCompany }}</th>
             <th scope="row">{{ projet.nameProjet }}</th>
             <td>{{ projet.dateStart|date('d/m/Y')}}</td>
             <td>{{ projet.dateEnd|date('d/m/Y')}}</td>
             <td>{{ projet.datecontact|date('d/m/Y')}}</td>
           </tr>
-          {% endfor %}
           {% endfor %}
         </tbody>
       </table>

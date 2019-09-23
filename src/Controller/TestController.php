@@ -193,7 +193,7 @@ class TestController extends AbstractController
         return $this->render('test/accueil.html.twig',[
             'form' => $form->createView(),
             'projets' => $repo->findBy([], [], $limit, $start),
-            'companys' => $repocomp->findBy([], [], $limit, $start),
+            'companys' => $repocomp->findAll(),
             'users' => $repouser->findAll(),
             'pages' => $pages,
             'page' => $page
