@@ -54,81 +54,10 @@
   <div class="card card-image"
     style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table7.jpg');">
     <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
-     {{ form_start(form) }}
       <div class="md-form">
-              {{ form_label(form.name_projet)}}
-              {{ form_widget(form.name_projet, { 'attr': {'class': 'form-control'} })}}
-            </div>
-            
-            <div class="col">
-            <div class="md-form">
-              {{ form_label(form.name_domain)}}
-              {{ form_widget(form.name_domain, { 'attr': {'class': 'form-control'} })}}
-            </div>
-            </div>
-          
-          <div class="form-row" style="flex-wrap: unset;">
-            <div class="md-form">
-            <div class="file-field">
-                <a class="btn-floating aqua-gradient mt-0 float-left">
-                <i class="fas fa-cloud-upload-alt" aria-hidden="true" style="position: absolute;"></i>
-                          {{ form_widget(form.img_projet, { 'attr': {'type': 'file'} })}}
-                          </a>
-                        <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text" placeholder="Télécharger une image">
-                </div>
-              </div>
-              </div>
-              </div>
-           <div class="form-row" style="flex-wrap: unset;">
-           <div class="md-form">
-           <div class="file-field">
-               <a class="btn-floating aqua-gradient mt-0 float-left">
-              <i class="fas fa-cloud-upload-alt" aria-hidden="true" style="position: absolute;"></i>
-              {{ form_widget(form.logo_projet, { 'attr': {'type': 'file', 'class': 'file-path-wrapper'} })}}
-              </a>
-                  <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text" placeholder="Télécharger le logo">
-                </div>
-              </div>
-              </div>
-              </div>
-           <div class="form-row" style="flex-wrap: unset;">
-           <div class="md-form">
-           <div class="file-field">
-                <a class="btn-floating aqua-gradient mt-0 float-left">
-                <i class="fas fa-cloud-upload-alt" aria-hidden="true" style="position: absolute;"></i>
-            {{ form_widget(form.doc_projet, { 'attr': {'type': 'file'} })}}
-                </a>
-                <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text" placeholder="Télécharger le document">
-                </div>
-              </div>
-              </div>
-              </div>
-          <div class="form-row" style="flex-wrap: unset;">
-            <div class="col">
-            <div class="md-form">
-              {{ form_label(form.date_start)}}
-              {{ form_widget(form.date_start, { 'attr': {'class': 'form-control datepicker'} })}}
-            </div>
-            </div>
-            <div class="col">
-            <div class="md-form">
-              {{ form_label(form.date_end)}}
-              {{ form_widget(form.date_end, { 'attr': {'class': 'form-control datepicker'} })}}
-            </div>
-             </div>
-          </div>
-          <div class="form-group">
-            {{ form_label(form.desc_projet)}}
-            {{ form_widget(form.desc_projet, { 'attr': {'class': 'form-control'} })}}
-          </div>
-          <div class="form-group">
-            {{ form_label(form.position)}}
-            {{ form_widget(form.position)}}
-          </div>
-        
+       {{ form_start(form) }}
+       {{ form_widget(form) }}
+     </div>
         <div class="form-check my-4">
           <input class="form-check-input" type="checkbox" value="" id="defaultCheck17">
           <label class="form-check-label white-text" for="defaultCheck17">Accept the<a href="#"
@@ -136,7 +65,7 @@
         </div>
       <div class="row d-flex align-items-center mb-4">
         <div class="text-center mb-3 col-md-12">
-           <button class="btn btn-rounded aqua-gradient">Create</button>
+           <button class="btn btn-rounded aqua-gradient">Modifier</button>
         </div>
       </div>
       {{ form_end(form) }}

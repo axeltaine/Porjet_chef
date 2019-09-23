@@ -1,0 +1,17 @@
+.md-form label {
+    position: relative;
+    color: white;
+}
+.form-control {
+    color: white;
+}
+.custom-file-input {
+    opacity: 1;
+}
+
+.custom-file-label {
+    display: none;
+}
+select {
+    display: block !important;
+}
