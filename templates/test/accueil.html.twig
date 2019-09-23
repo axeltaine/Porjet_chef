@@ -20,29 +20,7 @@
     {% endif %}
     <form class="form-inline my-2 my-lg-0 ml-auto">
     <ul class="navbar-nav mr-auto ">
-    <li class="nav-item dropdown notifications-nav">
-            <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
-              <span class="badge red">3</span> <i class="fas fa-bell"></i>
-              <span class="d-none d-md-inline-block">Notifications</span>
-            </a>
-            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item waves-effect waves-light" href="#">
-                <i class="far fa-money-bill-alt mr-2" aria-hidden="true"></i>
-                <span>Nouvelle Notification</span>
-                <span class="float-right"><i class="far fa-clock" aria-hidden="true"></i> 13 min</span>
-              </a>
-              <a class="dropdown-item waves-effect waves-light" href="#">
-                <i class="far fa-money-bill-alt mr-2" aria-hidden="true"></i>
-                <span>Nouvelle Notification</span>
-                <span class="float-right"><i class="far fa-clock" aria-hidden="true"></i> 33 min</span>
-              </a>
-              <a class="dropdown-item waves-effect waves-light" href="#">
-                <i class="fas fa-chart-line mr-2" aria-hidden="true"></i>
-                <span>Nouvelle Notification</span>
-                <span class="float-right"><i class="far fa-clock" aria-hidden="true"></i> 53 min</span>
-              </a>
-            </div>
-          </li>
+  
         {% if app.user %}
         <li class="nav-item dropdown">
           <div class="chip chip-lg aqua-gradient white-text nav-link dropdown-toggle" id="navbarDropdownMenuLink"
@@ -258,7 +236,7 @@
             <div class="modal-body" id="{{ projet.Id}}">
              <h5> <u>Description</u> : </h5>
               <p>{{ projet.descProjet}}</p>
-            <img src="../img/{{projet.imgProjet}}" style="max-width: 40em; max-height: 40em; padding-bottom: 1em;">
+            <img class="img-fluid" src="../img/{{projet.imgProjet}}" style="max-width: 100%; height: auto; padding-bottom: 1em;">
               <div class="row">
                 <div class="col">
                   <p style="text-align: start;"><u>Nom de la Société</u> : {{ projet.company.NameCompany }}</p>
@@ -348,13 +326,13 @@
     </div>
   </div>
 {# END PAINATION #}
-  <div class="bottom">
+  <div class="bottom" style="text-align: -webkit-center">
     <hr>
     <h2 id="home">List des contrats</h2>
     <hr>
 {# START TABLE #}
     <div class="container">
-      <table class="table table-striped table-bordered" id="example">
+      <table class="table-responsive-sm table-striped table-bordered" id="example">
         <thead>
           <tr>
             <th scope="col">Nom client</th>

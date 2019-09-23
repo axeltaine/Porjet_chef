@@ -87,4 +87,23 @@ h1:after  { bottom: 0; right: 0; }
 table, td, th {
   border: 2px solid black  !important;
 }
+@media only screen and (max-width: 480px) {
+  .modal .modal-body {
+      max-height: 420px;
+      overflow-y: auto;
+      overflow-x: auto;
+  }
+  .global {
+   width: 100%;
+}
+  }
+  
 
+/*
+  @media (min-width: 576px){
+.modal-dialog {
+    max-width: 800px;
+    margin: 2rem 1em;
+}
+
+}
