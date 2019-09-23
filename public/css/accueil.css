@@ -83,3 +83,8 @@ h1:after  { bottom: 0; right: 0; }
 .loading h1:before, .loading h1:after {
 	width: 0;
 }
+
+table, td, th {
+  border: 2px solid black  !important;
+}
+
