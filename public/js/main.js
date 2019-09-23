@@ -21,17 +21,34 @@ $('.delete-projet').click(function() {
     
       }
     });
+
+    
 // DARK MODE //
 function toggleDarkLight() {
   var body = document.getElementById("body");
   var currentClass = body.className;
-  body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
+  var newClass = body.className == "dark-mode" ? "light-mode" : "dark-mode"
+  body.className = newClass
   document.documentElement.classList.add('color-theme-in-transition')
   window.setTimeout(function () {
   document.documentElement.classList.remove('color-theme-in-transition')
   }, 1000)
+  document.cookie = 'theme=' + (newClass == 'light-mode' ? 'light-mode' : 'dark-mode')
+  console.log('Cookies are now: ' + document.cookie)
+  
 };
+function isDarkThemeSelected() {
+  return document.cookie.match(/theme=dark-mode/i) != null
+}
+function setThemeFromCookie() {
+  var body = document.getElementById('body')
+  body.className = isDarkThemeSelected() ? 'dark-mode' : 'light-mode'
+}
+(function() {
+  setThemeFromCookie()
+})();
 
+// scrollbtt //
 $(document).ready(function(){ 
   $(window).scroll(function(){ 
       if ($(this).scrollTop() > 100) { 
