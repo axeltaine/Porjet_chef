@@ -22,6 +22,7 @@ Si tu veux voir les crédits, licences, ..., n'hésite pas à regarder nos menti
     <link rel="stylesheet" href="/css/mdb.min.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
         {% block stylesheets %}{% endblock %}
     </head>
@@ -48,6 +49,25 @@ Si tu veux voir les crédits, licences, ..., n'hésite pas à regarder nos menti
   <script src="/js/mdb.min.js"></script>
   <script src="/js/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js" integrity="sha256-s87nschhfp/x1/4+QUtIa99el2ot5IMQLrumROuHZbc=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#252e39"
+    },
+    "button": {
+      "background": "#14a7d0"
+    }
+  },
+  "theme": "classic",
+  "content": {
+    "message": "Ce site web utilise les cookies pour vous assurer la meilleur expérience possible.",
+    "dismiss": "D'accord",
+    "link": "En savoir plus"
+  }
+});
+</script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
