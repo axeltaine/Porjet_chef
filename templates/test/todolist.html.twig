@@ -312,12 +312,15 @@
             </div>
             {% endfor %}
             <hr>
-            <div class="message-box">
+            <div class="md-form">
+            
             {{ form_start(form) }}
-            {{ form_widget(form, { 'attr': {'class': '"message-input'} })}}
+            
+            {{ form_widget(form, { 'attr': {'class': 'md-textarea form-control', 'label': 'Ecrire un message'} })}}
             <button class="message-submit">Send</button>
-            {{ form_end(form) }}
+           
             </div>
+             {{ form_end(form) }}
             </div>
             <div class="modal-footer mdb-color">
               <button type="button" class="btn btn-rounded aqua-gradient" data-dismiss="modal">Close</button>
