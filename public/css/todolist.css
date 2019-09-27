@@ -19,6 +19,14 @@ td {
   width: 15em;
   height: 12em;
 }
+th {
+  width: 15em;
+  height: 3em;
+}
+.table th {
+  
+  vertical-align: middle !important;
+}
 
 textarea.form-control {
   height: 9em;
@@ -42,11 +50,51 @@ textarea.form-control {
 .msg_time {
   
   bottom: -15px;
-  color:black;
+  color:blue;
   font-size: 10px;
 }
 
+textarea {
+  border-bottom: 1px solid #ced4da !important;
+    height: 10em !important;
+}
 
+h1 {
+  width: auto;
+  padding: 6vw;
+  
+  font-size: 6vw;
+  font-weight: 300;
+  text-align: center;
+  
+	opacity: 1;
+	transform: scale(1);
+  transition: transform 0.8s ease, opacity 1.6s ease;
+  user-select: none;
+}
+b { font-weight: 700; }
+
+h1:before, h1:after {
+	height: 0.4vw;
+	width: 100%;
+	content: "";
+	background: black;
+	display: block;
+	position: absolute;
+	transition: width 0.8s ease;
+	transition-delay: 0.8s;
+}
+h1:before { top: 0; left: 0; }
+h1:after  { bottom: 0; right: 0; }
+
+.loading h1 {
+	transform: scale(4);
+	opacity: 0;
+  transition: all 0s;
+}
+.loading h1:before, .loading h1:after {
+	width: 0;
+}
 
 .md-form .message-submit {
   position: absolute;

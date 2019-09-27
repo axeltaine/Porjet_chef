@@ -44,24 +44,35 @@
   </nav>
 {#  END NAVBAR #}
 </header>
-<main class="global" data-id="{{projet.id}}">
-  <div class="container-fluid" style="padding-top: 5em;">
+<main class="global loading" data-id="{{projet.id}}" id="main" >
+<div class="container" style="padding-top: 6em;">
+    <h1>Maitrise <b>Web</b> Pro</h1>
+  </div>
+  <div class="container-fluid" >
     <hr>
-    <H1>{{ projet.nameProjet}} </H1>
-    <hr>
-    <img src="/img/{{projet.imgProjet}}" class="zoom" style="max-width: 10em;">
-    <hr>
+    <div class="row" style="align-items: center;">
+    
+    <div class="col-4">
+    <H2><u>{{ projet.nameProjet}}</u></H2>
+    </div>
+    <div class="col-4">
+    <h3>Description :</h3>
     <P>{{ projet.descProjet}}</P>
+    </div>
+    <div class="col-4">
+    <img class="img-fluid" src="/img/{{projet.imgProjet}}" style="max-width: 20em;">
+    </div>
+    </div>
     <hr>
   </div>
-  <div class="container">
+  <div class="container-fluid">
     <table class="table table-bordered table-dark">
       <thead>
         <tr>
-          <th scope="col"></th>
-          <th scope="col">ToDO</th>
-          <th scope="col">In Progress</th>
-          <th scope="col">Finished</th>
+          <th scope="col">#</th>
+          <th scope="col">À faire</th>
+          <th scope="col">En cours</th>
+          <th scope="col">Finie</th>
         </tr>
       </thead>
       <tbody>
@@ -75,11 +86,11 @@
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
-                  Message
+                  Messagerie
                 </button>
                 <br>
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#" >
                 {% endfor %}
                   {% endif %}
               </div>
@@ -87,17 +98,17 @@
           </td>
           <td class="droppable" id="1">
             {% if app.user and is_granted('ROLE_ADMIN') and projet.position == 1 %}
-            <div class="draggable " idcard="{{ projet.Position}}">
+            <div class="card draggable " idcard="{{ projet.Position}}">
             {% endif %}
             {% if app.user and projet.position == 1 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
-                  Message
+                  Messagerie
                 </button>
                 <br>
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#">
                 {% endfor %}
                   {% endif %}
               </div>
@@ -111,11 +122,11 @@
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
-                  Message
+                  Messagerie
                 </button>
                 <br>
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#">
                 {% endfor %}
                   {% endif %}
               </div>
@@ -132,11 +143,11 @@
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
-                  Message
+                  Messagerie
                 </button>
                 <br>
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#">
                 {% endfor %}
                   {% endif %}
               </div>
@@ -150,11 +161,11 @@
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
-                  Message
+                  Messagerie
                 </button>
                 <br>
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#">
                 {% endfor %}
                   {% endif %}
               </div>
@@ -168,11 +179,11 @@
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
-                  Message
+                  Messagerie
                 </button>
                 <br>
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#">
                 {% endfor %}
                   {% endif %}
               </div>
@@ -189,11 +200,11 @@
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
-                  Message
+                  Messagerie
                 </button>
                 <br>
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#">
                 {% endfor %}
                   {% endif %}
               </div>
@@ -207,11 +218,11 @@
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
-                  Message
+                  Messagerie
                 </button>
                 <br>
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#">
                 {% endfor %}
                   {% endif %}
               </div>
@@ -225,11 +236,11 @@
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
-                  Message
+                  Messagerie
                 </button>
                 <br>
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#">
                 {% endfor %}
                   {% endif %}
               </div>
@@ -246,11 +257,11 @@
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
-                  Message
+                  Messagerie
                 </button>
                 <br>
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#">
                 {% endfor %}
                   {% endif %}
               </div>
@@ -264,11 +275,11 @@
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
-                  Message
+                  Messagerie
                 </button>
                 <br>
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#">
                 {% endfor %}
                   {% endif %}
               </div>
@@ -282,11 +293,11 @@
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
                 <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#exampleModal">
-                  Message
+                  Messagerie
                 </button>
                 <br>
                 {% for user in projet.assignedUsers %}
-                <img src="../img/{{user.avatar}}" class="card-img-top avatar-mini" alt="#">
+                <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#">
                 {% endfor %}
                   {% endif %}
               </div>
@@ -300,16 +311,17 @@
       <div class="modal-dialog  modal-full-height modal-right" role="document">
         <div class="modal-content">
           <div class="modal-header mdb-color">
-            <h5 class="modal-title" id="exampleModalLabel">Messagerie</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Messagerierie</h5>
           </div>
               <div class="modal-body" style="text-align:start">
                <div class="container" style="overflow-y: auto;
     overflow-x: auto;
-    max-height: 40em;">
+    max-height: 30em;
+    border: 1px solid #ced4da;">
                 {% for chat in projet.chats %}
-                <div class="row">
+                <div class="row" style="margin-left: 2px;">
                   <div class="justify-content-start mb-4">
-                    <p><b style="font-weight: bold;">{{ chat.Auteur }} : </b><br>{{ chat.Contenu }}</p>
+                    <p><b style="font-weight: bold;"><u>{{ chat.Auteur }} : </u></b><br>{{ chat.Contenu }}</p>
                     <p  class="msg_time">{{ chat.Datechat|localizeddate('none', 'none', 'fr', 'Europe/Paris','d/MM/Y H:m a') }}</p>
                   </div>
                 </div>
@@ -319,8 +331,8 @@
                
             <div class="md-form">
                 {{ form_start(form) }}
-                {{ form_widget(form, { 'attr': {'class': 'md-textarea form-control'} })}}
-                <button class="btn btn-rounded aqua-gradient message-submit">Envoyer</button>
+                {{ form_widget(form, { 'attr': {'class': 'form-control'} })}}
+                <button class="btn btn-rounded aqua-gradient messagerie-submit">Envoyer</button>
                 {{ form_end(form) }}
                 </div>
             </div>
@@ -335,5 +347,14 @@
 </main>
 {% endblock %}
 {% block javascripts %}
+<script>
+function init() {  
+  main.classList.add("loading");
+  setTimeout(function() { main.classList.remove("loading"); }, 1800); 
+}
+window.onload = function() {
+	init();
+};
+</script>
 <script src="../js/todolist.js"></script>
 {% endblock %}

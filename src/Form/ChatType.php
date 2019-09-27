@@ -21,7 +21,8 @@ class ChatType extends AbstractType
             
             
             ->add('contenu', TextareaType::class, [
-                'label' => 'Votre Message :'
+                'label' => 'Votre Message :',
+               
                 ])
             
             
