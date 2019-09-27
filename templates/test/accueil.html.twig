@@ -2,6 +2,7 @@
 {% block title %}MaitriseWebPro{% endblock %}
 {% block stylesheets %}
 <link rel="stylesheet" href="/css/accueil.css">
+<link href="/css/datatables.min.css" rel="stylesheet">
 {% endblock %}
 {% block body %}
 <div id="mdb-preloader" class="flex-center">
@@ -338,7 +339,7 @@
     <hr>
 {# START TABLE #}
     <div class="container">
-      <table class="table table-striped table-bordered" id="example">
+      <table id="dtBasicExample" class="table table-striped table-bordered" id="example">
         <thead>
           <tr>
             <th scope="col">Nom client</th>
@@ -384,7 +385,12 @@ window.onload = function() {
 $(function () {
 $('[data-toggle="tooltip"]').tooltip()
 });
+$(document).ready(function () {
+$('#dtBasicExample').DataTable();
+$('.dataTables_length').addClass('bs-select');
+});
 </script>
 
 <script src="/js/assign.js"></script>
+<script type="text/javascript" src="js/datatables.min.js"></script>
 {% endblock %}
