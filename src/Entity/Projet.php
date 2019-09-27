@@ -25,7 +25,7 @@ class Projet
     private $name_projet;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $desc_projet;
 
