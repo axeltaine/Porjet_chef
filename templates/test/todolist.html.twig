@@ -74,16 +74,20 @@
     <hr>
     <div class="row" style="align-items: center;">
     
-    <div class="col-4">
+    <div class="col-3">
     <H2><u>{{ projet.nameProjet}}</u></H2>
     </div>
-    <div class="col-4">
+    <div class="col-3">
     <h3>Description :</h3>
     <P>{{ projet.descProjet}}</P>
     </div>
-    <div class="col-4">
+    <div class="col-3">
     <img class="img-fluid" src="/img/{{projet.imgProjet}}" style="max-width: 20em;">
     </div>
+    <div class="col-3">
+                <p style="text-align: start;"><u>Document</u> :{{ projet.docProjet }}
+                <button class="btn" id="GetFile"><i class="fa fa-download"></i> Télécharger</button></p>
+                </div>
     </div>
     <hr>
   </div>
@@ -377,6 +381,26 @@ function init() {
 window.onload = function() {
 	init();
 };
+$('#GetFile').click(function () {
+  
+    $.ajax({
+        url: '/img/{{ projet.docProjet }}',
+        method: 'GET',
+        xhrFields: {
+            responseType: 'blob'
+        },
+        success: function (data) {
+            var a = document.createElement('a');
+            var url = window.URL.createObjectURL(data);
+            a.href = url;
+            a.download = '{{ projet.docProjet }}';
+            document.body.append(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        }
+    });
+});
 </script>
 <script src="../js/todolist.js"></script>
 {% endblock %}
