@@ -295,35 +295,39 @@
         </tr>
       </tbody>
     </table>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade right" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-dialog  modal-full-height modal-right" role="document">
         <div class="modal-content">
           <div class="modal-header mdb-color">
             <h5 class="modal-title" id="exampleModalLabel">Messagerie</h5>
           </div>
-          <div class="modal-body msg_card_body">
-            {% for chat in projet.chats %}
-            <div class="row msg_cotainer">
-              <div class="d-flex justify-content-start mb-4">
-                <p><b>{{ chat.Auteur }} : </b>{{ chat.Contenu }}</p>
-                <span class="msg_time"><p>{{ chat.Datechat|localizeddate('none', 'none', 'fr', 'Europe/Paris','d/MM/Y H:m a') }}</p></span>
-              </div>
-            </div>
-            {% endfor %}
-            <hr>
+              <div class="modal-body" style="text-align:start">
+               <div class="container" style="overflow-y: auto;
+    overflow-x: auto;
+    max-height: 40em;">
+                {% for chat in projet.chats %}
+                <div class="row">
+                  <div class="justify-content-start mb-4">
+                    <p><b style="font-weight: bold;">{{ chat.Auteur }} : </b><br>{{ chat.Contenu }}</p>
+                    <p  class="msg_time">{{ chat.Datechat|localizeddate('none', 'none', 'fr', 'Europe/Paris','d/MM/Y H:m a') }}</p>
+                  </div>
+                </div>
+               
+                {% endfor %}
+                </div>
+               
             <div class="md-form">
-            
-            {{ form_start(form) }}
-            
-            {{ form_widget(form, { 'attr': {'class': 'md-textarea form-control', 'label': 'Ecrire un message'} })}}
-            <button class="message-submit">Send</button>
-           
+                {{ form_start(form) }}
+                {{ form_widget(form, { 'attr': {'class': 'md-textarea form-control'} })}}
+                <button class="btn btn-rounded aqua-gradient message-submit">Envoyer</button>
+                {{ form_end(form) }}
+                </div>
             </div>
-             {{ form_end(form) }}
-            </div>
+            
             <div class="modal-footer mdb-color">
-              <button type="button" class="btn btn-rounded aqua-gradient" data-dismiss="modal">Close</button>
+                
+              <button type="button" class="btn btn-rounded aqua-gradient" data-dismiss="modal">Fermer</button>
             </div>
           </div>
         </div>

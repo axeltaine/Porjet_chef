@@ -34,17 +34,15 @@ textarea.form-control {
   margin-left: 10px;
   margin-right: 10px;
   border-radius: 25px;
-  background-color: #82ccdd;
   padding: 10px;
   position: relative;
   height: 3em;
 }
 
 .msg_time {
-  position: absolute;
-  left: 63em;
+  
   bottom: -15px;
-  color: rgba(255, 255, 255, 0.5);
+  color:black;
   font-size: 10px;
 }
 
