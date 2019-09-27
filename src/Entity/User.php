@@ -50,10 +50,16 @@ class User implements UserInterface
      */
     private $assignedProjets;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Log", mappedBy="User")
+     */
+    private $logs;
+
     public function __construct()
     {
         $this->userRoles = new ArrayCollection();
         $this->assignedProjets = new ArrayCollection();
+        $this->logs = new ArrayCollection();
        
     }
 
@@ -188,6 +194,37 @@ class User implements UserInterface
         if ($this->assignedProjets->contains($assignedProjet)) {
             $this->assignedProjets->removeElement($assignedProjet);
             $assignedProjet->removeAssignedUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Log[]
+     */
+    public function getLogs(): Collection
+    {
+        return $this->logs;
+    }
+
+    public function addLog(Log $log): self
+    {
+        if (!$this->logs->contains($log)) {
+            $this->logs[] = $log;
+            $log->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLog(Log $log): self
+    {
+        if ($this->logs->contains($log)) {
+            $this->logs->removeElement($log);
+            // set the owning side to null (unless already changed)
+            if ($log->getUser() === $this) {
+                $log->setUser(null);
+            }
         }
 
         return $this;
