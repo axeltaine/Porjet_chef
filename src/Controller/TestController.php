@@ -42,11 +42,12 @@ class TestController extends AbstractController
         return $this->redirectToRoute('index');
     }
     /**
-     * @Route("/dashboard", name="dashboard")
+     * @Route("/dashboard/{id}", name="dashboard")
      */
-    public function dashboard(Request $request, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo, CompanyRepository $repocomp): Response
+    public function dashboard(Request $request, Projet $projet, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo, CompanyRepository $repocomp): Response
     {
         return $this->render('test/dashboard.html.twig',[
+            'projet' => $projet,
             'projets' => $repo->findAll(),
             'companys' => $repocomp->findAll()
             
