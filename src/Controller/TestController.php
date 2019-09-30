@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Faker;
 use App\Entity\Chat;
+use App\Entity\Data;
 use App\Entity\User;
 use App\Entity\Projet;
 use App\Form\ChatType;
@@ -16,6 +17,7 @@ use App\Form\CompanyType;
 use App\Form\EditUserType;
 use App\Form\EditcompanyType;
 use App\Repository\ChatRepository;
+use App\Repository\DataRepository;
 use App\Repository\UserRepository;
 use App\Repository\ProjetRepository;
 use App\Repository\CompanyRepository;
@@ -46,6 +48,8 @@ class TestController extends AbstractController
      */
     public function dashboard(Request $request, Projet $projet, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo, CompanyRepository $repocomp): Response
     {
+        
+
         return $this->render('test/dashboard.html.twig',[
             'projet' => $projet,
             'projets' => $repo->findAll(),
