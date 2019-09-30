@@ -80,6 +80,11 @@ class Projet
      */
     private $Position;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Data", mappedBy="dataprojet", cascade={"persist", "remove"})
+     */
+    private $data;
+
     public function __construct()
     {
         $this->chats = new ArrayCollection();
@@ -276,6 +281,24 @@ class Projet
     public function setPosition(int $Position): self
     {
         $this->Position = $Position;
+
+        return $this;
+    }
+
+    public function getData(): ?Data
+    {
+        return $this->data;
+    }
+
+    public function setData(?Data $data): self
+    {
+        $this->data = $data;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newDataprojet = $data === null ? null : $this;
+        if ($newDataprojet !== $data->getDataprojet()) {
+            $data->setDataprojet($newDataprojet);
+        }
 
         return $this;
     }
