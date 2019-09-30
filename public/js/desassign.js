@@ -1,5 +1,5 @@
-// ASSIGN //
-$('.assign-projet').click(function () {
+// DESASSIGN //
+$('.desassign-projet').click(function () {
   const id = $(this).data('id');
   const mid = $(this).data('modalid');
   const user = $(`.modal-body#${mid} select`).val();
@@ -10,8 +10,8 @@ $('.assign-projet').click(function () {
 
   if (bootbox.confirm("Êtes-vous sûr?", function (result) {
     if (result == false ){return}
-    fetch(`/assign/${id}/${user}`, {
-      method: 'POST'
+    fetch(`/desassign/${id}/${user}`, {
+        method: 'POST'
     }).then(function () {
       bootbox.alert({
         message: "Mise à jour ok!",

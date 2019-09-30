@@ -306,7 +306,7 @@
                 <div class="input-group mb-3">
                 {% if app.user and is_granted('ROLE_ADMIN') %}
                   <select class="browser-default custom-select btn-rounded" id="inputGroupSelect01">
-                    <option selected disabled value="-1">Ajouter Dev.</option>
+                    <option selected disabled value="-1">Choisir Dev.</option>
                     {% for user in users %}
                     <option value="{{user.id}}">{{user.id}}-{{user.UserName}}</option>
                     {% endfor %}
@@ -314,11 +314,18 @@
                   {% endif %}
                 </div>
               </div>
+              
               </div>
               <div class="col">
               {% if app.user and is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-rounded aqua-gradient assign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
                 Assigned</a>
+                {% endif %}
+              </div>
+              <div class="col">
+              {% if app.user and is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-rounded aqua-gradient desassign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
+                Desassigned</a>
                 {% endif %}
               </div>
             </div>
@@ -414,5 +421,6 @@ $('.dataTables_length').addClass('bs-select');
 </script>
 
 <script src="/js/assign.js"></script>
+<script src="/js/desassign.js"></script>
 <script type="text/javascript" src="js/datatables.min.js"></script>
 {% endblock %}

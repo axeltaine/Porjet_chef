@@ -294,6 +294,17 @@ class TestController extends AbstractController
 
         return new Response();
     }
+    /**
+     * @Route("/desassign/{id}/{user}", name="desassign")
+     */
+    public function desassign(Projet $projet, User $user, ObjectManager $manager)
+    {
+        $user->removeAssignedProjet($projet);
+        $manager->persist($user);
+        $manager->flush();
+
+        return new Response();
+    }
       /**
      * @Route("/editProfil/{id}", name="editProfil")
      */
