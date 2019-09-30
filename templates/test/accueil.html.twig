@@ -302,6 +302,10 @@
                 <img src="../img/{{user.avatar}}" class="avatar-mini" alt="#">
                 <p>{{user.NameUser}}</p>
                 {% endfor %}
+              
+              
+              </div>
+              <div class="row justify-content-around">
               <div clas="col-4"> 
                 <div class="input-group mb-3">
                 {% if app.user and is_granted('ROLE_ADMIN') %}
@@ -314,8 +318,6 @@
                   {% endif %}
                 </div>
               </div>
-              
-              </div>
               <div class="col">
               {% if app.user and is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-rounded aqua-gradient assign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
@@ -327,6 +329,7 @@
                 <a class="btn btn-rounded aqua-gradient desassign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
                 Desassigned</a>
                 {% endif %}
+              </div>
               </div>
             </div>
             <div class="modal-footer mdb-color" style="place-content: center;">
