@@ -49,6 +49,7 @@ class TestController extends AbstractController
      */
     public function dashboard(Request $request, Projet $projet, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo, CompanyRepository $repocomp): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         
 
         return $this->render('test/dashboard.html.twig',[
@@ -259,31 +260,7 @@ class TestController extends AbstractController
             'page' => $page
         ]);
     }
-    /**
-     * @Route("/accueil", name="create_company")
-     */
-    public function createCompany(Request $request, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo): Response
-    {
-        $company = new Company();
-       
-        $form = $this->createForm(CompanyType::class, $company);
-        $form->handleRequest($request);
-      
-
-        if($form->isSubmitted() && $form->isValid()){
-           
-            
-                $manager->persist($projet);
-                $manager->flush();
-            
-        }
-
     
-        return $this->render('test/accueil.html.twig',[
-            'form' => $form->createView(),
-            
-        ]);
-    }
     /**
      * @Route("/createProfil", name="createProfil")
      * 
