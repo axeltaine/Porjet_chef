@@ -340,9 +340,20 @@ class TestController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-        $manager->flush();
+        $uploadedFile = $form['avatar']->getData();
+        if ($uploadedFile) {
+            $destination = $this->getParameter('kernel.project_dir').'/public/img/';
+            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = $originalFilename.'-'.uniqid().'.'.$uploadedFile->guessExtension();
+            $uploadedFile->move(
+                $destination,
+                $newFilename
+            );
+                $user->setAvatar($newFilename);
+                $manager->persist($user);
+             $manager->flush();
         return $this->redirectToRoute('create_projet');
-    }
+    }}
     return $this->render('test/editProfil.html.twig', [
         'user' => $user,
         'form' => $form->createView()

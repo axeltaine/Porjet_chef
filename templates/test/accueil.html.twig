@@ -298,13 +298,15 @@
                   <p style="text-align: start;"><u>Date de fin du contrat</u> : {{ projet.dateEnd|date('d/m/Y')}}</p>
                 </div>
               </div>
-              <h5> <u>Personnes Assigner</u> : </h5>
-              <div class="row justify-content-around">
+              <h5 style="text-align: start;"> <u>Personnes Assigner</u> : </h5>
+              <hr>
+              <div class="row">
                 {% for user in projet.assignedUsers %}
                 <img src="../img/{{user.avatar}}" class="avatar-mini" alt="#">
-                <p>{{user.NameUser}}</p>
+                <p style="padding-right: 1em;padding-left: 1em;">{{user.NameUser}}</p>
                 {% endfor %}
                 </div>
+                <hr>
               <div class="row justify-content-around">
               <div clas="col-4"> 
                 <div class="input-group mb-3">
