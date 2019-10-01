@@ -311,6 +311,7 @@ class TestController extends AbstractController
                 $user->setAvatar($newFilename);
                 $manager->persist($user);
                 $manager->flush();
+                return $this->redirectToRoute('create_projet');
     }}
                 return $this->render('test/createProfil.html.twig',[
                 'users' => $user,
