@@ -6,9 +6,10 @@ use App\Entity\Projet;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class EditType extends AbstractType
 {
@@ -17,10 +18,19 @@ class EditType extends AbstractType
         $builder
             ->add('name_projet')
             ->add('desc_projet')
-            ->add('img_projet')
+            ->add('img_projet', FileType::class, [
+            'data_class' => null,
+            'required'=>true
+        ])
             ->add('name_domain')
-            ->add('logo_projet')
-            ->add('doc_projet')
+            ->add('logo_projet', FileType::class, [
+            'data_class' => null,
+            'required'=>true
+        ])
+            ->add('doc_projet', FileType::class, [
+            'data_class' => null,
+            'required'=>true
+        ])
             ->add('date_start', DateType::class, [
                 'label' => 'Date de début  :',
                 'widget' => 'single_text'

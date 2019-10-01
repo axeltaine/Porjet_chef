@@ -19,7 +19,7 @@ class EditUserType extends AbstractType
         ->add('email_user')
         ->add('avatar', FileType::class, [
             'data_class' => null,
-            'required'=>null
+            'required'=>true
         ])
         
         

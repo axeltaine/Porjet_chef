@@ -127,9 +127,43 @@ class TestController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-        $manager->flush();
+        $uploadedFile = $form['img_projet']->getData();
+            if ($uploadedFile) {
+                $destination = $this->getParameter('kernel.project_dir').'/public/img/';
+                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename.'-'.uniqid().'.'.$uploadedFile->guessExtension();
+                $uploadedFile->move(
+                    $destination,
+                    $newFilename
+                );
+                $uploadedDoc = $form['doc_projet']->getData();
+                if ($uploadedDoc) {
+                    $destination = $this->getParameter('kernel.project_dir').'/public/doc/';
+                    $originalDocname = pathinfo($uploadedDoc->getClientOriginalName(), PATHINFO_FILENAME);
+                    $newDocname = $originalDocname.'-'.uniqid().'.'.$uploadedDoc->guessExtension();
+                    $uploadedDoc->move(
+                        $destination,
+                        $newDocname
+                    );
+                    $uploadedLogo = $form['logo_projet']->getData();
+                if ($uploadedLogo) {
+                    $destination = $this->getParameter('kernel.project_dir').'/public/img/';
+                    $originalLogoname = pathinfo($uploadedLogo->getClientOriginalName(), PATHINFO_FILENAME);
+                    $newLogoname = $originalLogoname.'-'.uniqid().'.'.$uploadedLogo->guessExtension();
+                    $uploadedLogo->move(
+                        $destination,
+                        $newLogoname
+                    );
+                $projet->setLogoProjet($newLogoname);
+                $projet->setImgProjet($newFilename);
+                $projet->setDocProjet($newDocname);
+                $manager->persist($projet);
+               
+                $manager->flush();
         return $this->redirectToRoute('create_projet');
-    }
+    }}
+
+}}
     return $this->render('test/edit.html.twig', [
         'projet' => $projet,
         'form' => $form->createView()

@@ -82,13 +82,13 @@
        {{ form_widget(form) }}
      </div>
         <div class="form-check my-4">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck17">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck17" required>
           <label class="form-check-label white-text" for="defaultCheck17">Accept the<a href="#"
               class="green-text font-weight-bold"> Terms and Conditions</a></label>
         </div>
       <div class="row d-flex align-items-center mb-4">
         <div class="text-center mb-3 col-md-12">
-           <button class="btn btn-mdb-color">Modifier</button>
+           <button type="submit" class="btn btn-mdb-color">Modifier</button>
         </div>
       </div>
       {{ form_end(form) }}
