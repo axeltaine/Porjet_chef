@@ -14,6 +14,7 @@ use App\Entity\Company;
 use App\Form\ProfilType;
 use App\Form\ProjetType;
 use App\Form\CompanyType;
+use App\Form\EditdataType;
 use App\Form\EditUserType;
 use App\Form\EditcompanyType;
 use App\Repository\ChatRepository;
@@ -57,7 +58,25 @@ class TestController extends AbstractController
             
         ]);
     }
+    
+    /**
+     * @Route("/editData/{id}", name="editData")
+     */
+    public function editData(Data $data, Request $request, ObjectManager $manager)
+    {
+    $this->denyAccessUnlessGranted('ROLE_ADMIN');
+    $form = $this->createForm(EditdataType::class, $data);
+    $form->handleRequest($request);
 
+    if ($form->isSubmitted() && $form->isValid()) {
+        $manager->flush();
+        return $this->redirectToRoute('create_projet');
+    }
+    return $this->render('test/editdata.html.twig', [
+        'data' => $data,
+        'form' => $form->createView()
+    ]);
+    }
 
     /**
      * @Route("/index", name="index")
@@ -149,10 +168,11 @@ class TestController extends AbstractController
         $pages = ceil($totalProjet / $limit);
         
         $projet = new Projet();
-        
+        $data = new Data();
         $company = new Company();
         // relates this product to the category
         $projet->setCompany($company);
+        $projet->setData($data);
         $form = $this->createForm(ProjetType::class, $projet);
         $form->handleRequest($request);
       
@@ -190,6 +210,7 @@ class TestController extends AbstractController
                 $projet->setDocProjet($newDocname);
                 $manager->persist($projet);
                 $manager->persist($company);
+                $manager->persist($data);
                 $manager->flush();
             
         }}

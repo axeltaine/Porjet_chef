@@ -63,6 +63,7 @@ class Projet
      */
     private $company;
 
+
     private $date_contact;
 
     /**
@@ -97,7 +98,7 @@ class Projet
         return date_modify(new \DateTime($this->Date_end->format('Y-m-d')), '-1 month');
     }
 
-    public function setDateContact(Date $date_contact): self
+    public function setDateContact(\DateTime $date_contact): self
     {
         $this->date_contact = $date_contact;
 

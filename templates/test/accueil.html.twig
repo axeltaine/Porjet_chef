@@ -336,6 +336,7 @@
               <a href="{{ path('dashboard', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">dashboard</a>
               <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">Edit projet</a>
               <a href="{{ path('editCompany', {'id':projet.company.id}) }}" class="btn btn-rounded aqua-gradient">Edit company</a>
+              <a href="{{ path('editData', {'id':projet.data.id}) }}" class="btn btn-rounded aqua-gradient">Edit data</a>
               <a href="#" class="btn btn-rounded aqua-gradient delete-projet" data-id="{{ projet.id }}">Delete</a>
               {% endif %}
             </div>
