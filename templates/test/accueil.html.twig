@@ -17,14 +17,9 @@
       <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
     </a>
     {% if app.user and is_granted('ROLE_ADMIN') %}
-    <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal" data-target="#createProjetModal">Create projet</button>
+    <button type="button" class="btn btn btn-mdb-color" data-toggle="modal" data-target="#createProjetModal">Create projet</button>
     {% endif %}
-    {#<form class="form-inline ml-auto">
-      <div class="md-form my-0">
-        <input class="form-control" type="text" placeholder="Search" aria-label="Search" size="30">
-      </div>
-      <button href="#!" class="btn btn-outline-white btn-md my-0 ml-sm-2" type="submit">Search</button>
-    </form>#}
+    
     <form class="form-inline my-2 my-lg-0 ml-auto">
     <ul class="navbar-nav mr-auto ">
     <li class="nav-item dropdown notifications-nav">
@@ -206,7 +201,7 @@
           </div>
         </div>
         <div class="modal-footer mdb-color d-flex justify-content-center">
-          <button type="submit" class="btn btn-rounded aqua-gradient">Create</button>
+          <button type="submit" class="btn btn-mdb-color">Create</button>
         </div>
         {{ form_end(form) }}
       </div>
@@ -224,6 +219,13 @@
     <h2 id="home">List des Projets :</h2>
   </div>
   <hr>
+  <div class="container">
+   <form class="form-inline mr-auto" style="padding-bottom: 1em;
+    justify-content: flex-end;">
+  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+  <button class="btn btn-mdb-color btn-sm my-0" type="submit">Search</button>
+</form>
+  </div>
 {# START CARD PROJET AND COMPANY #}
   <div class="container" style="text-align: -webkit-center; max-width: 1500px;">
     <div class="row" id="home">
@@ -238,7 +240,7 @@
             </div>
             <div class="card-body card-body-cascade text-center">
               <h5 class="card-title">{{ projet.nameProjet}}</h5>
-              <button type="button" class="btn btn-rounded aqua-gradient" data-toggle="modal"
+              <button type="button" class="btn btn-mdb-color" data-toggle="modal"
                 data-target="#exampleModal{{ projet.id }}" aria-controls="exampleModal">
                 Voir plus
               </button>
@@ -318,26 +320,26 @@
               </div>
               <div class="col">
               {% if app.user and is_granted('ROLE_ADMIN') %}
-                <a class="btn btn-rounded aqua-gradient assign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
+                <a class="btn btn-mdb-color assign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
                 Assigned</a>
                 {% endif %}
               </div>
               <div class="col">
               {% if app.user and is_granted('ROLE_ADMIN') %}
-                <a class="btn btn-rounded aqua-gradient desassign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
+                <a class="btn btn-mdb-color desassign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
                 Desassigned</a>
                 {% endif %}
               </div>
               </div>
             </div>
             <div class="modal-footer mdb-color" style="place-content: center;">
-              <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">todolist</a>
+              <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-mdb-color">todolist</a>
               {% if app.user and is_granted('ROLE_ADMIN') %}
-              <a href="{{ path('dashboard', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">dashboard</a>
-              <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-rounded aqua-gradient">Edit projet</a>
-              <a href="{{ path('editCompany', {'id':projet.company.id}) }}" class="btn btn-rounded aqua-gradient">Edit company</a>
-              <a href="{{ path('editData', {'id':projet.data.id}) }}" class="btn btn-rounded aqua-gradient">Edit data</a>
-              <a href="#" class="btn btn-rounded aqua-gradient delete-projet" data-id="{{ projet.id }}">Delete</a>
+              <a href="{{ path('dashboard', {'id':projet.id}) }}" class="btn btn-mdb-color">dashboard</a>
+              <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-mdb-color">Edit projet</a>
+              <a href="{{ path('editCompany', {'id':projet.company.id}) }}" class="btn btn-mdb-color">Edit company</a>
+              <a href="{{ path('editData', {'id':projet.data.id}) }}" class="btn btn-mdb-color">Edit data</a>
+              <a href="#" class="btn btn-mdb-color delete-projet" data-id="{{ projet.id }}">Delete</a>
               {% endif %}
             </div>
           </div>
@@ -348,7 +350,7 @@
 {# END MODAL PROJET AND COMPANY #}
 {# START PAINATION #}
     <div class="d-flex justify-content-center">
-      <ul class="pagination pagination-circle pg-blue">
+      <ul class="pagination">
         <li class="page-item {% if page == 1 %}disabled{% endif %}">
           <a class="page-link" href="{{ path('create_projet', {'page': page - 1})}}">&laquo;</a>
         </li>
