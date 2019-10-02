@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
-{% block title %}TODOLIST{% endblock %}
+{% block title %}MaitriseWebPro{% endblock %}
 {% block stylesheets %}
 <link rel="stylesheet" href="/css/todolist.css">
 {% endblock %}
 {% block body %}
 <header>
-  {# START NAVBAR #}
+
+{# Début barre de navigation #}
+
   <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav">
     <a class="navbar-brand" href="/accueil">
       <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
@@ -44,9 +46,9 @@
             Bienvenue {{app.user.NameUser}}
           </div>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Edit Profil</a>
+            <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Modifier Profil</a>
             {% if app.user and is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('createProfil') }}" class="dropdown-item">Create Profil</a>
+            <a href="{{ path('createProfil') }}" class="dropdown-item">Créer Profil</a>
             {% endif %}
             <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip" title="Déconnexion">
               Déconnexion
@@ -64,30 +66,31 @@
       </ul>
     </form>
   </nav>
-{#  END NAVBAR #}
+
+{# Fin barre de navigation #}
+
 </header>
 <main class="global loading" data-id="{{projet.id}}" id="main" >
-<div class="container" style="padding-top: 6em;">
+  <div class="container" style="padding-top: 6em;">
     <h1>Maitrise <b>Web</b> Pro</h1>
   </div>
   <div class="container-fluid" >
     <hr>
-    <div class="row" style="align-items: center;">
-    
+      <div class="row" style="align-items: center;">
+        <div class="col-3">
+          <H2><u>{{ projet.nameProjet}}</u></H2>
+        </div>
+      <div class="col-3">
+        <h3>Description :</h3>
+          <p>{{ projet.descProjet}}</p>
+      </div>
     <div class="col-3">
-    <H2><u>{{ projet.nameProjet}}</u></H2>
+      <img class="img-fluid" src="/img/{{projet.imgProjet}}" style="max-width: 20em;">
     </div>
     <div class="col-3">
-    <h3>Description :</h3>
-    <P>{{ projet.descProjet}}</P>
-    </div>
-    <div class="col-3">
-    <img class="img-fluid" src="/img/{{projet.imgProjet}}" style="max-width: 20em;">
-    </div>
-    <div class="col-3">
-                <p style="text-align: start;"><u>Document</u> :{{ projet.docProjet }}
-                <button class="btn" id="GetFile"><i class="fa fa-download"></i> Télécharger</button></p>
-                </div>
+        <p style="text-align: start;"><u>Document</u> :{{ projet.docProjet }}
+        <button class="btn" id="GetFile"><i class="fa fa-download"></i> Télécharger</button></p>
+      </div>
     </div>
     <hr>
   </div>
@@ -111,9 +114,7 @@
             {% if app.user and projet.position == 0 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
-                <button type="button" class="btn btn-mdb-color" data-toggle="modal" data-target="#exampleModal">
-                  Messagerie
-                </button>
+                <button type="button" class="btn btn-mdb-color" data-toggle="modal" data-target="#exampleModal">Messagerie</button>
                 <br>
                 {% for user in projet.assignedUsers %}
                 <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#" >
@@ -147,9 +148,7 @@
             {% if app.user and projet.position == 2 %}
               <h5 class="card-header primary-color text-dark">{{ projet.nameProjet}} </h5>
               <div class="card-body" style="background-color: #353b50; padding: 0rem;">
-                <button type="button" class="btn btn-mdb-color" data-toggle="modal" data-target="#exampleModal">
-                  Messagerie
-                </button>
+                <button type="button" class="btn btn-mdb-color" data-toggle="modal" data-target="#exampleModal">Messagerie</button>
                 <br>
                 {% for user in projet.assignedUsers %}
                 <img src="../img/{{user.avatar}}"  data-toggle="tooltip" title="{{user.UserName}}" class="card-img-top avatar-mini" alt="#">
@@ -340,10 +339,7 @@
             <h5 class="modal-title" id="exampleModalLabel">Messagerierie</h5>
           </div>
               <div class="modal-body" style="text-align:start">
-               <div class="container" style="overflow-y: auto;
-    overflow-x: auto;
-    max-height: 30em;
-    border: 1px solid #ced4da;">
+               <div class="container" style="overflow-y: auto; overflow-x: auto; max-height: 30em; border: 1px solid #ced4da;">
                 {% for chat in projet.chats %}
                 <div class="row" style="margin-left: 2px;">
                   <div class="justify-content-start mb-4">
@@ -351,10 +347,8 @@
                     <p  class="msg_time">{{ chat.Datechat|localizeddate('none', 'none', 'fr', 'Europe/Paris','d/MM/Y H:m a') }}</p>
                   </div>
                 </div>
-               
                 {% endfor %}
                 </div>
-               
             <div class="md-form">
                 {{ form_start(form) }}
                 {{ form_widget(form, { 'attr': {'class': 'form-control'} })}}
@@ -362,9 +356,7 @@
                 {{ form_end(form) }}
                 </div>
             </div>
-            
             <div class="modal-footer mdb-color">
-                
               <button type="button" class="btn btn-mdb-color" data-dismiss="modal">Fermer</button>
             </div>
           </div>
@@ -374,13 +366,6 @@
 {% endblock %}
 {% block javascripts %}
 <script>
-function init() {  
-  main.classList.add("loading");
-  setTimeout(function() { main.classList.remove("loading"); }, 1800); 
-}
-window.onload = function() {
-	init();
-};
 $('#GetFile').click(function () {
   
     $.ajax({

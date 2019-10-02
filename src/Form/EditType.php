@@ -20,16 +20,18 @@ class EditType extends AbstractType
         $builder
             ->add('name_projet', TextType::class, [
                 'label' => 'Nom du projet :'
-            ])
+        ])
             ->add('desc_projet', TextareaType::class, [
                 'label' => 'Description du projet :'
-            ])
+        ])
             ->add('img_projet', FileType::class, [
             'label' => 'Image du projet :',
             'data_class' => null,
             'required'=>true
         ])
-            ->add('name_domain')
+            ->add('name_domain', TextareaType::class, [
+                'label' => 'Nom du Domain :'
+        ])
             ->add('logo_projet', FileType::class, [
             'label' => 'Logo du projet :',
             'data_class' => null,
@@ -43,11 +45,11 @@ class EditType extends AbstractType
             ->add('date_start', DateType::class, [
                 'label' => 'Date de début  :',
                 'widget' => 'single_text'
-                ])
+        ])
             ->add('date_end', DateType::class, [
                 'label' => 'Date de début  :',
                 'widget' => 'single_text'
-                ])
+        ])
             ->add('position', ChoiceType::class, [
                 'choices'  => [
                     'Phase-1.1' => 0,

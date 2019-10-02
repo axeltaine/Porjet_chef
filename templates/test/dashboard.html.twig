@@ -5,7 +5,6 @@
 {% endblock %}
 {% block body %}
 <header>
-
     <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav">
       <div class="float-left">
       <a class="navbar-brand" href="/accueil">
@@ -49,9 +48,9 @@
             Bienvenue {{app.user.NameUser}}
           </div>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Edit Profil</a>
+            <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Modifier Profil</a>
             {% if app.user and is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('createProfil') }}" class="dropdown-item">Create Profil</a>
+            <a href="{{ path('createProfil') }}" class="dropdown-item">Créer Profil</a>
             {% endif %}
             <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip" title="Déconnexion">
               Déconnexion
@@ -181,8 +180,8 @@
                     <thead>
                       <tr>
                         <th class="font-weight-bold"><strong>Mots clés</strong></th>
-                        <th class="font-weight-bold"><strong>Best Rank</strong></th>
-                        <th class="font-weight-bold"><strong>Medium Rank</strong></th>
+                        <th class="font-weight-bold"><strong>Meilleur rang</strong></th>
+                        <th class="font-weight-bold"><strong>Rang moyen</strong></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -209,7 +208,6 @@
                     </tbody>
                   </table>
                 </div>
-                
               </div>
             </div>
           </div>
@@ -247,13 +245,11 @@
                     </tr>
                   </tbody>
                 </table>
-                
               </div>
             </div>
           </div>
         </div>
       </section>
-      
       <section>
         <div class="row">
           <div class="col-xl-12 col-md-12">
@@ -266,115 +262,13 @@
               <div class="card-body">
                <p>{{ projet.data.advice}}</p>
           </div>
-          
             </div>
           </div>
         </div>
       </section>
     </div>
   </main>
-
-
 {% endblock %}
 {% block javascripts %}
-<script>
-   
-
-    // Data Picker Initialization
-    $('.datepicker').pickadate();
-
-    // Material Select Initialization
-    $(document).ready(function () {
-      $('.mdb-select').material_select();
-    });
-
-    // Tooltips Initialization
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
-
-    // Small chart
-    $(function () {
-      $('.min-chart#chart-sales').easyPieChart({
-        barColor: "#4285F4",
-        onStep: function (from, to, percent) {
-          $(this.el).find('.percent').text(Math.round(percent));
-        }
-      });
-    });
-
-
-
-    //bar
-    var ctxB = document.getElementById("barChart").getContext('2d');
-    var myBarChart = new Chart(ctxB, {
-      type: 'bar',
-      data: {
-        labels: ["Janvier", "Février", "Mars", "Avril", "Mai"],
-        datasets: [{
-          label: 'Visites',
-          data: [13, 19, 8, 11, 5],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.3)',
-            'rgba(41, 182, 246, 0.3)',
-            'rgba(255, 187, 51, 0.3)',
-            'rgba(66, 133, 244, 0.3)',
-            'rgba(153, 102, 255, 0.3)',
-
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(41, 182, 246, 1)',
-            'rgba(255, 187, 51, 1)',
-            'rgba(66, 133, 244, 1)',
-            'rgba(153, 102, 255, 1)',
-
-          ],
-          borderWidth: 2
-        }]
-      },
-      optionss: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
-
-    $('#dark-mode').on('click', function (e) {
-
-      e.preventDefault();
-      $('footer').toggleClass('mdb-color lighten-4 dark-card-admin');
-      $('body, .navbar').toggleClass('white-skin navy-blue-skin');
-      $(this).toggleClass('white text-dark btn-outline-black');
-      $('body').toggleClass('dark-bg-admin');
-      $('.card').toggleClass('dark-card-admin');
-      $('h6, .card, p, td, th, i, li a, h4, input, label').not(
-        '#slide-out i, #slide-out a, .dropdown-item i, .dropdown-item').toggleClass('text-white');
-      $('.btn-dash').toggleClass('grey blue').toggleClass('lighten-3 darken-3');
-      $('.gradient-card-header').toggleClass('white dark-card-admin');
-
-      if ($('.navbar').hasClass('navy-blue-skin')) {
-        for (let i = 0; i <= 5; i++) {
-          myBarChart.data.datasets[0].data[i] = (Math.random(i) * 100);
-        }
-
-        Chart.defaults.global.defaultFontColor = '#fff';
-      } else {
-
-        for (let i = 0; i <= 5; i++) {
-          myBarChart.data.datasets[0].data[i] = (Math.random(i) * 100);
-        }
-
-        Chart.defaults.global.defaultFontColor = '#666';
-      }
-
-      myBarChart.update();
-
-    });
-
-  </script>
+<script src="../js/dashboard.js"></script>
 {% endblock %}

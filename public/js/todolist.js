@@ -37,3 +37,11 @@ $('.droppable').droppable({
     }
   }
 });
+
+function init() {  
+  main.classList.add("loading");
+  setTimeout(function() { main.classList.remove("loading"); }, 1800); 
+}
+window.onload = function() {
+	init();
+};
