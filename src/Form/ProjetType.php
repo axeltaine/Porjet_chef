@@ -20,8 +20,7 @@ class ProjetType extends AbstractType
     {
         $builder
             ->add('name_projet', TextType::class, [
-                'label' => 'Nom du projet :'
-                
+                'label' => 'Nom du projet :',
             ])
             ->add('company', CompanyType::class, [
                 'label' => 'Nom de société :'
@@ -36,24 +35,23 @@ class ProjetType extends AbstractType
                 'label' => 'Image :',
                 'attr' => [
                     'placeholder' => 'Image'
-
                     ]
                 ])
-                ->add('logo_projet', FileType::class, [
+            ->add('logo_projet', FileType::class, [
                     'label' => 'Logo :'
                     ])
             ->add('doc_projet', FileType::class, [
                     'label' => 'Document :'
                     ])
-                    ->add('date_start', DateType::class, [
+            ->add('date_start', DateType::class, [
                         'label' => 'Date de début  :',
                         'widget' => 'single_text'
                         ])
-                        ->add('date_end', DateType::class, [
+            ->add('date_end', DateType::class, [
                             'label' => 'Date de fin  :',
                             'widget' => 'single_text'
                             ])
-                            ->add('position', ChoiceType::class, [
+            ->add('position', ChoiceType::class, [
                                 'choices'  => [
                                     'Phase-1.1' => 0,
                                     'Phase-1.2' => 1,

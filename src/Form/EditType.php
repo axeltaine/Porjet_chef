@@ -8,26 +8,35 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class EditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name_projet')
-            ->add('desc_projet')
+            ->add('name_projet', TextType::class, [
+                'label' => 'Nom du projet :'
+            ])
+            ->add('desc_projet', TextareaType::class, [
+                'label' => 'Description du projet :'
+            ])
             ->add('img_projet', FileType::class, [
+            'label' => 'Image du projet :',
             'data_class' => null,
             'required'=>true
         ])
             ->add('name_domain')
             ->add('logo_projet', FileType::class, [
+            'label' => 'Logo du projet :',
             'data_class' => null,
             'required'=>true
         ])
             ->add('doc_projet', FileType::class, [
+            'label' => 'Document du projet :',
             'data_class' => null,
             'required'=>true
         ])

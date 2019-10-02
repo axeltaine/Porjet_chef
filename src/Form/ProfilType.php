@@ -15,12 +15,15 @@ class ProfilType extends AbstractType
     {
         $builder
             ->add('name_user', TextType::class,[
+                'label' => 'Nom utilisateur',
                 'required'=>true
             ])
             ->add('mdp_user', TextType::class,[
+                'label' => 'Mot de passe utilisateur',
                 'required'=>true
             ])
             ->add('email_user', TextType::class,[
+                'label' => 'Adresse mail utilisateur',
                 'required'=>true
             ])
             ->add('avatar', FileType::class, [

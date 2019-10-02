@@ -44,9 +44,9 @@
             Bienvenue {{app.user.NameUser}}
           </div>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Edit Profil</a>
+            <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Modifier Profil</a>
             {% if app.user and is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('createProfil') }}" class="dropdown-item">Create Profil</a>
+            <a href="{{ path('createProfil') }}" class="dropdown-item">Créer Profil</a>
             {% endif %}
             <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip" title="Déconnexion">
               Déconnexion
@@ -84,7 +84,7 @@
         <div class="form-check my-4">
           <input class="form-check-input" type="checkbox" value="" id="defaultCheck17" required>
           <label class="form-check-label white-text" for="defaultCheck17">Accepter les<a href="#"
-              class="green-text font-weight-bold"> modifications</a></label>
+              class="green-text font-weight-bold"> Modifications</a></label>
         </div>
       <div class="row d-flex align-items-center mb-4">
         <div class="text-center mb-3 col-md-12">
@@ -99,5 +99,4 @@
 </main>
 {% endblock %}
 {% block javascripts %}
-<script src="/js/main.js"></script>
 {% endblock %}

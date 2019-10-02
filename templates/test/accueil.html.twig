@@ -5,21 +5,28 @@
 <link href="/css/datatables.min.css" rel="stylesheet">
 {% endblock %}
 {% block body %}
+
+{# Début Preloader #}
+
 <div id="mdb-preloader" class="flex-center">
   <div class="preloader-wrapper active">
     <img src="../img/logo_transpa.png" alt="logo" id="logo">
   </div>
 </div>
+
+{# Fin Preloader #}
+
 <header>
-  {# START NAVBAR #}
+
+  {# Début barre de navigation #}
+
   <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav ">
     <a class="navbar-brand" href="/accueil">
       <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
     </a>
     {% if app.user and is_granted('ROLE_ADMIN') %}
-    <button type="button" class="btn btn btn-mdb-color" data-toggle="modal" data-target="#createProjetModal">Create projet</button>
+    <button type="button" class="btn btn btn-mdb-color" data-toggle="modal" data-target="#createProjetModal">Créer projet</button>
     {% endif %}
-    
     <form class="form-inline my-2 my-lg-0 ml-auto">
     <ul class="navbar-nav mr-auto ">
     <li class="nav-item dropdown notifications-nav">
@@ -45,7 +52,6 @@
               </a>
             </div>
           </li>
-  
         {% if app.user %}
         <li class="nav-item dropdown">
           <div class="chip chip-lg aqua-gradient white-text nav-link dropdown-toggle" id="navbarDropdownMenuLink"
@@ -55,9 +61,9 @@
             Bienvenue {{app.user.NameUser}}
           </div>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Edit Profil</a>
+            <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Modifier Profil</a>
             {% if app.user and is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('createProfil') }}" class="dropdown-item">Create Profil</a>
+            <a href="{{ path('createProfil') }}" class="dropdown-item">Créer Profil</a>
             {% endif %}
             <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip" title="Déconnexion">
               Déconnexion
@@ -75,9 +81,11 @@
       </ul>
     </form>
   </nav>
-  {#  END NAVBAR #}
 
-  {# START MODAL CREATE PROJET AND COMPANY #}
+  {#  Fin de la barre de navigation #}
+
+  {# Début du modal avec le formulaire de création projet #}
+
   <div class="modal fade right" id="createProjetModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-full-height modal-right modal-notify modal-lm ">
@@ -201,32 +209,44 @@
           </div>
         </div>
         <div class="modal-footer mdb-color d-flex justify-content-center">
-          <button type="submit" class="btn btn-mdb-color">Create</button>
+          <button type="submit" class="btn btn-mdb-color">Créer</button>
         </div>
         {{ form_end(form) }}
       </div>
     </div>
   </div>
-{# END MODAL CREATE PROJET AND COMPANY #}
+
+{# Fin du modal avec le formulaire de création de projet #}
+
 </header>
+
+{# Début de la page global #}
+
 <main id="main" class="global loading">
-<br>
-<div class="container" style="padding-top: 6em;">
+    <br>
+  <div class="container" style="padding-top: 6em;">
     <h1>Maitrise <b>Web</b> Pro</h1>
   </div>
-  <hr>
+    <hr>
   <div class="container">
-    <h2 id="home">List des Projets :</h2>
+    <h2 id="home">Liste des Projets :</h2>
   </div>
-  <hr>
+    <hr>
+
+{# Début de la recherche de projet #}
+
   <div class="container">
    <form class="form-inline mr-auto" style="padding-bottom: 1em;
     justify-content: flex-end;">
-  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-  <button class="btn btn-mdb-color btn-sm my-0" type="submit">Search</button>
-</form>
+      <input class="form-control mr-sm-2" type="text" placeholder="Chercher" aria-label="Chercher">
+      <button class="btn btn-mdb-color btn-sm my-0" type="submit">Chercher</button>
+    </form>
   </div>
-{# START CARD PROJET AND COMPANY #}
+
+{# Fin de la recherche de projet #}
+
+{# Début des cartes projet #}
+
   <div class="container" style="text-align: -webkit-center; max-width: 1500px;">
     <div class="row" id="home">
       {% for projet in projets %}
@@ -252,8 +272,11 @@
             </div>
           </div>
         </div>  
-{# END CARD PROJET AND COMPANY #}
-{# START MODAL PROJET AND COMPANY #}
+
+{# Fin des cartes projet #}
+
+{# Début du modal visualisation projet #}
+
       <div class="modal fade" id="exampleModal{{ projet.Id}}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -274,7 +297,7 @@
                   <p style="text-align: start;"><u>Nom de la Société</u> : {{ projet.company.NameCompany }}</p>
                 </div>
                 <div class="col">
-                  <p style="text-align: start;"><u>Nom du directeur</u> : {{ projet.company.NameDirector }}</p>
+                  <p style="text-align: start;"><u>Nom du Directeur</u> : {{ projet.company.NameDirector }}</p>
                 </div>
               </div>
               <div class="row">
@@ -287,7 +310,7 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <p style="text-align: start;"><u>Email</u> : {{ projet.company.EmailCompany }}</p>
+                  <p style="text-align: start;"><u>Adresse mail</u> : {{ projet.company.EmailCompany }}</p>
                 </div>
               </div>
               <div class="row">
@@ -298,7 +321,7 @@
                   <p style="text-align: start;"><u>Date de fin du contrat</u> : {{ projet.dateEnd|date('d/m/Y')}}</p>
                 </div>
               </div>
-              <h5 style="text-align: start;"> <u>Personnes Assigner</u> : </h5>
+              <h5 style="text-align: start;"> <u>Personnes Assignées</u> : </h5>
               <hr>
               <div class="row">
                 {% for user in projet.assignedUsers %}
@@ -312,7 +335,7 @@
                 <div class="input-group mb-3">
                 {% if app.user and is_granted('ROLE_ADMIN') %}
                   <select class="browser-default custom-select btn-rounded" id="inputGroupSelect01">
-                    <option selected disabled value="-1">Choisir Dev.</option>
+                    <option selected disabled value="-1">Choisir Développeur</option>
                     {% for user in users %}
                     <option value="{{user.id}}">{{user.id}}-{{user.UserName}}</option>
                     {% endfor %}
@@ -323,25 +346,25 @@
               <div class="col">
               {% if app.user and is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-mdb-color assign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
-                Assigned</a>
+                Assigné</a>
                 {% endif %}
               </div>
               <div class="col">
               {% if app.user and is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-mdb-color desassign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
-                Desassigned</a>
+                Désassigné</a>
                 {% endif %}
               </div>
               </div>
             </div>
             <div class="modal-footer mdb-color" style="place-content: center;">
-              <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-mdb-color">todolist</a>
+              <a href="{{ path('todolist', {'id':projet.id}) }}" class="btn btn-mdb-color">Suivi projet</a>
               {% if app.user and is_granted('ROLE_ADMIN') %}
-              <a href="{{ path('dashboard', {'id':projet.id}) }}" class="btn btn-mdb-color">dashboard</a>
-              <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-mdb-color">Edit projet</a>
-              <a href="{{ path('editCompany', {'id':projet.company.id}) }}" class="btn btn-mdb-color">Edit company</a>
-              <a href="{{ path('editData', {'id':projet.data.id}) }}" class="btn btn-mdb-color">Edit data</a>
-              <a href="#" class="btn btn-mdb-color delete-projet" data-id="{{ projet.id }}">Delete</a>
+              <a href="{{ path('dashboard', {'id':projet.id}) }}" class="btn btn-mdb-color">Tableau de bord</a>
+              <a href="{{ path('edit', {'id':projet.id}) }}" class="btn btn-mdb-color">Modifier projet</a>
+              <a href="{{ path('editCompany', {'id':projet.company.id}) }}" class="btn btn-mdb-color">Modifier société</a>
+              <a href="{{ path('editData', {'id':projet.data.id}) }}" class="btn btn-mdb-color">Modifier données</a>
+              <a href="#" class="btn btn-mdb-color delete-projet" data-id="{{ projet.id }}"><i class="fas fa-trash"></i></a>
               {% endif %}
             </div>
           </div>
@@ -349,8 +372,11 @@
       </div>
       {% endfor %}
     </div>
-{# END MODAL PROJET AND COMPANY #}
-{# START PAINATION #}
+
+{# Fin du modal visualisation projet #}
+
+{# Début de la pagination #}
+
     <div class="d-flex justify-content-center">
       <ul class="pagination">
         <li class="page-item {% if page == 1 %}disabled{% endif %}">
@@ -367,19 +393,23 @@
       </ul>
     </div>
   </div>
-{# END PAINATION #}
+
+{# Fin de la pagination #}
+
   <div class="bottom" style="text-align: -webkit-center">
     <hr>
-    <h2 id="home">List des contrats</h2>
+    <h2 id="home">Liste des contrats</h2>
     <hr>
-{# START TABLE #}
+
+{# Début du tableau des contrats #}
+
     <div class="container">
       <table id="dtBasicExample" class="table table-striped table-bordered" id="example">
         <thead>
           <tr>
             <th scope="col">Nom client</th>
             <th scope="col">Nom projet</th>
-            <th scope="col">Date debut contrat</th>
+            <th scope="col">Date début contrat</th>
             <th scope="col">Date fin contrat</th>
             <th scope="col">Date de contact</th>
           </tr>
@@ -398,34 +428,16 @@
       </table>
     </div>
   </div>
-{# END TABLE #}
+
+{# Fin du tableau des contrats #}
+
 </main>
+
+{# Fin de la page global #}
+
 {% endblock %}
 {% block javascripts %}
-<script>
-$(window).on('load', function() {
-  $('#mdb-preloader').addClass('loaded');
-  });
-
- $('.datepicker').pickadate({
-   formatSubmit: 'yyyy-mm-dd',
- });
- function init() {  
-  main.classList.add("loading");
-  setTimeout(function() { main.classList.remove("loading"); }, 1800); 
-}
-window.onload = function() {
-	init();
-};
-$(function () {
-$('[data-toggle="tooltip"]').tooltip()
-});
-$(document).ready(function () {
-$('#dtBasicExample').DataTable();
-$('.dataTables_length').addClass('bs-select');
-});
-</script>
-
+<script src="/js/preloader.js"></script>
 <script src="/js/assign.js"></script>
 <script src="/js/desassign.js"></script>
 <script type="text/javascript" src="/js/datatables.min.js"></script>

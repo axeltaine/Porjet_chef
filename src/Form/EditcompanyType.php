@@ -20,13 +20,13 @@ class EditcompanyType extends AbstractType
             'label' => 'Nom du directeur :'
             ])
         ->add('siret_company', TextType::class, [
-                'label' => 'Siret :'
+                'label' => 'Siret de la Société :'
                 ])
-                ->add('phone_company', TextType::class, [
-                    'label' => 'Téléphone'
+        ->add('phone_company', TextType::class, [
+                    'label' => 'Téléphone de la Société'
                     ])
-                    ->add('email_company', TextType::class, [
-                        'label' => 'Email'
+        ->add('email_company', TextType::class, [
+                        'label' => 'Adresse mail de la Société'
                         ])
         ;
     }

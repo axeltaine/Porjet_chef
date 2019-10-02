@@ -5,7 +5,9 @@
 {% endblock %}
 {% block body %}
 <header>
-  {# NAVBAR #}
+
+{# Début barre de navigation #}
+
   <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav ">
     <a class="navbar-brand" href="/accueil">
       <img src="../img/logo_transpa.png" width="30" height="30" alt="logo" id="logo">
@@ -44,9 +46,9 @@
             Bienvenue {{app.user.NameUser}}
           </div>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Edit Profil</a>
+            <a class="dropdown-item" href="{{ path('editProfil', {'id':app.user.id})  }}">Modifier Profil</a>
             {% if app.user and is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('createProfil') }}" class="dropdown-item">Create Profil</a>
+            <a href="{{ path('createProfil') }}" class="dropdown-item">Créer Profil</a>
             {% endif %}
             <a class="navbar-logout dropdown-item" href="{{ path('logout')}}" data-toggle="tooltip" title="Déconnexion">
               Déconnexion
@@ -64,16 +66,19 @@
       </ul>
     </form>
   </nav>
-  {#  END NAVBAR #}
-</header>
-<main class="global">
 
+{# Fin barre de navigation #}
+
+</header>
+
+{# Début de la page global #}
+
+<main class="global">
   <div class="container" style="padding-top: 5em;">
   <hr>
     <h1 id="home">Création de Profil :</h1>
       <hr>
   </div>
-
   <div class="container" style="text-align: -webkit-center; margin-bottom: 7em; margin-top: 6em;">
 <section class="form-dark">
   <div class="card card-image"
@@ -86,11 +91,11 @@
         <div class="form-check my-4">
           <input class="form-check-input" type="checkbox" value="" id="defaultCheck17" required>
           <label class="form-check-label white-text" for="defaultCheck17">Accepter la<a href="#"
-              class="green-text font-weight-bold"> création</a></label>
+              class="green-text font-weight-bold"> Création</a></label>
         </div>
       <div class="row d-flex align-items-center mb-4">
         <div class="text-center mb-3 col-md-12">
-           <button class="btn btn-mdb-color">Create</button>
+           <button class="btn btn-mdb-color">Créer</button>
         </div>
       </div>
       {{ form_end(form) }}
@@ -99,7 +104,9 @@
 </section>
 </div>
 </main>
+
+{# Fin de la page global #}
+
 {% endblock %}
 {% block javascripts %}
-<script src="/js/main.js"></script>
 {% endblock %}
