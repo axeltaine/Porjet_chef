@@ -23,10 +23,10 @@ Contacter nous, ça sera plus simple, et on pourra vous aidez !
 modification@maitrise-web.fr
 Si tu veux voir les crédits, licences, ..., n'hésite pas à regarder nos mentions légales ;) 
 -->
-  <link rel="icon" sizes="32x32" href="../img/favlogo.ico">
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/mdb.min.css">
-  <link rel="stylesheet" href="/css/main.css">
+  <link rel="icon" sizes="32x32" href="{{ asset('img/favlogo.ico') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/main.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
@@ -51,14 +51,14 @@ Si tu veux voir les crédits, licences, ..., n'hésite pas à regarder nos menti
     <button id="myBtn" title="Go to top"><i class="icon-chevron-up"></i></button>
     <!--Fin back-to-top-->
   </footer>
-  <script src="/js/jquery-3.4.1.min.js"></script>
-  <script src="/js/jquery-ui.js"></script>
-  <script src="/js/popper.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
-  <script src="/js/mdb.min.js"></script>
+  <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{ asset('js/jquery-ui.js') }}"></script>
+  <script src="{{ asset('js/popper.min.js') }}"></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('js/mdb.min.js') }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-  <script src="/js/main.js"></script>
+  <script src="{{ asset('js/main.js') }}"></script>
   {% block javascripts %}{% endblock %}
 </body>
 

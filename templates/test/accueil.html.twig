@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block title %}MaitriseWebPro{% endblock %}
 {% block stylesheets %}
-<link rel="stylesheet" href="/css/accueil.css">
-<link href="/css/datatables.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('/css/accueil.css') }}">
+<link href="{{ asset('/css/datatables.min.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
 
@@ -437,8 +437,8 @@
 
 {% endblock %}
 {% block javascripts %}
-<script src="/js/preloader.js"></script>
-<script src="/js/assign.js"></script>
-<script src="/js/desassign.js"></script>
-<script type="text/javascript" src="/js/datatables.min.js"></script>
+<script src="{{ asset('/js/preloader.js') }}"></script>
+<script src="{{ asset('/js/assign.js') }}"></script>
+<script src="{{ asset('/js/desassign.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/datatables.min.js') }}"></script>
 {% endblock %}

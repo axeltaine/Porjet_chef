@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}MaitriseWebPro{% endblock %}
 {% block stylesheets %}
-<link rel="stylesheet" href="/css/todolist.css">
+<link rel="stylesheet" href="{{ asset('/css/todolist.css') }}">
 {% endblock %}
 {% block body %}
 <header>
@@ -387,5 +387,5 @@ $('#GetFile').click(function () {
     });
 });
 </script>
-<script src="../js/todolist.js"></script>
+<script src="{{ asset('../js/todolist.js') }}"></script>
 {% endblock %}
