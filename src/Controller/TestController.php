@@ -194,7 +194,6 @@ class TestController extends AbstractController
     public function createProjet(Request $request, ValidatorInterface $validator, ObjectManager $manager, ProjetRepository $repo, CompanyRepository $repocomp, UserRepository $repouser, $page): Response
     {
 
-        
         $limit = 8;
         $start = $page * $limit - $limit;
 
@@ -205,13 +204,11 @@ class TestController extends AbstractController
         $projet = new Projet();
         $data = new Data();
         $company = new Company();
-        // relates this product to the category
         $projet->setCompany($company);
         $projet->setData($data);
         $form = $this->createForm(ProjetType::class, $projet);
         $form->handleRequest($request);
       
-
         if($form->isSubmitted() && $form->isValid()){
             $uploadedFile = $form['img_projet']->getData();
             if ($uploadedFile) {
@@ -247,9 +244,7 @@ class TestController extends AbstractController
                 $manager->persist($company);
                 $manager->persist($data);
                 $manager->flush();
-            
         }}
-
     }}
         return $this->render('test/accueil.html.twig',[
             'form' => $form->createView(),

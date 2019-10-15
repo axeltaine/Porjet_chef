@@ -29,7 +29,7 @@ class EditType extends AbstractType
             'data_class' => null,
             'required'=>true
         ])
-            ->add('name_domain', TextareaType::class, [
+            ->add('name_domain', TextType::class, [
                 'label' => 'Nom du Domain :'
         ])
             ->add('logo_projet', FileType::class, [
@@ -47,7 +47,7 @@ class EditType extends AbstractType
                 'widget' => 'single_text'
         ])
             ->add('date_end', DateType::class, [
-                'label' => 'Date de début  :',
+                'label' => 'Date de fin  :',
                 'widget' => 'single_text'
         ])
             ->add('position', ChoiceType::class, [

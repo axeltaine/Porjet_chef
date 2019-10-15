@@ -312,6 +312,9 @@
                 <div class="col">
                   <p style="text-align: start;"><u>Adresse mail</u> : {{ projet.company.EmailCompany }}</p>
                 </div>
+                <div class="col">
+                  <p style="text-align: start;"><u>Domaine</u> : {{ projet.NameDomain }}</p>
+                </div>
               </div>
               <div class="row">
                 <div class="col">
@@ -346,13 +349,13 @@
               <div class="col">
               {% if app.user and is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-mdb-color assign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
-                Assigné</a>
+                Assigner</a>
                 {% endif %}
               </div>
               <div class="col">
               {% if app.user and is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-mdb-color desassign-projet" data-id="{{ projet.id }}" data-modalid="{{ projet.Id }}">
-                Désassigné</a>
+                Désassigner</a>
                 {% endif %}
               </div>
               </div>
